@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+  margin: 0;
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+/* Ensure the HomeNavbar is hidden when the body has the .no-navbar class */
+.no-navbar .home-navbar {
+  display: none !important;
+}
+
+/* Container for the full-page sign up */
+.signup-page-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff;
+  padding: 50px 20px;
+  overflow-y: auto;
+}
+
+/* Back arrow positioned in the top left */
+.back-arrow {
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Sign up card styling */
+.signup-card {
+  background: #fff;
+  padding: 50px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+/* Title styling */
+.signup-title {
+  font-size: 3.75rem;
+  margin: 0;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Subheader for welcome text */
+.welcome-text {
+  font-size: 1.25rem;
+  margin-top: 10px;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Error message styling */
+.error {
+  background: #fdecea;
+  color: #b71c1c;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Form styling */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: left;
+  margin-top: 30px;
+}
+
+/* Common input group styling */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label styling for inputs */
+.input-label {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Input field styling: make inputs take full width */
+.input-field {
+  padding: 16px;
+  font-size: 1.125rem;
+  border: 2px solid #8A2BE2;
+  border-radius: 12px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #A55CE7;
+  box-shadow: 0 0 8px rgba(170, 92, 231, 0.5);
+  outline: none;
+}
+
+/* Sign up button styling */
+.signup-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: #8A2BE2;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signup-btn:hover {
+  background-color: #7A1EC2;
+}
+
+/* Divider styling */
+.divider {
+  margin: 30px 0;
+  position: relative;
+  text-align: center;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: #ddd;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+/* Google sign-up button styling */
+.google-btn {
+  width: 100%;
+  padding: 16px;
+  background: #eee;
+  color: #333;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+}
+
+.google-btn:hover {
+  background: #f7f7f7;
+}
+
+.google-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+/* Login link container styling */
+.login-link-container {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.login-link {
+  color: #8A2BE2;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* --- Updated Styles for Grouping Name and Email Fields --- */
+
+/* Wrap the name fields and email field together.
+   Set the gap to 24px so the space between the name section and email field
+   equals the gap between email and the password field (as defined in .signup-form). */
+   .name-email-group {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;      /* Updated gap to match the outer form spacing */
+    width: 100%;
+    /* Remove any extra margin if previously set */
+    margin-bottom: 0;
+  }
+  
+  /* (Existing CSS for name fields remains the same) */
+  /* Use CSS Grid for the name fields */
+  .name-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+  }  
+
+/* --- Styles for the Password Toggle --- */
+/* Container for the password input and toggle icon */
+.password-field-container {
+  position: relative;
+}
+
+/* Position the toggle button (eye icon) inside the password container */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 16px; /* Adjust as needed */
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}

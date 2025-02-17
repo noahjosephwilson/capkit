@@ -1,0 +1,59 @@
+/* src/components/SideLayout/SideLayout.css */
+:root {
+  --navbar-height: 60px;
+  --accent-color: #9f65c8;
+}
+
+/* The overall container */
+.side-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* The body container below the navbar */
+.layout-body {
+  margin-top: var(--navbar-height);
+  display: flex;
+  flex: 1;
+  height: calc(100vh - var(--navbar-height));
+}
+
+/* Left column (contains AddTask + Sidebar) */
+.left-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* The scrollable area containing AddTask and Sidebar */
+.scrollable-left-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+}
+
+/* Resize handle */
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  cursor: ew-resize;
+  background: transparent;
+  z-index: 2000;
+}
+
+.resize-handle:hover {
+  background: var(--accent-color);
+}
+
+/* The main content to the right of the sidebar */
+.main-content {
+  flex: 1;
+  padding: 0;
+}

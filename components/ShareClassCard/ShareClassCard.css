@@ -1,0 +1,58 @@
+.shareclass-card {
+    border: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 1rem;
+  }
+  
+  /* Delete Button in the top-left corner */
+  .delete-btn {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    user-select: none;
+    z-index: 2;
+  }
+  
+  /* Container for card content */
+  .shareclass-content {
+    width: 100%;
+    margin-top: 1.5rem; /* To provide space below the delete button */
+  }
+  
+  /* Label styling - larger and at the top */
+  .shareclass-label {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  /* Description styling */
+  .shareclass-description {
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  /* See More link at the bottom right - now BlueViolet */
+  .see-more {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 0.9rem;
+    color: #8A2BE2;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,170 @@
+.main-sidebar {
+  width: 14rem; /* Reduced width */
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  height: 100vh; /* Fixed height equal to the viewport */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 1rem;
+  font-size: 16px;
+}
+
+/* Spacer for scrolling */
+.sidebar-nav::after {
+  content: "";
+  display: block;
+  height: 5rem; /* Increased spacer height for extra scroll space */
+}
+
+/* Navigation container */
+.sidebar-nav {
+  /* Additional styling can go here */
+}
+
+/* Sidebar menu list */
+.sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Top-level menu item */
+.sidebar-menu-item {
+  margin: 0;
+}
+
+/* Top-level menu button styling */
+.sidebar-menu-button {
+  display: flex;
+  align-items: center;
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-size: 16px;
+  text-decoration: none;
+  position: relative; /* For pseudo-element positioning */
+}
+
+.sidebar-menu-button:hover {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+}
+
+/* Active state for top-level menu buttons (with vertical stripe) */
+.sidebar-menu-button.active {
+  background-color: #e9d5ff;
+  color: #6b21a8;
+}
+.sidebar-menu-button.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px; /* Adjust stripe width as needed */
+  background-color: #6b21a8;
+}
+
+/* Icon styling for menu buttons */
+.sidebar-icon {
+  margin-right: 0.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.sidebar-icon.active {
+  color: #6b21a8;
+}
+
+/* Label styling */
+.menu-label {
+  flex: 1;
+}
+
+/* Dropdown arrow styling */
+.dropdown-arrow {
+  transition: transform 0.2s ease;
+  transform: rotate(-90deg);
+}
+.dropdown-arrow.open {
+  transform: rotate(0deg);
+}
+
+/* Sub-menu container */
+.sidebar-menu-sub {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 0.6rem; /* Left padding for sub-buttons */
+  position: relative;
+}
+.sidebar-menu-sub::before {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #e5e7eb;
+}
+
+/* Sub-menu item */
+.sidebar-menu-sub-item {
+  margin: 0;
+}
+
+/* Sub-menu button styling */
+.sidebar-menu-sub-button {
+  display: block;
+  width: 89%;
+  margin: 0;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative; /* For pseudo-element positioning */
+}
+.sidebar-menu-sub-button:hover {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+}
+
+/* Active state for sub-menu buttons (with vertical stripe) */
+.sidebar-menu-sub-button.active {
+  background-color: #e9d5ff;
+  color: #6b21a8;
+}
+.sidebar-menu-sub-button.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px; /* Stripe width */
+  background-color: #6b21a8;
+}
+
+/* Logout button styling:
+   The Log Out button will now highlight in red on hover without a vertical stripe */
+.logout-button {
+  color: black;
+  position: relative;
+}
+
+.logout-button:hover {
+  background-color: #fdd;
+  color: red;
+}
+
+/* Ensure logout button doesn't pick up active styling */
+.sidebar-menu-sub-button.logout-button.active,
+.sidebar-menu-sub-button.logout-button.active::before {
+  background: none;
+  content: none;
+  color: inherit;
+}

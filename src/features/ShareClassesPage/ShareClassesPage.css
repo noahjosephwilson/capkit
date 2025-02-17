@@ -1,0 +1,58 @@
+/* Define CSS variables for your layout.
+   Adjust these values to match your navbar and sidebar dimensions. */
+   :root {
+    --navbar-height: 60px;
+    --sidebar-width: 250px;
+    --header-height: 70px;
+  }
+  
+  /* Fixed Page Title Container */
+  .page-title-container {
+    position: fixed;
+    top: var(--navbar-height);
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    height: var(--header-height);
+    background-color: #fff;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: #000;
+  }
+  
+  /* Main container for the cards.
+     Add top padding equal to header height plus navbar height */
+  .shareholders-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: calc(var(--navbar-height) + var(--header-height) + 1rem) 2rem 2rem;
+    box-sizing: border-box;
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: #333;
+  }
+  
+  .tab-content {
+    background-color: #fff;
+    padding-top: 1.5rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  /* Container for the ShareClass Cards */
+  .shareclass-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  

@@ -1,0 +1,91 @@
+/* Import a modern font. Since this CSS file is only imported in the Details page,
+   it won’t affect the rest of your site. */
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+   /* Scope all styles to the Details page */
+   .details-page {
+     font-family: 'Roboto', sans-serif;
+     background-color: #fff; /* All-white background */
+     min-height: 100vh;
+     padding: 2rem;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+   }
+   
+   /* Search Bar Container */
+   .details-page .search-bar {
+     width: 100%;
+     max-width: 600px;
+     position: relative;
+     margin-top: 2rem;
+     text-align: center;
+   }
+   
+   /* Label Styling */
+   .details-page .search-label {
+     font-size: 1.6rem;
+     font-weight: 500;
+     color: #333;
+     margin-bottom: 0.5rem;
+     display: block;
+   }
+   
+   /* Stylish Search Input */
+   .details-page .search-input {
+     width: 100%;
+     padding: 1rem 1.5rem;
+     font-size: 1.1rem;
+     background: #fff;
+     border: 2px solid #ccc;
+     border-radius: 30px;
+     outline: none;
+     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+   }
+   
+   .details-page .search-input:focus {
+     border-color: #0077cc;
+     box-shadow: 0 0 10px rgba(0, 123, 204, 0.3);
+   }
+   
+   /* Dropdown Menu Styling */
+   .details-page .dropdown-menu {
+     position: absolute;
+     top: calc(100% + 8px);
+     left: 0;
+     right: 0;
+     background: #fff;
+     margin: 0;
+     padding: 0;
+     list-style: none;
+     border: 1px solid #eee;
+     border-top: none;
+     z-index: 10;
+     border-radius: 0 0 8px 8px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+   }
+   
+   /* Dropdown Item Styling */
+   .details-page .dropdown-item {
+     padding: 0.8rem 1.2rem;
+     cursor: pointer;
+     transition: background 0.2s;
+     font-size: 1rem;
+     color: #333;
+     border-bottom: 1px solid #f0f0f0;
+   }
+   
+   .details-page .dropdown-item:last-child {
+     border-bottom: none;
+   }
+   
+   .details-page .dropdown-item:hover {
+     background: #f9f9f9;
+   }
+   
+   /* No Results Styling */
+   .details-page .no-results {
+     text-align: center;
+     color: #999;
+   }
+   

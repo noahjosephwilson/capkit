@@ -1,0 +1,132 @@
+/* General Account Page - Full Width */
+.general-account {
+    width: 100%;
+    padding: 2rem;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  
+  .account-form {
+    width: 100%;
+  }
+  
+  /* Layout: Two Columns (Profile on Left, Fields on Right) */
+  .account-content {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: nowrap; /* Force side-by-side layout */
+  }
+  
+  /* Profile Section */
+  .profile-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .section-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #555;
+  }
+  
+  .profile-image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-image-label {
+    cursor: pointer;
+    display: block;
+  }
+  
+  /* Profile image styling (200x200, no outline) */
+  .profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: none;
+  }
+  
+  /* Add File Button - Gray */
+  .add-file-button {
+    background-color: gray;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+    transition: background-color 0.2s ease;
+  }
+  
+  .add-file-button:hover {
+    background-color: darkgray;
+  }
+  
+  /* Fields Section: Fill Most of the Page */
+  .fields-section {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #8a2be2;
+  }
+  
+  /* Save Button Container at Bottom */
+  .save-button-container {
+    margin-top: 2rem;
+    width: 100%;
+  }
+  
+  /* Full-Width Save Button */
+  .save-button {
+    background-color: #8a2be2;
+    color: #fff;
+    padding: 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.2s ease;
+  }
+  
+  .save-button:hover {
+    background-color: #7320c8;
+  }
+  

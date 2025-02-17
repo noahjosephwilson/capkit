@@ -1,0 +1,336 @@
+/* Define global CSS variables */
+:root {
+  --navbar-height: 70px;
+  --accent-color: #9f65c8;
+}
+
+.main-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0 1.5rem;
+  /* Remove the box-shadow */
+  box-shadow: none;
+  /* Add a gray bottom border as a divider */
+  border-bottom: 1px solid #eee;
+  z-index: 1500;
+}
+
+/* Left side styles */
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  margin-right: 1.2rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  margin-right: 1.5rem;
+  font-size: 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+/* Right side: Search, notifications, and profile */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 25px; /* Spacing between elements */
+}
+
+/* Notification container */
+.notification-container {
+  position: relative;
+  top: 0px; /* Adjusts vertical alignment */
+  cursor: pointer;
+  margin-right: -5px;
+}
+
+.notification-icon {
+  width: 28px;
+  height: 30px;
+}
+
+/* Profile container */
+.profile-container {
+  position: relative;
+  cursor: pointer;
+  margin-right: -5px;
+}
+
+.profile-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+/* Profile dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1600;
+}
+
+/* Existing dropdown item style for <a> elements */
+.dropdown-item {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Logout button styling */
+.dropdown-item.logout-btn {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  color: #333;      /* Use the same text color as your links */
+  font-size: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Hover effect for consistency */
+.dropdown-item.logout-btn:hover,
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* New styles for the professional company dropdown */
+
+/* Container for the company dropdown section */
+.company-dropdown-container {
+  position: relative;
+  cursor: pointer;
+  margin-left: 8px; /* Moved closer to the Orbat name */
+}
+
+/* Updated company box with a smaller height and no text selection */
+.company-box {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;         /* Reduced vertical padding */
+  height: 28px;             /* Fixed, smaller height for the box */
+  border: none;
+  border-radius: 8px;
+  background-color: #f2f2f2;  /* Slightly darker gray background */
+  transition: box-shadow 0.2s ease;
+  min-width: 220px;
+  font-size: 0.9rem;
+  user-select: none;        /* Prevent text selection */
+}
+
+/* Prevent text selection on the entire dropdown container (if needed) */
+.company-dropdown-container,
+.company-dropdown {
+  user-select: none;
+}
+
+/* Update each dropdown option to match the company box text styling */
+.company-dropdown .dropdown-item {
+  display: flex;
+  align-items: center;
+  height: 44px;            /* Same fixed height as .company-box */
+  padding: 0 16px;         /* Horizontal padding */
+  font-size: 0.9rem;       /* Same font size as the company box */
+  font-family: inherit;    /* Inherit font family from the parent */
+  font-weight: bold;       /* Match the bold styling of .company-box .company-name */
+  color: #333;             /* Same text color */
+  text-decoration: none;
+  user-select: none;       /* Prevent text selection */
+}
+
+/* If you want to keep separators between dropdown options */
+.company-dropdown .dropdown-item:not(:last-child) {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Company icon (small circular image) */
+.company-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Company name inside the company box */
+.company-box .company-name {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Dropdown arrow indicator on the right side */
+.dropdown-arrow {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Keyframes for slide down animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* When dropdown is open, remove the bottom rounded corners from the company box */
+.company-dropdown-container.open .company-box {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Style for the dropdown menu */
+.company-dropdown {
+  position: absolute;
+  top: 100%;  /* Positions the dropdown directly below the company box */
+  left: 0;
+  background-color: #fff;
+  border: none;
+  border-top-left-radius: 0;    /* Remove top left corner radius */
+  border-top-right-radius: 0;   /* Remove top right corner radius */
+  border-bottom-left-radius: 4px; /* (Optional) Maintain bottom rounding if desired */
+  border-bottom-right-radius: 4px;/* (Optional) Maintain bottom rounding if desired */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1600;
+  width: 100%;  /* Matches the width of the company box */
+  margin-top: 0; /* Ensure no gap between the box and the dropdown */
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: slideDown 0.15s ease-out forwards;
+}
+
+/* Arrow styling with transition */
+.dropdown-arrow {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* When the dropdown is open, rotate the arrow 180 degrees */
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.big-plus {
+  font-size: 1.5em; /* Your desired size */
+  position: relative;
+  top: -2px; /* Adjust this value as needed */
+}
+
+/* Updated style for the Invite Officers button */
+.invite-btn {
+  background-color: white;           /* White background */
+  color: #333;                       /* Dark text color */
+  border: 1px solid #ddd;            /* Thin, light gray border */
+  border-radius: 8px;                /* Rounded corners matching the toggle container */
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-right: 10px;
+  display: flex;                     /* Use flex to align icon and text */
+  align-items: center;               /* Vertically center icon and text */
+  gap: 6px;                          /* Space between icon and text */
+  transition: background-color 0.2s ease;
+  margin-right: -8px;
+}
+
+.invite-btn:hover {
+  background-color: #f2f2f2;         /* Slight gray on hover */
+}
+
+/* Style for the invite icon */
+.invite-icon {
+  width: 16px;   /* Adjust as needed */
+  height: 20px;  /* Adjust as needed */
+  object-fit: contain;
+}
+
+/* Upgrade button styling */
+.upgrade-btn {
+  background-color: #9B30FF; /* Bright purple */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.upgrade-btn:hover {
+  background-color: #8847a2; /* A slightly darker shade */
+}
+
+/* Toggle Container (Outer box for segmented toggle) */
+.toggle-container {
+  display: flex;
+  width: 130px;           /* Outer container width */
+  height: 30px;           /* Fixed height for the outer container */
+  padding: 2px;           /* Internal padding */
+  background-color: white;
+  border: 1px solid #ddd; /* Thin, light gray border */
+  border-radius: 8px;
+  gap: 2px;
+  margin-right: -10px;
+}
+
+/* Inner toggle options */
+.toggle-option {
+  flex: 1;
+  display: flex;              
+  align-items: center;        
+  justify-content: center;    
+  padding: 0;
+  font-size: 0.8rem;
+  font-weight: 300;
+  background-color: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  user-select: none;
+}
+
+/* Active (selected) option styling */
+.toggle-option.active {
+  background-color: #d3d3d3; /* Light gray background for selected option */
+  color: #333;
+  font-weight: 300;
+  border-radius: 8px;
+}

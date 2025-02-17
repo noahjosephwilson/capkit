@@ -1,0 +1,184 @@
+/* General Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 1.2rem;
+    background-color: #f5f3ff; /* Light lavender purple */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+}
+
+/* Logo Styles */
+.navbar .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #7851A9; /* Royal purple */
+    text-decoration: none;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger .line {
+    width: 20px;
+    height: 2px;
+    background-color: #333;
+    margin: 2px 0;
+}
+
+/* Nav Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-links.mobile-menu {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    width: 100%;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+}
+
+/* Nav Item */
+.nav-item {
+    position: relative;
+    cursor: pointer;
+    padding: 0.3rem 0;
+}
+
+.nav-item span {
+    font-size: 1rem;
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item:hover > span {
+    color: #7851A9; /* Royal purple on hover */
+}
+
+/* Caret Styling */
+.caret {
+    margin-left: 0.3rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0.4rem 0;
+    z-index: 10;
+    min-width: 150px;
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-item .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Dropdown Menu Items */
+.dropdown-menu li {
+    padding: 0.4rem 1rem;
+}
+
+.dropdown-menu li a {
+    font-size: 0.9rem;
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f9f9f9; /* Light background on hover */
+}
+
+.dropdown-menu li a:hover {
+    color: #7851A9; /* Royal purple on hover */
+}
+
+/* Static Links */
+.nav-links a {
+    font-size: 0.9rem;
+    color: #333;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: #7851A9; /* Royal purple on hover */
+}
+
+/* Sign Up Button */
+.signup-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    background-color: #7851A9; /* Royal purple */
+    color: white !important;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-btn:hover {
+    background-color: #5a4180; /* Darker purple */
+    color: white !important;
+}
+
+/* Responsive Design */
+@media (max-width: 64rem) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links.mobile-menu {
+        display: flex;
+    }
+}
+
+@media (max-width: 40rem) {
+    .navbar {
+        padding: 0.3rem;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .signup-btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
+    }
+}

@@ -1,0 +1,60 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: #f9f9f9; /* Light background */
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    color: #333333; /* Dark text */
+    margin-bottom: 1rem;
+  }
+  
+  .hero .highlight {
+    color: #7851A9; /* Royal purple */
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    color: #666666; /* Subtle grey text */
+    margin-bottom: 2rem;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .primary-btn {
+    background-color: #7851A9; /* Royal purple */
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: #5a4180; /* Darker purple */
+  }
+  
+  .secondary-btn {
+    background-color: white;
+    color: #7851A9; /* Royal purple */
+    border: 2px solid #7851A9;
+  }
+  
+  .secondary-btn:hover {
+    background-color: #f0e6ff; /* Light purple background */
+    color: #5a4180;
+  }
+  
