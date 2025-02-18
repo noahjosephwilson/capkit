@@ -50,16 +50,22 @@ const Navbar = () => {
 
   // Close dropdowns and mobile menu when navigating to specific pages
   useEffect(() => {
-    if (['/', '/signin', '/signup'].includes(pathname)) {
+    if (['/', '/login', '/signup'].includes(pathname)) {
       setActiveDropdown(null);
       setMobileMenuOpen(false);
     }
   }, [pathname]);
 
+  // Handler to reset dropdown/mobile state when clicking on navigation buttons
+  const handleNavClick = () => {
+    setActiveDropdown(null);
+    setMobileMenuOpen(false);
+  };
+
   return (
     <nav className="navbar">
       <h1>
-        <Link href="/" className="logo">
+        <Link href="/" className="logo" onClick={handleNavClick}>
           Orbat
         </Link>
       </h1>
@@ -82,13 +88,19 @@ const Navbar = () => {
           {activeDropdown === 'products' && (
             <ul className="dropdown-menu">
               <li>
-                <Link href="/products/product1">Product 1</Link>
+                <Link href="/products/product1" onClick={handleNavClick}>
+                  Product 1
+                </Link>
               </li>
               <li>
-                <Link href="/products/product2">Product 2</Link>
+                <Link href="/products/product2" onClick={handleNavClick}>
+                  Product 2
+                </Link>
               </li>
               <li>
-                <Link href="/products/product3">Product 3</Link>
+                <Link href="/products/product3" onClick={handleNavClick}>
+                  Product 3
+                </Link>
               </li>
             </ul>
           )}
@@ -100,13 +112,19 @@ const Navbar = () => {
           {activeDropdown === 'solutions' && (
             <ul className="dropdown-menu">
               <li>
-                <Link href="/solutions/solution1">Solution 1</Link>
+                <Link href="/solutions/solution1" onClick={handleNavClick}>
+                  Solution 1
+                </Link>
               </li>
               <li>
-                <Link href="/solutions/solution2">Solution 2</Link>
+                <Link href="/solutions/solution2" onClick={handleNavClick}>
+                  Solution 2
+                </Link>
               </li>
               <li>
-                <Link href="/solutions/solution3">Solution 3</Link>
+                <Link href="/solutions/solution3" onClick={handleNavClick}>
+                  Solution 3
+                </Link>
               </li>
             </ul>
           )}
@@ -118,13 +136,19 @@ const Navbar = () => {
           {activeDropdown === 'resources' && (
             <ul className="dropdown-menu">
               <li>
-                <Link href="/resources/blog">Blog</Link>
+                <Link href="/resources/blog" onClick={handleNavClick}>
+                  Blog
+                </Link>
               </li>
               <li>
-                <Link href="/resources/faq">FAQ</Link>
+                <Link href="/resources/faq" onClick={handleNavClick}>
+                  FAQ
+                </Link>
               </li>
               <li>
-                <Link href="/resources/support">Support</Link>
+                <Link href="/resources/support" onClick={handleNavClick}>
+                  Support
+                </Link>
               </li>
             </ul>
           )}
@@ -136,22 +160,31 @@ const Navbar = () => {
           {activeDropdown === 'pricing' && (
             <ul className="dropdown-menu">
               <li>
-                <Link href="/pricing/basic">Basic</Link>
+                <Link href="/pricing/basic" onClick={handleNavClick}>
+                  Basic
+                </Link>
               </li>
               <li>
-                <Link href="/pricing/pro">Pro</Link>
+                <Link href="/pricing/pro" onClick={handleNavClick}>
+                  Pro
+                </Link>
               </li>
               <li>
-                <Link href="/pricing/enterprise">Enterprise</Link>
+                <Link href="/pricing/enterprise" onClick={handleNavClick}>
+                  Enterprise
+                </Link>
               </li>
             </ul>
           )}
         </li>
         <li>
-          <Link href="/signin">Login</Link>
+          {/* Changed href from "/signin" to "/login" to match your login page route */}
+          <Link href="/home/registration/login" onClick={handleNavClick}>
+            Login
+          </Link>
         </li>
         <li>
-          <Link href="/signup" className="signup-btn">
+          <Link href="/home/registration/signup" className="signup-btn" onClick={handleNavClick}>
             Sign Up
           </Link>
         </li>

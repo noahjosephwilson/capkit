@@ -1,14 +1,14 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import './LogInPage.css';
 import { 
   signInWithEmailAndPassword, 
-  signInWithPopup, 
-  GoogleAuthProvider, 
   sendPasswordResetEmail 
 } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
-import { useNavigate } from 'react-router-dom';
-import googleSymbol from "../../assets/googleSymbol.png";
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const LogInPage = () => {
   const [email, setEmail]               = useState('');
@@ -21,14 +21,12 @@ const LogInPage = () => {
   const [resetMessage, setResetMessage] = useState('');
   const [showResetForm, setShowResetForm] = useState(false);
 
-  const navigate = useNavigate();
+  const router = useRouter();
 
-  // Add a class to the body to hide the navbar on this page.
+  // Hide the navbar on this page.
   useEffect(() => {
     document.body.classList.add('no-navbar');
-    return () => {
-      document.body.classList.remove('no-navbar');
-    };
+    return () => document.body.classList.remove('no-navbar');
   }, []);
 
   // Handle email/password login
@@ -37,32 +35,9 @@ const LogInPage = () => {
     setError('');
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/dashboard');
+      router.push('/dashboard');
     } catch (err) {
       console.error('Error during email log in:', err);
-      setError(err.message);
-    }
-  };
-
-  // Handle login via Google
-  const handleGoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      const userCredential = await signInWithPopup(auth, provider);
-
-      // Check if the user is new (i.e. they haven't signed up before)
-      if (userCredential.additionalUserInfo?.isNewUser) {
-        // Optionally, delete the newly created account
-        await userCredential.user.delete();
-        // Sign the user out just in case
-        await auth.signOut();
-        setError('No account exists with this Google account. Please sign up first.');
-        return;
-      }
-
-      navigate('/dashboard');
-    } catch (err) {
-      console.error('Error during Google log in:', err);
       setError(err.message);
     }
   };
@@ -81,15 +56,16 @@ const LogInPage = () => {
 
   return (
     <div className="login-page-container">
-      {/* Back arrow always navigates to home */}
-      <button className="back-arrow" onClick={() => navigate('/')}>
+      {/* Back arrow navigates to home */}
+      <button className="back-arrow" onClick={() => router.push('/')}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
              xmlns="http://www.w3.org/2000/svg">
           <path d="M15 18L9 12L15 6" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
       <div className="login-card">
-        <h1 className="login-title">Orbat</h1>
+        {/* Replace text title with capkit logo image */}
+        <img src="/assets/capkitlogo.png" alt="capkit logo" className="signup-logo" />
         <p className="welcome-text">Welcome back</p>
         {error && <div className="error">{error}</div>}
         <form onSubmit={handleLogin} className="login-form">
@@ -125,14 +101,14 @@ const LogInPage = () => {
                 {showPassword ? (
                   // Eye-off icon (password is visible)
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a10.05 10.05 0 012.293-3.366M6.175 6.175A9.955 9.955 0 0112 5c4.477 0 8.268 2.943 9.542 7a10.05 10.05 0 01-4.105 5.454"/>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3l18 18"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a10.05 10.05 0 012.293-3.366" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3l18 18" />
                   </svg>
                 ) : (
                   // Eye icon (password is hidden)
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
                 )}
               </button>
@@ -170,23 +146,12 @@ const LogInPage = () => {
           </form>
         )}
 
-        <div className="divider">or</div>
-
-        <button type="button" className="google-btn" onClick={handleGoogleSignIn}>
-          <img
-            src={googleSymbol}
-            alt="Google Logo"
-            className="google-logo"
-          />
-          Log in with Google
-        </button>
-
         <div className="create-account-container">
           <p>
             Don't have an account?{' '}
-            <span className="create-account-link" onClick={() => navigate('/signup')}>
-              Create Account
-            </span>
+            <Link href="/home/registration/signup">
+              <span className="create-account-link">Create Account</span>
+            </Link>
           </p>
         </div>
       </div>

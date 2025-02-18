@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 body {
@@ -7,13 +8,12 @@ body {
   font-size: 16px;
 }
 
-/* Ensure the HomeNavbar is hidden when the body has the .no-navbar class */
+/* Hide HomeNavbar when the body has .no-navbar */
 .no-navbar .home-navbar {
   display: none !important;
 }
 
-/* Container for the full-page login; centers content vertically and horizontally.
-   Added overflow-y to allow scrolling if needed. */
+/* Container for the full-page login; same as signup container styling */
 .login-page-container {
   position: relative;
   display: flex;
@@ -36,9 +36,9 @@ body {
   z-index: 10;
 }
 
-/* Instead of a card, we use a simple full-width container with generous spacing */
+/* Login card styling – now matching the signup card */
 .login-card {
-  background: #fff; /* All white */
+  background: #fff;
   padding: 50px;
   border-radius: 16px;
   width: 100%;
@@ -46,12 +46,15 @@ body {
   text-align: center;
 }
 
-/* Main header styling */
-.login-title {
-  font-size: 3.75rem;
-  margin: 0;
-  color: #333;
-  font-weight: 500;
+/* Replace text title with capkit logo image styling */
+.signup-logo {
+  width: 270px;
+  height: 150px;
+  display: block;
+  margin: 0 auto 20px;
+  position: relative;
+  top: -20px; /* Moves the image 20px upward */
+  margin-bottom: -5px;
 }
 
 /* Subheader for welcome text */
@@ -73,7 +76,7 @@ body {
   text-align: left;
 }
 
-/* Form styling with increased spacing */
+/* Form styling with consistent spacing */
 .login-form {
   display: flex;
   flex-direction: column;
@@ -82,7 +85,7 @@ body {
   margin-top: 30px;
 }
 
-/* Label styling for inputs */
+/* Common input group styling */
 .input-group {
   display: flex;
   flex-direction: column;
@@ -95,26 +98,28 @@ body {
   font-weight: 500;
 }
 
-/* Larger input fields with rounded edges */
+/* Input field styling */
 .input-field {
   padding: 16px;
   font-size: 1.125rem;
-  border: 2px solid #8A2BE2; /* Vibrant purple outline */
+  border: 2px solid #B500FF;
   border-radius: 12px;
   transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .input-field:focus {
-  border-color: #A55CE7; /* Lighter purple on focus */
-  box-shadow: 0 0 8px rgba(170, 92, 231, 0.5);
+  border-color: #B500FF;
+  box-shadow: 0 0 8px rgba(181, 0, 255, 0.5);
   outline: none;
 }
 
-/* Sign In button with larger text and rounded edges */
+/* Login button styling */
 .login-btn {
   width: 100%;
   padding: 16px;
-  background-color: #8A2BE2;
+  background-color: #B500FF;
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -125,10 +130,10 @@ body {
 }
 
 .login-btn:hover {
-  background-color: #7A1EC2;
+  background-color: #9C00E6;
 }
 
-/* Divider styling with larger spacing */
+/* Divider styling */
 .divider {
   margin: 30px 0;
   position: relative;
@@ -155,7 +160,7 @@ body {
   right: 0;
 }
 
-/* Google sign-in button with increased size and rounded edges */
+/* Google sign-in button styling */
 .google-btn {
   width: 100%;
   padding: 16px;
@@ -193,7 +198,7 @@ body {
 .forgot-password-link {
   background: none;
   border: none;
-  color: #8A2BE2;
+  color: #B500FF;
   font-size: 0.9rem;
   cursor: pointer;
   text-decoration: underline;
@@ -223,7 +228,7 @@ body {
 }
 
 .create-account-link {
-  color: #8A2BE2;
+  color: #B500FF;
   font-weight: 500;
   cursor: pointer;
   text-decoration: underline;
@@ -238,16 +243,10 @@ body {
 .toggle-password {
   position: absolute;
   top: 50%;
-  right: 16px; /* Adjust as needed */
+  right: 16px;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-}
-
-/* Ensure the input-field takes full width */
-.input-field {
-  width: 100%;
-  box-sizing: border-box;
 }

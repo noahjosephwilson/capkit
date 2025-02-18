@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
 body {
   margin: 0;
@@ -26,176 +26,187 @@ body {
 
 /* Back arrow positioned in the top left */
 .back-arrow {
-  background: transparent;
-  border: none;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  cursor: pointer;
-  z-index: 10;
+  background: transparent !important;
+  border: none !important;
+  position: absolute !important;
+  top: 20px !important;
+  left: 20px !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
 }
 
 /* Sign up card styling */
 .signup-card {
-  background: #fff;
-  padding: 50px;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
+  background: #fff !important;
+  padding: 50px !important;
+  border-radius: 16px !important;
+  width: 100% !important;
+  max-width: 500px !important;
+  text-align: center !important;
 }
 
-/* Title styling */
 .signup-title {
-  font-size: 3.75rem;
-  margin: 0;
-  color: #333;
-  font-weight: 500;
+  font-size: 4.5rem !important;
+  font-weight: 500 !important; /* Use the thinner variant */
+  letter-spacing: -0.04em !important;
+  text-transform: lowercase !important;
+  font-family: 'Poppins', 'Inter', sans-serif !important;
+  color: #B500FF !important;
+  -webkit-text-stroke: 1px black !important;
+  position: relative !important;
+  display: inline-block !important;
+  margin-bottom: -8px !important;
 }
 
 /* Subheader for welcome text */
 .welcome-text {
-  font-size: 1.25rem;
-  margin-top: 10px;
-  color: #555;
-  font-weight: 500;
+  font-size: 1.25rem !important;
+  margin-top: 8px !important;
+  color: #555 !important;
+  font-weight: 500 !important;
 }
 
 /* Error message styling */
 .error {
-  background: #fdecea;
-  color: #b71c1c;
-  padding: 12px;
-  border-radius: 8px;
-  margin: 20px 0;
-  font-size: 1rem;
-  text-align: left;
+  background: #fdecea !important;
+  color: #b71c1c !important;
+  padding: 12px !important;
+  border-radius: 8px !important;
+  margin: 20px 0 !important;
+  font-size: 1rem !important;
+  text-align: left !important;
 }
 
 /* Form styling */
 .signup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  text-align: left;
-  margin-top: 30px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+  text-align: left !important;
+  margin-top: 30px !important;
 }
 
 /* Common input group styling */
 .input-group {
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 /* Label styling for inputs */
 .input-label {
-  margin-bottom: 8px;
-  font-size: 1rem;
-  color: #333;
-  font-weight: 500;
+  margin-bottom: 8px !important;
+  font-size: 1rem !important;
+  color: #333 !important;
+  font-weight: 500 !important;
 }
 
 /* Input field styling: make inputs take full width */
 .input-field {
-  padding: 16px;
-  font-size: 1.125rem;
-  border: 2px solid #8A2BE2;
-  border-radius: 12px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 16px !important;
+  font-size: 1.125rem !important;
+  border: 2px solid #B500FF !important;
+  border-radius: 12px !important;
+  transition: border-color 0.3s, box-shadow 0.3s !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .input-field:focus {
-  border-color: #A55CE7;
-  box-shadow: 0 0 8px rgba(170, 92, 231, 0.5);
-  outline: none;
+  border-color: #B500FF !important;
+  box-shadow: 0 0 8px rgba(170, 92, 231, 0.5) !important;
+  outline: none !important;
 }
 
 /* Sign up button styling */
 .signup-btn {
-  width: 100%;
-  padding: 16px;
-  background-color: #8A2BE2;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.125rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  width: 100% !important;
+  padding: 16px !important;
+  background-color: #B500FF !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-size: 1.125rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s !important;
 }
 
 .signup-btn:hover {
-  background-color: #7A1EC2;
+  background-color: #9C00E6 !important; /* Darker shade for hover */
+}
+
+.signup-btn:focus,
+.signup-btn:active {
+  background-color: #B500FF !important;
+  outline: none !important;
 }
 
 /* Divider styling */
 .divider {
-  margin: 30px 0;
-  position: relative;
-  text-align: center;
-  font-size: 1rem;
-  color: #aaa;
+  margin: 30px 0 !important;
+  position: relative !important;
+  text-align: center !important;
+  font-size: 1rem !important;
+  color: #aaa !important;
 }
 
 .divider::before,
 .divider::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 35%;
-  height: 1px;
-  background: #ddd;
+  content: "" !important;
+  position: absolute !important;
+  top: 50% !important;
+  width: 35% !important;
+  height: 1px !important;
+  background: #ddd !important;
 }
 
 .divider::before {
-  left: 0;
+  left: 0 !important;
 }
 
 .divider::after {
-  right: 0;
+  right: 0 !important;
 }
 
 /* Google sign-up button styling */
 .google-btn {
-  width: 100%;
-  padding: 16px;
-  background: #eee;
-  color: #333;
-  font-size: 1.125rem;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s;
-  border: 2px solid #ddd;
-  border-radius: 12px;
+  width: 100% !important;
+  padding: 16px !important;
+  background: #eee !important;
+  color: #333 !important;
+  font-size: 1.125rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background 0.3s !important;
+  border: 2px solid #ddd !important;
+  border-radius: 12px !important;
 }
 
 .google-btn:hover {
-  background: #f7f7f7;
+  background: #f7f7f7 !important;
 }
 
 .google-logo {
-  width: 24px;
-  height: 24px;
-  margin-right: 12px;
+  width: 24px !important;
+  height: 24px !important;
+  margin-right: 12px !important;
 }
 
 /* Login link container styling */
 .login-link-container {
-  margin-top: 30px;
-  text-align: center;
-  font-size: 1rem;
+  margin-top: 30px !important;
+  text-align: center !important;
+  font-size: 1rem !important;
 }
 
 .login-link {
-  color: #8A2BE2;
-  font-weight: 500;
-  cursor: pointer;
-  text-decoration: underline;
+  color: #B500FF !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  text-decoration: underline !important;
 }
 
 /* --- Updated Styles for Grouping Name and Email Fields --- */
@@ -203,38 +214,47 @@ body {
 /* Wrap the name fields and email field together.
    Set the gap to 24px so the space between the name section and email field
    equals the gap between email and the password field (as defined in .signup-form). */
-   .name-email-group {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;      /* Updated gap to match the outer form spacing */
-    width: 100%;
-    /* Remove any extra margin if previously set */
-    margin-bottom: 0;
-  }
-  
-  /* (Existing CSS for name fields remains the same) */
-  /* Use CSS Grid for the name fields */
-  .name-fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    width: 100%;
-  }  
+.name-email-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;      /* Updated gap to match the outer form spacing */
+  width: 100% !important;
+  margin-bottom: 0 !important;
+}
+
+/* (Existing CSS for name fields remains the same) */
+/* Use CSS Grid for the name fields */
+.name-fields {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
 
 /* --- Styles for the Password Toggle --- */
 /* Container for the password input and toggle icon */
 .password-field-container {
-  position: relative;
+  position: relative !important;
 }
 
 /* Position the toggle button (eye icon) inside the password container */
 .toggle-password {
-  position: absolute;
-  top: 50%;
-  right: 16px; /* Adjust as needed */
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+  position: absolute !important;
+  top: 50% !important;
+  right: 16px !important; /* Adjust as needed */
+  transform: translateY(-50%) !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+}
+
+.signup-logo {
+  width: 270px !important;
+  height: 150px !important;
+  display: block !important;
+  margin: 0 auto 20px !important;
+  position: relative !important;
+  top: -20px !important; /* Moves the image 20px upward */
+  margin-bottom: -5px !important;
 }
