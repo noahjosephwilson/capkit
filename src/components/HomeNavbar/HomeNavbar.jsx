@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 // Import arrow icons from lucide-react
@@ -9,6 +9,19 @@ import "./HomeNavbar.css";
 export default function HomeNavbar() {
   // Track which dropdown (if any) is open
   const [activeDropdown, setActiveDropdown] = useState(null);
+  // Track if the window is scrolled down
+  const [scrolled, setScrolled] = useState(false);
+  // Track if the navbar is hovered
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleDropdown = (menu) => {
     setActiveDropdown((prev) => (prev === menu ? null : menu));
@@ -26,8 +39,15 @@ export default function HomeNavbar() {
       <ChevronDown className="arrow" size={16} />
     );
 
+  // Determine the navbar background: transparent when at top and not hovered.
+  const navbarClass = scrolled || hovered ? "navbar-white" : "navbar-transparent";
+
   return (
-    <nav className="navbar">
+    <nav
+      className={`navbar ${navbarClass}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <div className="navContainer">
         {/* Left Section: Logo + Navigation Menu */}
         <div className="leftSection">
@@ -35,8 +55,8 @@ export default function HomeNavbar() {
             <Image
               src="/assets/capkitlogo.png"
               alt="Logo"
-              width={150}
-              height={50}
+              width={130}
+              height={45}
               className="logo"
             />
           </Link>
@@ -149,7 +169,7 @@ export default function HomeNavbar() {
             Login
           </Link>
           <Link href="/home/registration/signup" className="signupBtn">
-            Sign Up
+            Sign up free
           </Link>
         </div>
       </div>

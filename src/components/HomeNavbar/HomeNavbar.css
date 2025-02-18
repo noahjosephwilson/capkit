@@ -28,11 +28,13 @@
 /* Logo styling */
 .logo {
   @apply object-contain;
+  margin-right: 5px;
 }
 
 /* Navigation menu container */
 .navMenu {
   @apply ml-8 flex space-x-6;
+  margin-top: 5px;
 }
 
 /* Each menu item is relatively positioned so the dropdown can be absolutely positioned relative to it */
@@ -95,6 +97,11 @@
 /* Sign Up button styling: primary background, white text */
 .signupBtn {
   @apply ml-4 px-4 py-2 rounded-md text-base font-medium text-white bg-[#B500FF] transition-colors;
+  margin-left: 25px;
+  width: 130px;
+  border-radius: 15px;
+  text-align: center;
+  margin-right: 5px;
 }
 
 /* Hover state for Sign Up button (darker variant) */
