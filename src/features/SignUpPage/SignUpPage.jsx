@@ -50,7 +50,7 @@ const SignUpPage = () => {
       });
 
       // Navigate after sign up
-      router.push('/createaddhome');
+      router.push('/company/createaddcompany/createaddhome');
     } catch (err) {
       console.error('Error during sign up:', err);
       setError(err.message);

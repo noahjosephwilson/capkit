@@ -1,11 +1,10 @@
-// src/pages/SignUpPage/CreateAddCompany/CreateAddHomePage/CreateAddHomePage.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../../../../contexts/AuthContext'; // Adjust the path as needed
 import './CreateAddHomePage.css';
 
 const CreateAddHomePage = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { logout } = useAuth();
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -33,20 +32,17 @@ const CreateAddHomePage = () => {
 
   const handleNextStep = () => {
     if (selectedOption === 'create') {
-      // Navigate to the CreateCompanyDetailsPage (folder adjacent to CreateAddHomePage)
-      navigate('/createcompanydetails');
+      router.push('/company/createaddcompany/createcompanydetails');
     } else if (selectedOption === 'add') {
-      // Navigate to the AddCompanyCodePage (same directory structure)
-      navigate('/addcompanycode');
+      router.push('/company/createaddcompany/addcompanycode');
     } else if (selectedOption === 'investor') {
-      // Navigate to the dashboard
-      navigate('/dashboard');
+      router.push('/company');
     }
   };
 
   const handleLogout = async () => {
     await logout(); // Sign out the user so that currentUser becomes null.
-    navigate('/');  // Navigate to the home page.
+    router.push('/');  // Navigate to the home page.
   };
 
   return (

@@ -35,7 +35,7 @@ const LogInPage = () => {
     setError('');
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push('/dashboard');
+      router.push('/company');
     } catch (err) {
       console.error('Error during email log in:', err);
       setError(err.message);

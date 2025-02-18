@@ -1,3 +1,5 @@
+"use client";
+
 // /src/contexts/CompanyContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
 

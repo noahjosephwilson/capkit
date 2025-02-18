@@ -1,5 +1,7 @@
+"use client";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   ChevronDown,
   Home,
@@ -11,7 +13,7 @@ import {
   Star,      // For Premium
   Settings,  // For Control Suite (gear icon)
 } from "lucide-react";
-import { useAuth } from "../../contexts/AuthContext"; // Import your auth context
+import { useAuth } from "../../contexts/AuthContext";
 import "./MainSidebar.css";
 
 // Helper: convert a string to a URL-friendly slug.
@@ -30,6 +32,8 @@ const SidebarMenuItem = ({
   setActiveCategory,
   handleLogout,
 }) => {
+  const pathname = usePathname();
+  
   if (item.items) {
     return (
       <li className="sidebar-menu-item">
@@ -49,35 +53,30 @@ const SidebarMenuItem = ({
               if (subItem.label === "Log Out") {
                 return (
                   <li key={subItem.label} className="sidebar-menu-sub-item">
-                    <NavLink
-                      to="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleLogout();
-                      }}
+                    <button
+                      onClick={handleLogout}
                       className="sidebar-menu-sub-button logout-button"
                     >
                       {subItem.label}
-                    </NavLink>
+                    </button>
                   </li>
                 );
               }
-              // Use the provided link for allowed labels; if not allowed, route to an under-construction page.
+              // Determine the link: if not allowed, route to an under-construction page.
               const link = allowedSubItems.includes(subItem.label)
                 ? subItem.link
                 : `/dashboard/under-construction/${slugify(subItem.label)}`;
+              // Determine active status
+              const isActive = pathname === link;
               return (
                 <li key={subItem.label} className="sidebar-menu-sub-item">
-                  <NavLink
-                    to={link}
-                    end
+                  <Link
+                    href={link}
                     onClick={() => setActiveCategory(item.label)}
-                    className={({ isActive }) =>
-                      `sidebar-menu-sub-button ${isActive ? "active" : ""}`
-                    }
+                    className={`sidebar-menu-sub-button ${isActive ? "active" : ""}`}
                   >
                     {subItem.label}
-                  </NavLink>
+                  </Link>
                 </li>
               );
             })}
@@ -89,21 +88,19 @@ const SidebarMenuItem = ({
     const link = allowedTopItems.includes(item.label)
       ? item.link
       : `/dashboard/under-construction/${slugify(item.label)}`;
+    const isActive = pathname === link;
     return (
       <li className="sidebar-menu-item">
-        <NavLink
-          to={link}
-          end={item.label === "Dashboard"}
+        <Link
+          href={link}
           onClick={() => setActiveCategory(item.label)}
-          className={({ isActive }) =>
-            `sidebar-menu-button ${isActive ? "active" : ""}`
-          }
+          className={`sidebar-menu-button ${isActive ? "active" : ""}`}
         >
           <item.icon
             className={`sidebar-icon ${activeCategory === item.label ? "active" : ""}`}
           />
           <span className="menu-label">{item.label}</span>
-        </NavLink>
+        </Link>
       </li>
     );
   }
@@ -122,7 +119,6 @@ const menuItems = [
       { label: "Cap Table", link: "/dashboard/cap-table" },
       { label: "Shareholders", link: "/dashboard/shareholders" },
       { label: "Noteholders", link: "/dashboard/noteholders" },
-      // Updated Share Classes link to the new route:
       { label: "Share Classes", link: "/dashboard/shareclasses" },
       { label: "Transaction Log", link: "/dashboard/transaction-log" },
     ],
@@ -203,6 +199,7 @@ const MainSidebar = () => {
   const handleLogout = async () => {
     try {
       await logout();
+      // Use window.location.href or, if needed, router.push from next/navigation in your logout logic
       window.location.href = "/";
     } catch (error) {
       console.error("Logout failed:", error);

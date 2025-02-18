@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import CreateCompanyDetailsRightSidePage from './AddCompanyCodeRightSidePage/AddCompanyCodeRightSidePage';
 import './AddCompanyCodePage.css';
 
 const AddCompanyCodePage = () => {
-  const navigate = useNavigate();
+  const router = useRouter(); // Using Next.js router
   const [joinCompanyCode, setJoinCompanyCode] = useState('');
   const [errors, setErrors] = useState({});
 
@@ -26,14 +26,14 @@ const AddCompanyCodePage = () => {
     console.log({ joinCompanyCode });
     
     // Navigate to the dashboard (or another route) on success.
-    navigate('/dashboard');
+    router.push('/company');
   };
 
   return (
     <div className="ccd-page">
       {/* Header strip with back arrow and Orbat name (only on the left side) */}
       <div className="ccd-header">
-        <div className="ccd-back" onClick={() => navigate('/createaddhome')}>
+        <div className="ccd-back" onClick={() => router.push('/company/createaddcompany/createaddhome')}>
           <svg
             width="24"
             height="24"

@@ -250,3 +250,7 @@ body {
   cursor: pointer;
   padding: 0;
 }
+
+.input-field[type="password"] {
+  padding-right: 40px !important;
+}

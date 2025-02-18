@@ -14,14 +14,14 @@ body {
 
 /* Container for the full-page sign up */
 .signup-page-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #fff;
-  padding: 50px 20px;
-  overflow-y: auto;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  min-height: 100vh !important;
+  background-color: #fff !important;
+  padding: 50px 20px !important;
+  overflow-y: auto !important;
 }
 
 /* Back arrow positioned in the top left */
@@ -222,7 +222,6 @@ body {
   margin-bottom: 0 !important;
 }
 
-/* (Existing CSS for name fields remains the same) */
 /* Use CSS Grid for the name fields */
 .name-fields {
   display: grid !important;
@@ -257,4 +256,10 @@ body {
   position: relative !important;
   top: -20px !important; /* Moves the image 20px upward */
   margin-bottom: -5px !important;
+}
+
+/* --- Extra Padding for Password Autofill Button --- */
+/* This rule adds extra right padding to prevent overlap with the eye icon */
+.input-field[type="password"] {
+  padding-right: 40px !important;
 }

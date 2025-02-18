@@ -1,12 +1,14 @@
+"use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../firebase/firebaseConfig"; // Firestore instance
-import { doc, onSnapshot, collection, getDocs, getDoc } from "firebase/firestore"; 
+import { doc, onSnapshot, collection, getDocs, getDoc } from "firebase/firestore";
 import "./MainNavbar.css";
-import profileIcon from "../../assets/profile-icon.png";
-import notificationIcon from "../../assets/notification.png";
-import inviteIcon from "../../assets/inviteOfficerIcon.png"; // Replace with your actual icon path
+import profileIcon from "../../../public/assets/profile-icon.png";
+import notificationIcon from "../../../public/assets/notification.png";
+import inviteIcon from "../../../public/assets/inviteOfficerIcon.png";
 
 const MainNavbar = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -16,7 +18,7 @@ const MainNavbar = () => {
   const [isPersonal, setIsPersonal] = useState(false);
   const profileRef = useRef(null);
   const companyRef = useRef(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   const { currentUser, logout } = useAuth();
 
   // New state for the user's profile image from Firestore
@@ -69,7 +71,7 @@ const MainNavbar = () => {
         try {
           const myCompaniesRef = collection(db, "users", currentUser.uid, "mycompanies");
           const querySnapshot = await getDocs(myCompaniesRef);
-          
+
           if (querySnapshot.empty) {
             setCompanyName("");
             setCompanyImageUrl("");
@@ -97,11 +99,11 @@ const MainNavbar = () => {
     fetchMyCompany();
   }, [currentUser]);
 
-  // Logout handler
+  // Logout handler using Next.js router
   const handleLogout = async () => {
     try {
       await logout();
-      window.location.href = "/";
+      router.push("/");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -112,9 +114,9 @@ const MainNavbar = () => {
       <div className="navbar-left">
         {/* Non-clickable brand */}
         <span className="brand">Orbat</span>
-        
+
         {/* Company dropdown */}
-        <div 
+        <div
           className={`company-dropdown-container ${showCompanyDropdown ? "open" : ""}`}
           onClick={() => setShowCompanyDropdown(!showCompanyDropdown)}
           ref={companyRef}
@@ -132,19 +134,19 @@ const MainNavbar = () => {
             </span>
             <span className={`dropdown-arrow ${showCompanyDropdown ? "open" : ""}`}>
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2"/>
+                <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2" />
               </svg>
             </span>
           </div>
           {showCompanyDropdown && (
             <div className="company-dropdown" role="menu">
-              <Link to="/createaddhome" className="dropdown-item" role="menuitem">
+              <Link href="/createaddhome" className="dropdown-item" role="menuitem">
                 <span className="big-plus">+</span>&nbsp;&nbsp;&nbsp;Add New Company
               </Link>
             </div>
           )}
         </div>
-        
+
         {/* Upgrade button */}
         <button className="upgrade-btn">Upgrade</button>
       </div>
@@ -177,9 +179,9 @@ const MainNavbar = () => {
           <img src={notificationIcon} alt="Notifications" className="notification-icon" />
         </div>
 
-        {/* Profile container: image automatically updates via onSnapshot */}
-        <div 
-          className="profile-container" 
+        {/* Profile container */}
+        <div
+          className="profile-container"
           onClick={() => setShowProfileMenu(!showProfileMenu)}
           ref={profileRef}
           aria-haspopup="true"
@@ -188,10 +190,10 @@ const MainNavbar = () => {
           <img src={userProfileImage || profileIcon} alt="Profile" className="profile-icon" />
           {showProfileMenu && (
             <div className="profile-dropdown" role="menu">
-              <Link to="../../pages/profile/profile" className="dropdown-item" role="menuitem">
+              <Link href="/profile" className="dropdown-item" role="menuitem">
                 Profile
               </Link>
-              <Link to="/settings" className="dropdown-item" role="menuitem">
+              <Link href="/settings" className="dropdown-item" role="menuitem">
                 Settings
               </Link>
               <button onClick={handleLogout} className="dropdown-item logout-btn" role="menuitem">

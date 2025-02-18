@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import CreateCompanyDetailsRightSidePage from './CreateCompanyDetailsRightSidePage/CreateCompanyDetailsRightSidePage';
 import './CreateCompanyDetailsPage.css';
 
@@ -11,7 +11,7 @@ import { db, storage, auth } from '../../../../firebase/firebaseConfig';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const CreateCompanyDetailsPage = () => {
-  const navigate = useNavigate();
+  const router = useRouter(); // Using Next.js router
 
   // Field states
   const [companyName, setCompanyName] = useState('');
@@ -137,7 +137,7 @@ const CreateCompanyDetailsPage = () => {
       } else {
         console.warn("No authenticated user found. Officer and mycompanies subcollections not created.");
       }
-      navigate('/dashboard');
+      router.push('/company');
     } catch (err) {
       console.error("Error creating company document:", err);
       setError("Error creating company document: " + err.message);
@@ -149,7 +149,7 @@ const CreateCompanyDetailsPage = () => {
     <div className="ccd-page">
       {/* Header with back arrow */}
       <div className="ccd-header">
-        <div className="ccd-back" onClick={() => navigate('/createaddhome')}>
+        <div className="ccd-back" onClick={() => router.push('/company/createaddcompany/createaddhome')}>
           <svg
             width="24"
             height="24"
