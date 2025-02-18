@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../contexts/AuthContext";
-import { db } from "../../firebase/firebaseConfig"; // Firestore instance
+import { db } from "../../firebase/firebaseConfig";
 import { doc, onSnapshot, collection, getDocs, getDoc } from "firebase/firestore";
 import "./MainNavbar.css";
 
@@ -109,8 +109,8 @@ const MainNavbar = () => {
   return (
     <header className="main-navbar">
       <div className="navbar-left">
-        {/* Non-clickable brand */}
-        <span className="brand">Orbat</span>
+        {/* Logo */}
+        <img src="/assets/capkitlogo.png" alt="Logo" className="logo" />
 
         {/* Company dropdown */}
         <div
@@ -144,16 +144,16 @@ const MainNavbar = () => {
           )}
         </div>
 
-        {/* Upgrade button */}
-        <button className="upgrade-btn">Upgrade</button>
-      </div>
-
-      <div className="navbar-right">
-        {/* Invite Officer Button */}
+        {/* Invite Officers button */}
         <button className="invite-btn">
           <img src="/assets/inviteOfficerIcon.png" alt="Invite Icon" className="invite-icon" />
           <span>Invite Officers</span>
         </button>
+      </div>
+
+      <div className="navbar-right">
+        {/* Upgrade button */}
+        <button className="upgrade-btn">Upgrade</button>
 
         {/* Segmented Toggle Control */}
         <div className="toggle-container">

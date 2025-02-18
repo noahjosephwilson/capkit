@@ -98,7 +98,7 @@ export default function HomeNavbar() {
                 className={`navLink ${activeDropdown === "solutions" ? "active" : ""}`}
                 onClick={() => toggleDropdown("solutions")}
               >
-                Solutions {renderArrow("solutions")}
+                About {renderArrow("solutions")}
               </button>
               {activeDropdown === "solutions" && (
                 <div className="dropdownContent">
