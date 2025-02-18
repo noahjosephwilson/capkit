@@ -1,184 +1,103 @@
-/* General Navbar Styles */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.4rem 1.2rem;
-    background-color: #f5f3ff; /* Light lavender purple */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1000;
-}
-
-/* Logo Styles */
-.navbar .logo {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #7851A9; /* Royal purple */
-    text-decoration: none;
-}
-
-/* Hamburger Menu */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.hamburger .line {
-    width: 20px;
-    height: 2px;
-    background-color: #333;
-    margin: 2px 0;
-}
-
-/* Nav Links */
-.nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-    transition: all 0.3s ease;
-}
-
-.nav-links.mobile-menu {
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: white;
-    width: 100%;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
-}
-
-/* Nav Item */
-.nav-item {
-    position: relative;
-    cursor: pointer;
-    padding: 0.3rem 0;
-}
-
-.nav-item span {
-    font-size: 1rem;
-    color: #333;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
-.nav-item:hover > span {
-    color: #7851A9; /* Royal purple on hover */
-}
-
-/* Caret Styling */
-.caret {
-    margin-left: 0.3rem;
-    font-size: 0.8rem;
-    color: #666;
-}
-
-/* Dropdown Menu */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    list-style: none;
-    padding: 0.4rem 0;
-    z-index: 10;
-    min-width: 150px;
+/* Keyframes for dropdown animation */
+@keyframes dropdownFadeIn {
+  0% {
     opacity: 0;
-    transform: translateY(-10px);
-    visibility: hidden;
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-}
-
-.nav-item .dropdown-menu {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  100% {
     opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
-/* Dropdown Menu Items */
-.dropdown-menu li {
-    padding: 0.4rem 1rem;
+/* Overall navbar styling */
+.navbar {
+  @apply w-full bg-white shadow-sm sticky top-0 z-50;
 }
 
-.dropdown-menu li a {
-    font-size: 0.9rem;
-    color: #333;
-    text-decoration: none;
-    display: block;
+/* Container that splits left/right sections */
+.navContainer {
+  @apply flex items-center justify-between px-6 py-2 relative;
 }
 
-.dropdown-menu li:hover {
-    background-color: #f9f9f9; /* Light background on hover */
+/* Left section: logo + navigation menu */
+.leftSection {
+  @apply flex items-center;
 }
 
-.dropdown-menu li a:hover {
-    color: #7851A9; /* Royal purple on hover */
+/* Logo styling */
+.logo {
+  @apply object-contain;
 }
 
-/* Static Links */
-.nav-links a {
-    font-size: 0.9rem;
-    color: #333;
-    text-decoration: none;
+/* Navigation menu container */
+.navMenu {
+  @apply ml-8 flex space-x-6;
 }
 
-.nav-links a:hover {
-    color: #7851A9; /* Royal purple on hover */
+/* Each menu item is relatively positioned so the dropdown can be absolutely positioned relative to it */
+.menuItem {
+  @apply relative;
 }
 
-/* Sign Up Button */
-.signup-btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    background-color: #7851A9; /* Royal purple */
-    color: white !important;
-    border-radius: 6px;
-    font-weight: bold;
-    text-decoration: none;
+/* Navigation link styling with fixed height and reserved border space */
+.navLink {
+  @apply text-base font-medium text-gray-800 transition-colors cursor-pointer flex items-center h-10 relative border-b-2 border-transparent;
 }
 
-.signup-btn:hover {
-    background-color: #5a4180; /* Darker purple */
-    color: white !important;
+/* Hover state */
+.navLink:hover {
+  color: #A95EF4;
 }
 
-/* Responsive Design */
-@media (max-width: 64rem) {
-    .hamburger {
-        display: flex;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .nav-links.mobile-menu {
-        display: flex;
-    }
+/* Active state: pseudo-element underline (no layout shift) */
+.navLink.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #B500FF;
 }
 
-@media (max-width: 40rem) {
-    .navbar {
-        padding: 0.3rem;
-    }
+/* Arrow styling */
+.arrow {
+  @apply ml-1;
+}
 
-    .logo {
-        font-size: 1.8rem;
-    }
+/* Dropdown content styling:
+   - Absolutely positioned within the .menuItem
+   - Centered horizontally under the trigger
+   - Fixed vertical offset so that it does not affect layout
+   - Thinner width and reduced padding
+   - Animated on appearance
+*/
+.dropdownContent {
+  @apply absolute bg-white p-3 rounded-md shadow-lg border border-gray-200 w-36;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  animation: dropdownFadeIn 0.3s ease-out forwards;
+}
 
-    .signup-btn {
-        font-size: 0.9rem;
-        padding: 0.4rem 1rem;
-    }
+/* Spacing between dropdown options */
+.dropdownContent ul {
+  @apply grid gap-2 text-left pl-4;
+}
+
+/* Right section: Login & Sign Up */
+.rightSection {
+  @apply flex items-center;
+}
+
+/* Sign Up button styling: primary background, white text */
+.signupBtn {
+  @apply ml-4 px-4 py-2 rounded-md text-base font-medium text-white bg-[#B500FF] transition-colors;
+}
+
+/* Hover state for Sign Up button (darker variant) */
+.signupBtn:hover {
+  background-color: #A300E0;
 }
