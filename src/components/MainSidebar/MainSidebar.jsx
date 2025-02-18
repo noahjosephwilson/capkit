@@ -1,7 +1,8 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation"; // Updated hook
 import {
   ChevronDown,
   Home,
@@ -10,10 +11,10 @@ import {
   Wrench,
   FileText,
   Briefcase,
-  Star,
-  Settings,
+  Star,      // For Premium
+  Settings,  // For Control Suite (gear icon)
 } from "lucide-react";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext"; // Your auth context
 import "./MainSidebar.css";
 
 // Helper: convert a string to a URL-friendly slug.
@@ -23,6 +24,24 @@ const slugify = (str) => str.toLowerCase().replace(/\s+/g, "-");
 const allowedTopItems = ["Dashboard"];
 const allowedSubItems = ["Cap Table", "Shareholders", "Profile Settings", "Share Classes"];
 
+// Custom NavLink that mimics react-router-dom’s NavLink active behavior.
+const NavLink = ({ to, end, onClick, children, className }) => {
+  const pathname = usePathname(); // Use usePathname from next/navigation
+  const isActive = end ? pathname === to : pathname.startsWith(to);
+
+  // Support function or string className
+  const computedClassName =
+    typeof className === "function" ? className({ isActive }) : className;
+
+  return (
+    <Link href={to} onClick={onClick}>
+      {React.cloneElement(React.Children.only(children), {
+        className: computedClassName,
+      })}
+    </Link>
+  );
+};
+
 const SidebarMenuItem = ({
   item,
   isOpen,
@@ -31,8 +50,6 @@ const SidebarMenuItem = ({
   setActiveCategory,
   handleLogout,
 }) => {
-  const pathname = usePathname();
-
   if (item.items) {
     return (
       <li className="sidebar-menu-item">
@@ -41,7 +58,9 @@ const SidebarMenuItem = ({
           onClick={() => onToggle(item.label)}
         >
           <item.icon
-            className={`sidebar-icon ${activeCategory === item.label ? "active" : ""}`}
+            className={`sidebar-icon ${
+              activeCategory === item.label ? "active" : ""
+            }`}
           />
           <span className="menu-label">{item.label}</span>
           <ChevronDown className={`dropdown-arrow ${isOpen ? "open" : ""}`} />
@@ -52,31 +71,34 @@ const SidebarMenuItem = ({
               if (subItem.label === "Log Out") {
                 return (
                   <li key={subItem.label} className="sidebar-menu-sub-item">
-                    <button
-                      onClick={handleLogout}
+                    <NavLink
+                      to="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleLogout();
+                      }}
                       className="sidebar-menu-sub-button logout-button"
-                      style={{ display: "block", width: "100%" }}
                     >
-                      {subItem.label}
-                    </button>
+                      <span>{subItem.label}</span>
+                    </NavLink>
                   </li>
                 );
               }
-              // Determine the link URL
               const link = allowedSubItems.includes(subItem.label)
                 ? subItem.link
                 : `/dashboard/under-construction/${slugify(subItem.label)}`;
-              const isActive = pathname === link;
               return (
                 <li key={subItem.label} className="sidebar-menu-sub-item">
-                  <Link
-                    href={link}
+                  <NavLink
+                    to={link}
+                    end
                     onClick={() => setActiveCategory(item.label)}
-                    className={`sidebar-menu-sub-button ${isActive ? "active" : ""}`}
-                    style={{ display: "block", width: "100%" }}
+                    className={({ isActive }) =>
+                      `sidebar-menu-sub-button ${isActive ? "active" : ""}`
+                    }
                   >
-                    {subItem.label}
-                  </Link>
+                    <span>{subItem.label}</span>
+                  </NavLink>
                 </li>
               );
             })}
@@ -88,20 +110,25 @@ const SidebarMenuItem = ({
     const link = allowedTopItems.includes(item.label)
       ? item.link
       : `/dashboard/under-construction/${slugify(item.label)}`;
-    const isActive = pathname === link;
     return (
       <li className="sidebar-menu-item">
-        <Link
-          href={link}
+        <NavLink
+          to={link}
+          end={item.label === "Dashboard"}
           onClick={() => setActiveCategory(item.label)}
-          className={`sidebar-menu-button ${isActive ? "active" : ""}`}
-          style={{ display: "block", width: "100%" }}
+          className={({ isActive }) =>
+            `sidebar-menu-button ${isActive ? "active" : ""}`
+          }
         >
-          <item.icon
-            className={`sidebar-icon ${activeCategory === item.label ? "active" : ""}`}
-          />
-          <span className="menu-label">{item.label}</span>
-        </Link>
+          <span>
+            <item.icon
+              className={`sidebar-icon ${
+                activeCategory === item.label ? "active" : ""
+              }`}
+            />
+            <span className="menu-label">{item.label}</span>
+          </span>
+        </NavLink>
       </li>
     );
   }
@@ -196,6 +223,7 @@ const MainSidebar = () => {
     setOpenMenus((prev) => ({ ...prev, [label]: !prev[label] }));
   };
 
+  // Logout handler: logs out and navigates to home.
   const handleLogout = async () => {
     try {
       await logout();

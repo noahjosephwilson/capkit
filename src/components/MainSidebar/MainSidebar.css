@@ -1,24 +1,23 @@
 .main-sidebar {
-  width: 14rem; /* Reduced width */
+  width: 16rem; /* Increased width */
   background-color: #ffffff;
   border-right: 1px solid #e5e7eb;
-  height: 100vh; /* Fixed height equal to the viewport */
-  overflow-y: auto; /* Enable vertical scrolling */
+  height: 100vh;
+  overflow-y: auto;
   padding: 1rem;
   font-size: 16px;
+  margin-top: 5px;
 }
 
 /* Spacer for scrolling */
 .sidebar-nav::after {
   content: "";
   display: block;
-  height: 5rem; /* Increased spacer height for extra scroll space */
+  height: 5rem; /* Extra scroll space */
 }
 
 /* Navigation container */
-.sidebar-nav {
-  /* Additional styling can go here */
-}
+.sidebar-nav {}
 
 /* Sidebar menu list */
 .sidebar-menu {
@@ -48,7 +47,7 @@
   transition: background-color 0.2s ease, color 0.2s ease;
   font-size: 16px;
   text-decoration: none;
-  position: relative; /* For pseudo-element positioning */
+  position: relative;
 }
 
 .sidebar-menu-button:hover {
@@ -67,11 +66,11 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 4px; /* Adjust stripe width as needed */
+  width: 4px;
   background-color: #6b21a8;
 }
 
-/* Icon styling for menu buttons */
+/* Icon styling */
 .sidebar-icon {
   margin-right: 0.5rem;
   width: 1.25rem;
@@ -99,7 +98,7 @@
 .sidebar-menu-sub {
   list-style: none;
   margin: 0;
-  padding: 0 0 0 0.6rem; /* Left padding for sub-buttons */
+  padding: 0 0 0 0.6rem;
   position: relative;
 }
 .sidebar-menu-sub::before {
@@ -120,14 +119,14 @@
 /* Sub-menu button styling */
 .sidebar-menu-sub-button {
   display: block;
-  width: 89%;
+  width: 120%;
   margin: 0;
   padding: 10px 20px;
   text-decoration: none;
   color: black;
   font-size: 16px;
   transition: background-color 0.2s ease, color 0.2s ease;
-  position: relative; /* For pseudo-element positioning */
+  position: relative;
 }
 .sidebar-menu-sub-button:hover {
   background-color: #f3e8ff;
@@ -145,23 +144,19 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 4px; /* Stripe width */
+  width: 4px;
   background-color: #6b21a8;
 }
 
-/* Logout button styling:
-   The Log Out button will now highlight in red on hover without a vertical stripe */
+/* Logout button styling */
 .logout-button {
   color: black;
   position: relative;
 }
-
 .logout-button:hover {
   background-color: #fdd;
   color: red;
 }
-
-/* Ensure logout button doesn't pick up active styling */
 .sidebar-menu-sub-button.logout-button.active,
 .sidebar-menu-sub-button.logout-button.active::before {
   background: none;
