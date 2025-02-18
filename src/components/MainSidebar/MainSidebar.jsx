@@ -10,8 +10,8 @@ import {
   Wrench,
   FileText,
   Briefcase,
-  Star,      // For Premium
-  Settings,  // For Control Suite (gear icon)
+  Star,
+  Settings,
 } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 import "./MainSidebar.css";
@@ -19,9 +19,8 @@ import "./MainSidebar.css";
 // Helper: convert a string to a URL-friendly slug.
 const slugify = (str) => str.toLowerCase().replace(/\s+/g, "-");
 
-// Allowed items (which should navigate to their original links):
+// Allowed items:
 const allowedTopItems = ["Dashboard"];
-// Updated allowedSubItems to include "Profile Settings"
 const allowedSubItems = ["Cap Table", "Shareholders", "Profile Settings", "Share Classes"];
 
 const SidebarMenuItem = ({
@@ -33,7 +32,7 @@ const SidebarMenuItem = ({
   handleLogout,
 }) => {
   const pathname = usePathname();
-  
+
   if (item.items) {
     return (
       <li className="sidebar-menu-item">
@@ -56,17 +55,17 @@ const SidebarMenuItem = ({
                     <button
                       onClick={handleLogout}
                       className="sidebar-menu-sub-button logout-button"
+                      style={{ display: "block", width: "100%" }}
                     >
                       {subItem.label}
                     </button>
                   </li>
                 );
               }
-              // Determine the link: if not allowed, route to an under-construction page.
+              // Determine the link URL
               const link = allowedSubItems.includes(subItem.label)
                 ? subItem.link
                 : `/dashboard/under-construction/${slugify(subItem.label)}`;
-              // Determine active status
               const isActive = pathname === link;
               return (
                 <li key={subItem.label} className="sidebar-menu-sub-item">
@@ -74,6 +73,7 @@ const SidebarMenuItem = ({
                     href={link}
                     onClick={() => setActiveCategory(item.label)}
                     className={`sidebar-menu-sub-button ${isActive ? "active" : ""}`}
+                    style={{ display: "block", width: "100%" }}
                   >
                     {subItem.label}
                   </Link>
@@ -95,6 +95,7 @@ const SidebarMenuItem = ({
           href={link}
           onClick={() => setActiveCategory(item.label)}
           className={`sidebar-menu-button ${isActive ? "active" : ""}`}
+          style={{ display: "block", width: "100%" }}
         >
           <item.icon
             className={`sidebar-icon ${activeCategory === item.label ? "active" : ""}`}
@@ -195,11 +196,9 @@ const MainSidebar = () => {
     setOpenMenus((prev) => ({ ...prev, [label]: !prev[label] }));
   };
 
-  // Logout handler: logs out and navigates to the home page.
   const handleLogout = async () => {
     try {
       await logout();
-      // Use window.location.href or, if needed, router.push from next/navigation in your logout logic
       window.location.href = "/";
     } catch (error) {
       console.error("Logout failed:", error);

@@ -1,4 +1,4 @@
-// src/components/SideLayout/SideLayout.js
+"use client";
 import React, { useState } from "react";
 import MainNavbar from "../MainNavbar/MainNavbar";
 import AddTask from "../AddTask/AddTask";
@@ -6,7 +6,7 @@ import Sidebar from "../MainSidebar/MainSidebar";
 import "./SideLayout.css";
 
 const SideLayout = ({ children, onAddTask, onLogout }) => {
-  // Define the min, max, and initial widths
+  // Define min, max, and initial widths
   const MIN_WIDTH = 10;
   const MAX_WIDTH = 200;
   const INITIAL_WIDTH = 200;
@@ -38,15 +38,12 @@ const SideLayout = ({ children, onAddTask, onLogout }) => {
   return (
     <div className="side-layout">
       <MainNavbar />
-      {/* Body below the navbar */}
       <div className="layout-body">
-        {/* Left column: AddTask and Sidebar */}
         <div className="left-column" style={{ width: sidebarWidth }}>
           <div className="scrollable-left-content">
             <AddTask onAddTask={onAddTask} />
             <Sidebar onLogout={onLogout} />
           </div>
-          {/* Resize handle */}
           <div className="resize-handle" onMouseDown={handleMouseDown} />
         </div>
         <div className="main-content">{children}</div>

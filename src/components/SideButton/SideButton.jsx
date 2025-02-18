@@ -1,26 +1,29 @@
+"use client";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "./SideButton.css";
 
 const SideButton = ({ label, icon, path, subItems }) => {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleDropdown = () => {
-    setOpen(prev => !prev);
+    setOpen((prev) => !prev);
   };
 
+  // Check if this link is active
+  const isActive = pathname === path;
+
   if (!subItems || subItems.length === 0) {
-    // Render a simple NavLink (for example, the Dashboard button)
+    // Render a simple link (for example, the Dashboard button)
     return (
-      <NavLink
-        to={path}
-        className={({ isActive }) =>
-          "side-button" + (isActive ? " active" : "")
-        }
-      >
-        <span className="side-button-icon">{icon}</span>
-        <span className="side-button-label">{label}</span>
-      </NavLink>
+      <Link href={path}>
+        <a className={`side-button${isActive ? " active" : ""}`}>
+          <span className="side-button-icon">{icon}</span>
+          <span className="side-button-label">{label}</span>
+        </a>
+      </Link>
     );
   } else {
     // Render a button that toggles the dropdown for subItems
@@ -35,18 +38,18 @@ const SideButton = ({ label, icon, path, subItems }) => {
         </button>
         {open && (
           <ul className="sub-menu">
-            {subItems.map((subItem, index) => (
-              <li key={index} className="sub-menu-item">
-                <NavLink
-                  to={subItem.path}
-                  className={({ isActive }) =>
-                    "sub-menu-link" + (isActive ? " active" : "")
-                  }
-                >
-                  {subItem.label}
-                </NavLink>
-              </li>
-            ))}
+            {subItems.map((subItem, index) => {
+              const subActive = pathname === subItem.path;
+              return (
+                <li key={index} className="sub-menu-item">
+                  <Link href={subItem.path}>
+                    <a className={`sub-menu-link${subActive ? " active" : ""}`}>
+                      {subItem.label}
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>

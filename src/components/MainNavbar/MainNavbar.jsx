@@ -6,9 +6,6 @@ import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../firebase/firebaseConfig"; // Firestore instance
 import { doc, onSnapshot, collection, getDocs, getDoc } from "firebase/firestore";
 import "./MainNavbar.css";
-import profileIcon from "../../../public/assets/profile-icon.png";
-import notificationIcon from "../../../public/assets/notification.png";
-import inviteIcon from "../../../public/assets/inviteOfficerIcon.png";
 
 const MainNavbar = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -125,7 +122,7 @@ const MainNavbar = () => {
         >
           <div className="company-box">
             <img
-              src={companyImageUrl ? companyImageUrl : profileIcon}
+              src={companyImageUrl ? companyImageUrl : "/assets/profile-icon.png"}
               alt="Company"
               className="company-icon"
             />
@@ -154,7 +151,7 @@ const MainNavbar = () => {
       <div className="navbar-right">
         {/* Invite Officer Button */}
         <button className="invite-btn">
-          <img src={inviteIcon} alt="Invite Icon" className="invite-icon" />
+          <img src="/assets/inviteOfficerIcon.png" alt="Invite Icon" className="invite-icon" />
           <span>Invite Officers</span>
         </button>
 
@@ -176,7 +173,7 @@ const MainNavbar = () => {
 
         {/* Notification icon */}
         <div className="notification-container">
-          <img src={notificationIcon} alt="Notifications" className="notification-icon" />
+          <img src="/assets/notification.png" alt="Notifications" className="notification-icon" />
         </div>
 
         {/* Profile container */}
@@ -187,7 +184,7 @@ const MainNavbar = () => {
           aria-haspopup="true"
           aria-expanded={showProfileMenu}
         >
-          <img src={userProfileImage || profileIcon} alt="Profile" className="profile-icon" />
+          <img src={userProfileImage || "/assets/profile-icon.png"} alt="Profile" className="profile-icon" />
           {showProfileMenu && (
             <div className="profile-dropdown" role="menu">
               <Link href="/profile" className="dropdown-item" role="menuitem">
