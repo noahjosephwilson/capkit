@@ -1,3 +1,8 @@
+/* Global Box Sizing */
+* {
+  box-sizing: border-box;
+}
+
 .share-classes-page {
   background-color: #fff;
   padding: 2rem;
@@ -39,14 +44,34 @@
   color: #fff;
 }
 
+/* Grid layout for cards */
 .shareclass-list {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  column-gap: 0.5rem; /* Reduced horizontal gap */
-  row-gap: 1rem; /* Maintain vertical spacing */
+  /* On wide screens, each card is at least 320px wide */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 0.25rem;
 }
-
 
 .tab-content {
   margin-top: 2rem;
+}
+
+/* Responsive adjustments */
+/* When the screen width is less than 960px, allow cards to shrink a bit */
+@media (max-width: 960px) {
+  .shareclass-list {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* When the screen is very narrow, use a single column so cards don't overlap */
+@media (max-width: 600px) {
+  .shareclass-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .share-classes-header .breadcrumb {
+    font-size: 2rem;
+  }
 }
