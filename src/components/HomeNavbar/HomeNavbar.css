@@ -94,14 +94,16 @@
   @apply flex items-center;
 }
 
-/* Sign Up button styling: primary background, white text */
 .signupBtn {
   @apply ml-4 px-4 py-2 rounded-md text-base font-medium text-white bg-[#B500FF] transition-colors;
   margin-left: 25px;
-  width: 130px;
+  width: 120px;
+  height: 45px;
   border-radius: 15px;
-  text-align: center;
-  margin-right: 5px;
+  display: flex;            /* Enable flexbox */
+  align-items: center;      /* Center items vertically */
+  justify-content: center;  /* Center items horizontally */
+  margin-right: 2px;
 }
 
 /* Hover state for Sign Up button (darker variant) */
