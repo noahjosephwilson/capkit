@@ -1,14 +1,39 @@
 import React, { useState } from "react";
 import "./ShareClassesPage.css";
 import ShareClassCard from "../../components/ShareClassCard/ShareClassCard";
-import AddShareClassCard from "../../components/AddShareClassCard/AddShareClassCard";
 
 const ShareClassesPage = () => {
-  // Initial dummy data with unique ids
   const initialShareClasses = [
-    { id: 1, label: "A", description: "Class A Shares: High voting rights" },
-    { id: 2, label: "B", description: "Class B Shares: Limited voting rights" },
-    { id: 3, label: "C", description: "Class C Shares: Non-voting shares" },
+    {
+      id: 1,
+      label: "COM",
+      description: "Class A Shares: High voting rights",
+      cardDescription: "This is a description for COM.",
+    },
+    {
+      id: 2,
+      label: "PRE1",
+      description: "Class B Shares: Limited voting rights",
+      cardDescription: "This is a description for PRE1.",
+    },
+    {
+      id: 3,
+      label: "PRE2",
+      description: "Class C Shares: Non-voting shares",
+      cardDescription: "This is a description for PRE2.",
+    },
+    {
+      id: 4,
+      label: "SERA",
+      description: "Class C Shares: Non-voting shares",
+      cardDescription: "This is a description for SERA.",
+    },
+    {
+      id: 5,
+      label: "SERB",
+      description: "Class C Shares: Non-voting shares",
+      cardDescription: "This is a description for SERB.",
+    },
   ];
 
   const [shareClasses, setShareClasses] = useState(initialShareClasses);
@@ -18,37 +43,32 @@ const ShareClassesPage = () => {
     setShareClasses(updatedClasses);
   };
 
-  const handleAddCard = (e) => {
-    e.preventDefault();
-    // For now, just log. In the future, route to your add page.
+  const handleAddCard = () => {
     console.log("Add Share Class clicked");
   };
 
   return (
-    <>
-      {/* Fixed Page Title Container */}
-      <div className="page-title-container">
-        <h1 className="page-title">Share Classes</h1>
-      </div>
-      
-      <div className="shareholders-page">
-        <div className="tab-content">
-          <div className="shareclass-list">
-            {shareClasses.map((share) => (
-              <ShareClassCard
-                key={share.id}
-                label={share.label}
-                description={share.description}
-                onDelete={() => handleDeleteCard(share.id)}
-              />
-            ))}
-
-            {/* Larger Add Share Class Card Component */}
-            <AddShareClassCard onAdd={handleAddCard} />
-          </div>
+    <div className="share-classes-page">
+      <header className="share-classes-header">
+        <div className="breadcrumb">Share Classes</div>
+        <button className="share-classes-button" onClick={handleAddCard}>
+          + Add Class
+        </button>
+      </header>
+      <div className="tab-content">
+        <div className="shareclass-list">
+          {shareClasses.map((share) => (
+            <ShareClassCard
+              key={share.id}
+              label={share.label}
+              description={share.description}
+              cardDescription={share.cardDescription}
+              onDelete={() => handleDeleteCard(share.id)}
+            />
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -28,7 +28,9 @@
 /* Logo styling */
 .logo {
   @apply object-contain;
-  margin-right: 5px;
+  margin-right: 0px;
+  height: 70px;
+  width: 120px
 }
 
 /* Navigation menu container */

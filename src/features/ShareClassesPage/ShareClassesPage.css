@@ -1,58 +1,52 @@
-/* Define CSS variables for your layout.
-   Adjust these values to match your navbar and sidebar dimensions. */
-   :root {
-    --navbar-height: 60px;
-    --sidebar-width: 250px;
-    --header-height: 70px;
-  }
-  
-  /* Fixed Page Title Container */
-  .page-title-container {
-    position: fixed;
-    top: var(--navbar-height);
-    left: var(--sidebar-width);
-    width: calc(100% - var(--sidebar-width));
-    height: var(--header-height);
-    background-color: #fff;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    padding: 0 2rem;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .page-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0;
-    color: #000;
-  }
-  
-  /* Main container for the cards.
-     Add top padding equal to header height plus navbar height */
-  .shareholders-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: calc(var(--navbar-height) + var(--header-height) + 1rem) 2rem 2rem;
-    box-sizing: border-box;
-    background-color: #fff;
-    min-height: 100vh;
-    font-family: "Inter", sans-serif;
-    color: #333;
-  }
-  
-  .tab-content {
-    background-color: #fff;
-    padding-top: 1.5rem;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  
-  /* Container for the ShareClass Cards */
-  .shareclass-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-  }
-  
+.share-classes-page {
+  background-color: #fff;
+  padding: 2rem;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #111;
+}
+
+.share-classes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.share-classes-header .breadcrumb {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+}
+
+.share-classes-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid #B500FF;
+  color: #B500FF;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.share-classes-button:hover {
+  background-color: #B500FF;
+  color: #fff;
+}
+
+.shareclass-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 0.5rem; /* Reduced horizontal gap */
+  row-gap: 1rem; /* Maintain vertical spacing */
+}
+
+
+.tab-content {
+  margin-top: 2rem;
+}
