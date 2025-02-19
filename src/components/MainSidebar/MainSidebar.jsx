@@ -20,10 +20,6 @@ import "./MainSidebar.css";
 // Helper: convert a string to a URL-friendly slug.
 const slugify = (str) => str.toLowerCase().replace(/\s+/g, "-");
 
-// Allowed items:
-const allowedTopItems = ["Dashboard"];
-const allowedSubItems = ["Cap Table", "Shareholders", "Profile Settings", "Share Classes"];
-
 // Custom NavLink that mimics react-router-dom’s NavLink active behavior.
 const NavLink = ({ to, end, onClick, children, className }) => {
   const pathname = usePathname(); // Use usePathname from next/navigation
@@ -84,9 +80,8 @@ const SidebarMenuItem = ({
                   </li>
                 );
               }
-              const link = allowedSubItems.includes(subItem.label)
-                ? subItem.link
-                : `/dashboard/under-construction/${slugify(subItem.label)}`;
+              // Use the link provided in subItem directly
+              const link = subItem.link;
               return (
                 <li key={subItem.label} className="sidebar-menu-sub-item">
                   <NavLink
@@ -107,9 +102,8 @@ const SidebarMenuItem = ({
       </li>
     );
   } else {
-    const link = allowedTopItems.includes(item.label)
-      ? item.link
-      : `/dashboard/under-construction/${slugify(item.label)}`;
+    // Use the link provided in item directly
+    const link = item.link;
     return (
       <li className="sidebar-menu-item">
         <NavLink
@@ -138,68 +132,68 @@ const menuItems = [
   {
     label: "Dashboard",
     icon: Home,
-    link: "/dashboard",
+    link: "/company/companyhome",
   },
   {
     label: "Equity",
     icon: DollarSign,
     items: [
-      { label: "Cap Table", link: "/dashboard/cap-table" },
-      { label: "Shareholders", link: "/dashboard/shareholders" },
-      { label: "Noteholders", link: "/dashboard/noteholders" },
-      { label: "Share Classes", link: "/dashboard/shareclasses" },
-      { label: "Transaction Log", link: "/dashboard/transaction-log" },
+      { label: "Cap Table", link: "/company/companyhome/captable" },
+      { label: "Shareholders", link: "/company/companyhome/shareholders" },
+      { label: "Noteholders", link: "/company/companyhome/underconstruction" },
+      { label: "Share Classes", link: "/company/companyhome/shareclasses" },
+      { label: "Transaction Log", link: "/company/companyhome/underconstruction" },
     ],
   },
   {
     label: "Incentive Plans",
     icon: Award,
     items: [
-      { label: "Vested Equity", link: "/dashboard/incentive/overview" },
-      { label: "Stock Options", link: "/dashboard/incentive/details" },
-      { label: "Incentive Programs", link: "/dashboard/incentive/comparisons" },
-      { label: "Exercise Requests", link: "/dashboard/incentive/comparisons" },
+      { label: "Vested Equity", link: "/company/companyhome/underconstruction" },
+      { label: "Stock Options", link: "/company/companyhome/underconstruction" },
+      { label: "Incentive Programs", link: "/company/companyhome/underconstruction" },
+      { label: "Exercise Requests", link: "/company/companyhome/underconstruction" },
     ],
   },
   {
     label: "Tools",
     icon: Wrench,
     items: [
-      { label: "Fundraising Modeling", link: "/dashboard/tools/tool1" },
-      { label: "Stakeholder Scenario", link: "/dashboard/tools/tool2" },
-      { label: "Reporting", link: "/dashboard/tools/tool3" },
+      { label: "Fundraising Modeling", link: "/company/companyhome/underconstruction" },
+      { label: "Stakeholder Scenario", link: "/company/companyhome/underconstruction" },
+      { label: "Reporting", link: "/company/companyhome/underconstruction" },
     ],
   },
   {
     label: "Documents",
     icon: FileText,
     items: [
-      { label: "View Documents", link: "/dashboard/documents/policies" },
-      { label: "Create Documents", link: "/dashboard/documents/reports" },
-      { label: "Pending Agreements", link: "/dashboard/documents/forms" },
+      { label: "View Documents", link: "/company/companyhome/underconstruction" },
+      { label: "Create Documents", link: "/company/companyhome/underconstruction" },
+      { label: "Pending Agreements", link: "/company/companyhome/underconstruction" },
     ],
   },
   {
     label: "Company",
     icon: Briefcase,
     items: [
-      { label: "Executive Board", link: "/dashboard/company/communication" },
-      { label: "Communications", link: "/dashboard/company/about" },
-      { label: "Bylaws", link: "/dashboard/company/about" },
-      { label: "Voting", link: "/dashboard/company/careers" },
-      { label: "Manage Officers", link: "/dashboard/company/team" },
-      { label: "Company Profile", link: "/dashboard/company/team" },
-      { label: "Billing Info", link: "/dashboard/company/team" },
+      { label: "Executive Board", link: "/company/companyhome/underconstruction" },
+      { label: "Communications", link: "/company/companyhome/underconstruction" },
+      { label: "Bylaws", link: "/company/companyhome/underconstruction" },
+      { label: "Voting", link: "/company/companyhome/underconstruction" },
+      { label: "Manage Officers", link: "/company/companyhome/underconstruction" },
+      { label: "Company Profile", link: "/company/companyhome/underconstruction" },
+      { label: "Billing Info", link: "/company/companyhome/underconstruction" },
     ],
   },
   {
     label: "Premium",
     icon: Star,
     items: [
-      { label: "409A Valuation", link: "/dashboard/company/communication" },
-      { label: "Incorporation", link: "/dashboard/company/about" },
-      { label: "Convert Entity", link: "/dashboard/company/careers" },
-      { label: "File Taxes", link: "/dashboard/company/team" },
+      { label: "409A Valuation", link: "/company/companyhome/underconstruction" },
+      { label: "Incorporation", link: "/company/companyhome/underconstruction" },
+      { label: "Convert Entity", link: "/company/companyhome/underconstruction" },
+      { label: "File Taxes", link: "/company/companyhome/underconstruction" },
     ],
   },
   {
@@ -207,8 +201,8 @@ const menuItems = [
     icon: Settings,
     items: [
       { label: "Profile Settings", link: "/dashboard/profile-settings" },
-      { label: "Personal Notifications", link: "/dashboard/company/team" },
-      { label: "Help", link: "/dashboard/company/about" },
+      { label: "Personal Notifications", link: "/company/companyhome/underconstruction" },
+      { label: "Help", link: "/company/companyhome/underconstruction" },
       { label: "Log Out", link: "#" },
     ],
   },

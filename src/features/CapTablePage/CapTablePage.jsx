@@ -2,14 +2,14 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { Download, Plus, Edit3, Eye, Trash2, Search } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useRouter } from "next/navigation"; // Use Next.js router
 import { db } from "../../firebase/firebaseConfig";
 import { useCompany } from "../../contexts/CompanyContext";
 import "./CapTablePage.css";
 
 const CapTablePage = () => {
   const { currentCompanyId } = useCompany();
-  const navigate = useNavigate(); // Initialize useNavigate
+  const router = useRouter(); // Initialize Next.js router
   const [capTableData, setCapTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -166,19 +166,16 @@ const CapTablePage = () => {
 
   // Navigation Handlers
 
-  // When the Add Person button is clicked, navigate to ShareholdersPage with tab=add
   const handleAddPersonNavigation = () => {
-    navigate("/dashboard/shareholders?tab=add");
+    router.push("/dashboard/shareholders?tab=add");
   };
 
-  // When the Edit button is clicked, navigate to ShareholdersPage with tab=edit and pass the stakeholder id
   const handleEditStakeholder = (stakeholder) => {
-    navigate(`/dashboard/shareholders?tab=edit&id=${stakeholder.id}`);
+    router.push(`/dashboard/shareholders?tab=edit&id=${stakeholder.id}`);
   };
 
-  // When the View button is clicked, navigate to ShareholdersPage with tab=details and pass the stakeholder id
   const handleViewStakeholder = (stakeholder) => {
-    navigate(`/dashboard/shareholders?tab=details&id=${stakeholder.id}`);
+    router.push(`/dashboard/shareholders?tab=details&id=${stakeholder.id}`);
   };
 
   // Delete action (only updates local state in this example)
@@ -224,7 +221,6 @@ const CapTablePage = () => {
             </div>
           </div>
           <div className="cap-table-buttons">
-            {/* Add Person button navigates to ShareholdersPage with tab=add */}
             <button className="cap-table-button" onClick={handleAddPersonNavigation}>
               <Plus size={16} style={{ marginRight: "0.5rem" }} /> Add Person
             </button>
@@ -323,7 +319,6 @@ const CapTablePage = () => {
                   <td>
                     <div className="action-buttons">
                       <div className="action-button-container">
-                        {/* View button navigates to ShareholdersPage with tab=details */}
                         <button
                           className="action-button view-button"
                           onClick={() => handleViewStakeholder(entry)}
@@ -333,7 +328,6 @@ const CapTablePage = () => {
                         <div className="tooltip">View More</div>
                       </div>
                       <div className="action-button-container">
-                        {/* Edit button navigates to ShareholdersPage with tab=edit and the stakeholder id */}
                         <button
                           className="action-button edit-button"
                           onClick={() => handleEditStakeholder(entry)}

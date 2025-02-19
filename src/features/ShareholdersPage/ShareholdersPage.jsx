@@ -1,6 +1,6 @@
 // ShareholdersPage.jsx
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "next/navigation"; // Updated import
 import "./ShareholdersPage.css";
 import Details from "./Details/Details";
 import SearchStakeholder from "./SearchStakeholderPage/SearchStakeholderPage"; // Search component
@@ -9,7 +9,7 @@ import StockTransfer from "./StockTransfers/StockTransfers"; // StockTransfer co
 
 const ShareholdersPage = () => {
   // Read the "tab" query parameter and also read an optional "id" if present
-  const [searchParams] = useSearchParams();
+  const searchParams = useSearchParams(); // Next.js hook
   const defaultTab = searchParams.get("tab") || "details";
   const [activeTab, setActiveTab] = useState(defaultTab);
 
