@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./ShareClassesPage.css";
 import ShareClassCard from "../../components/ShareClassCard/ShareClassCard";
+import styles from "./ShareClassesPage.module.css"; // Import as a module
 
 const ShareClassesPage = () => {
   const initialShareClasses = [
@@ -48,15 +48,15 @@ const ShareClassesPage = () => {
   };
 
   return (
-    <div className="share-classes-page">
-      <header className="share-classes-header">
-        <div className="breadcrumb">Share Classes</div>
-        <button className="share-classes-button" onClick={handleAddCard}>
+    <div className={styles.shareClassesPage}>
+      <header className={styles.shareClassesHeader}>
+        <div className={styles.breadcrumb}>Share Classes</div>
+        <button className={styles.shareClassesButton} onClick={handleAddCard}>
           + Add Class
         </button>
       </header>
-      <div className="tab-content">
-        <div className="shareclass-list">
+      <div className={styles.tabContent}>
+        <div className={styles.shareclassList}>
           {shareClasses.map((share) => (
             <ShareClassCard
               key={share.id}

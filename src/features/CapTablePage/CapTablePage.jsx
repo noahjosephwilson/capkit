@@ -1,15 +1,14 @@
-// CapTablePage.jsx
 import React, { useState, useMemo, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { Download, Plus, Edit3, Eye, Trash2, Search } from "lucide-react";
-import { useRouter } from "next/navigation"; // Use Next.js router
+import { useRouter } from "next/navigation";
 import { db } from "../../firebase/firebaseConfig";
 import { useCompany } from "../../contexts/CompanyContext";
-import "./CapTablePage.css";
+import styles from "./CapTablePage.module.css";
 
 const CapTablePage = () => {
   const { currentCompanyId } = useCompany();
-  const router = useRouter(); // Initialize Next.js router
+  const router = useRouter();
   const [capTableData, setCapTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -165,7 +164,6 @@ const CapTablePage = () => {
   }, [filteredData, sortConfig, overallTotalShares]);
 
   // Navigation Handlers
-
   const handleAddPersonNavigation = () => {
     router.push("/dashboard/shareholders?tab=add");
   };
@@ -185,7 +183,6 @@ const CapTablePage = () => {
         `Are you sure you want to delete stakeholder: ${stakeholder.firstName || ""} ${stakeholder.lastName || ""}?`
       )
     ) {
-      // In a real integration, delete from Firestore as well.
       setCapTableData((prev) => prev.filter((s) => s.id !== stakeholder.id));
     }
   };
@@ -195,36 +192,36 @@ const CapTablePage = () => {
   };
 
   if (loading) {
-    return <div className="cap-table-page">Loading cap table...</div>;
+    return <div className={styles.capTablePage}>Loading cap table...</div>;
   }
 
   if (error) {
-    return <div className="cap-table-page error-message">{error}</div>;
+    return <div className={styles.capTablePage}>{error}</div>;
   }
 
   return (
-    <div className="cap-table-page">
+    <div className={styles.capTablePage}>
       {/* Header */}
-      <header className="cap-table-header">
-        <div className="breadcrumb">Cap Table</div>
-        <div className="cap-table-controls">
-          <div className="search-container">
-            <div className="input-with-icon">
-              <Search size={16} className="search-icon" />
+      <header className={styles.capTableHeader}>
+        <div className={styles.breadcrumb}>Cap Table</div>
+        <div className={styles.capTableControls}>
+          <div className={styles.searchContainer}>
+            <div className={styles.inputWithIcon}>
+              <Search size={16} className={styles.searchIcon} />
               <input
                 type="text"
                 placeholder="Search..."
-                className="cap-table-search"
+                className={styles.capTableSearch}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
           </div>
-          <div className="cap-table-buttons">
-            <button className="cap-table-button" onClick={handleAddPersonNavigation}>
+          <div className={styles.capTableButtons}>
+            <button className={styles.capTableButton} onClick={handleAddPersonNavigation}>
               <Plus size={16} style={{ marginRight: "0.5rem" }} /> Add Person
             </button>
-            <button className="cap-table-button" onClick={handleDownload}>
+            <button className={styles.capTableButton} onClick={handleDownload}>
               <Download size={16} style={{ marginRight: "0.5rem" }} /> Download Table
             </button>
           </div>
@@ -232,14 +229,14 @@ const CapTablePage = () => {
       </header>
 
       {/* Table */}
-      <div className="cap-table-container">
-        <table className="cap-table">
+      <div className={styles.capTableContainer}>
+        <table className={styles.capTable}>
           <thead>
             <tr>
               <th onClick={() => requestSort("name")}>
                 Name{" "}
                 {sortConfig.key === "name" && (
-                  <span className="sort-arrow">
+                  <span className={styles.sortArrow}>
                     {sortConfig.direction === "ascending" ? "▲" : "▼"}
                   </span>
                 )}
@@ -247,7 +244,7 @@ const CapTablePage = () => {
               <th onClick={() => requestSort("role")}>
                 Role{" "}
                 {sortConfig.key === "role" && (
-                  <span className="sort-arrow">
+                  <span className={styles.sortArrow}>
                     {sortConfig.direction === "ascending" ? "▲" : "▼"}
                   </span>
                 )}
@@ -255,7 +252,7 @@ const CapTablePage = () => {
               <th onClick={() => requestSort("commonShares")}>
                 Common Shares{" "}
                 {sortConfig.key === "commonShares" && (
-                  <span className="sort-arrow">
+                  <span className={styles.sortArrow}>
                     {sortConfig.direction === "ascending" ? "▲" : "▼"}
                   </span>
                 )}
@@ -263,7 +260,7 @@ const CapTablePage = () => {
               <th onClick={() => requestSort("preferredShares")}>
                 Preferred Shares{" "}
                 {sortConfig.key === "preferredShares" && (
-                  <span className="sort-arrow">
+                  <span className={styles.sortArrow}>
                     {sortConfig.direction === "ascending" ? "▲" : "▼"}
                   </span>
                 )}
@@ -271,7 +268,7 @@ const CapTablePage = () => {
               <th onClick={() => requestSort("ownership")}>
                 % Ownership{" "}
                 {sortConfig.key === "ownership" && (
-                  <span className="sort-arrow">
+                  <span className={styles.sortArrow}>
                     {sortConfig.direction === "ascending" ? "▲" : "▼"}
                   </span>
                 )}
@@ -279,7 +276,7 @@ const CapTablePage = () => {
               <th onClick={() => requestSort("invested")}>
                 Invested Amount{" "}
                 {sortConfig.key === "invested" && (
-                  <span className="sort-arrow">
+                  <span className={styles.sortArrow}>
                     {sortConfig.direction === "ascending" ? "▲" : "▼"}
                   </span>
                 )}
@@ -302,11 +299,11 @@ const CapTablePage = () => {
               return (
                 <tr key={entry.id}>
                   <td>
-                    <div className="name-cell">
+                    <div className={styles.nameCell}>
                       <img
                         src={entry.image || "https://via.placeholder.com/40"}
                         alt={name}
-                        className="cap-table-avatar"
+                        className={styles.capTableAvatar}
                       />
                       {name}
                     </div>
@@ -317,33 +314,33 @@ const CapTablePage = () => {
                   <td>{percentOwnership}%</td>
                   <td>{invested ? "$" + invested.toLocaleString() : "0"}</td>
                   <td>
-                    <div className="action-buttons">
-                      <div className="action-button-container">
+                    <div className={styles.actionButtons}>
+                      <div className={styles.actionButtonContainer}>
                         <button
-                          className="action-button view-button"
+                          className={`${styles.actionButton} ${styles.viewButton}`}
                           onClick={() => handleViewStakeholder(entry)}
                         >
                           <Eye size={16} />
                         </button>
-                        <div className="tooltip">View More</div>
+                        <div className={styles.tooltip}>View More</div>
                       </div>
-                      <div className="action-button-container">
+                      <div className={styles.actionButtonContainer}>
                         <button
-                          className="action-button edit-button"
+                          className={`${styles.actionButton} ${styles.editButton}`}
                           onClick={() => handleEditStakeholder(entry)}
                         >
                           <Edit3 size={16} />
                         </button>
-                        <div className="tooltip">Edit</div>
+                        <div className={styles.tooltip}>Edit</div>
                       </div>
-                      <div className="action-button-container">
+                      <div className={styles.actionButtonContainer}>
                         <button
-                          className="action-button delete-button"
+                          className={`${styles.actionButton} ${styles.deleteButton}`}
                           onClick={() => handleDeleteStakeholder(entry)}
                         >
                           <Trash2 size={16} />
                         </button>
-                        <div className="tooltip">Delete</div>
+                        <div className={styles.tooltip}>Delete</div>
                       </div>
                     </div>
                   </td>

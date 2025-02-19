@@ -1,13 +1,11 @@
-// ShareholdersPage.jsx
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation"; // Next.js hook
-import "./ShareholdersPage.css";
+import { useSearchParams } from "next/navigation";
+import styles from "./ShareholdersPage.module.css";
 import Details from "./Details/Details";
-import SearchStakeholder from "./SearchStakeholderPage/SearchStakeholderPage"; // Search component
-import StockTransfer from "./StockTransfers/StockTransfers"; // StockTransfer component
+import SearchStakeholder from "./SearchStakeholderPage/SearchStakeholderPage";
+import StockTransfer from "./StockTransfers/StockTransfers";
 
 const ShareholdersPage = () => {
-  // Read the "tab" query parameter; default to "details"
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get("tab") || "details";
   const [activeTab, setActiveTab] = useState(defaultTab);
@@ -17,7 +15,6 @@ const ShareholdersPage = () => {
     setActiveTab(tab);
   }, [searchParams]);
 
-  // Render content based on active tab
   const renderTabContent = () => {
     switch (activeTab) {
       case "details":
@@ -29,14 +26,13 @@ const ShareholdersPage = () => {
         );
       case "stockTransfers":
         return (
-          <div className="tab-section">
+          <div className={styles.tabSection}>
             <StockTransfer />
           </div>
         );
       case "issueShares":
         return (
-          <div className="tab-section">
-            {/* Replace this placeholder with your IssueShares component */}
+          <div className={styles.tabSection}>
             <p>Issue Shares content goes here.</p>
           </div>
         );
@@ -46,36 +42,33 @@ const ShareholdersPage = () => {
   };
 
   return (
-    <div className="shareholders-page">
-      {/* Header Section */}
-      <div className="header-section">
-        <h1 className="page-title">Shareholders</h1>
+    <div className={styles.shareholdersPage}>
+      <div className={styles.headerSection}>
+        <h1 className={styles.pageTitle}>Shareholders</h1>
       </div>
 
-      {/* Mini Navbar */}
-      <div className="mini-navbar">
+      <div className={styles.miniNavbar}>
         <button
-          className={`tab-button ${activeTab === "details" ? "active" : ""}`}
+          className={`${styles.tabButton} ${activeTab === "details" ? styles.active : ""}`}
           onClick={() => setActiveTab("details")}
         >
           Investor Details
         </button>
         <button
-          className={`tab-button ${activeTab === "stockTransfers" ? "active" : ""}`}
+          className={`${styles.tabButton} ${activeTab === "stockTransfers" ? styles.active : ""}`}
           onClick={() => setActiveTab("stockTransfers")}
         >
           Stock Transfers
         </button>
         <button
-          className={`tab-button ${activeTab === "issueShares" ? "active" : ""}`}
+          className={`${styles.tabButton} ${activeTab === "issueShares" ? styles.active : ""}`}
           onClick={() => setActiveTab("issueShares")}
         >
           Issue Shares
         </button>
       </div>
 
-      {/* Tab Content */}
-      <div className="tab-content">{renderTabContent()}</div>
+      <div className={styles.tabContent}>{renderTabContent()}</div>
     </div>
   );
 };

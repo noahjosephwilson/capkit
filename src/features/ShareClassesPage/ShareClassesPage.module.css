@@ -1,9 +1,4 @@
-/* Global Box Sizing */
-* {
-  box-sizing: border-box;
-}
-
-.share-classes-page {
+.shareClassesPage {
   background-color: #fff;
   padding: 2rem;
   min-height: 100vh;
@@ -11,21 +6,21 @@
   color: #111;
 }
 
-.share-classes-header {
+.shareClassesHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0rem;
 }
 
-.share-classes-header .breadcrumb {
+.breadcrumb {
   font-size: 2.5rem;
   font-weight: 700;
   color: #000;
   margin: 0;
 }
 
-.share-classes-button {
+.shareClassesButton {
   display: flex;
   align-items: center;
   background-color: transparent;
@@ -39,39 +34,34 @@
   transition: all 0.2s ease;
 }
 
-.share-classes-button:hover {
+.shareClassesButton:hover {
   background-color: #B500FF;
   color: #fff;
 }
 
-/* Grid layout for cards */
-.shareclass-list {
+.shareclassList {
   width: 100%;
   display: grid;
-  /* On wide screens, each card is at least 320px wide */
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 0.25rem;
 }
 
-.tab-content {
+.tabContent {
   margin-top: 2rem;
 }
 
 /* Responsive adjustments */
-/* When the screen width is less than 960px, allow cards to shrink a bit */
 @media (max-width: 960px) {
-  .shareclass-list {
+  .shareclassList {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 }
 
-/* When the screen is very narrow, use a single column so cards don't overlap */
 @media (max-width: 600px) {
-  .shareclass-list {
+  .shareclassList {
     grid-template-columns: 1fr;
   }
-  
-  .share-classes-header .breadcrumb {
+  .breadcrumb {
     font-size: 2rem;
   }
 }
