@@ -1,25 +1,23 @@
 // ShareholdersPage.jsx
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation"; // Updated import
+import { useSearchParams } from "next/navigation"; // Next.js hook
 import "./ShareholdersPage.css";
 import Details from "./Details/Details";
 import SearchStakeholder from "./SearchStakeholderPage/SearchStakeholderPage"; // Search component
-import AddStakeholder from "./AddStakeholder/AddStakeholder"; // AddStakeholder component
 import StockTransfer from "./StockTransfers/StockTransfers"; // StockTransfer component
 
 const ShareholdersPage = () => {
-  // Read the "tab" query parameter and also read an optional "id" if present
-  const searchParams = useSearchParams(); // Next.js hook
+  // Read the "tab" query parameter; default to "details"
+  const searchParams = useSearchParams();
   const defaultTab = searchParams.get("tab") || "details";
   const [activeTab, setActiveTab] = useState(defaultTab);
 
-  // Update activeTab if query parameter changes
   useEffect(() => {
     const tab = searchParams.get("tab") || "details";
     setActiveTab(tab);
   }, [searchParams]);
 
-  // Conditionally render content based on the active tab
+  // Render content based on active tab
   const renderTabContent = () => {
     switch (activeTab) {
       case "details":
@@ -29,23 +27,17 @@ const ShareholdersPage = () => {
             <SearchStakeholder />
           </>
         );
-      case "add":
-        return (
-          <div className="tab-section">
-            <AddStakeholder />
-          </div>
-        );
-      case "edit":
-        return (
-          <div className="tab-section">
-            {/* Pass mode prop so SearchStakeholder knows it's in edit mode */}
-            <SearchStakeholder mode="edit" />
-          </div>
-        );
       case "stockTransfers":
         return (
           <div className="tab-section">
             <StockTransfer />
+          </div>
+        );
+      case "issueShares":
+        return (
+          <div className="tab-section">
+            {/* Replace this placeholder with your IssueShares component */}
+            <p>Issue Shares content goes here.</p>
           </div>
         );
       default:
@@ -66,25 +58,19 @@ const ShareholdersPage = () => {
           className={`tab-button ${activeTab === "details" ? "active" : ""}`}
           onClick={() => setActiveTab("details")}
         >
-          Details
-        </button>
-        <button
-          className={`tab-button ${activeTab === "add" ? "active" : ""}`}
-          onClick={() => setActiveTab("add")}
-        >
-          Add Stakeholder
-        </button>
-        <button
-          className={`tab-button ${activeTab === "edit" ? "active" : ""}`}
-          onClick={() => setActiveTab("edit")}
-        >
-          Edit Stakeholder
+          Investor Details
         </button>
         <button
           className={`tab-button ${activeTab === "stockTransfers" ? "active" : ""}`}
           onClick={() => setActiveTab("stockTransfers")}
         >
           Stock Transfers
+        </button>
+        <button
+          className={`tab-button ${activeTab === "issueShares" ? "active" : ""}`}
+          onClick={() => setActiveTab("issueShares")}
+        >
+          Issue Shares
         </button>
       </div>
 

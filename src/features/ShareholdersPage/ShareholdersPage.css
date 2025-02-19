@@ -24,6 +24,8 @@
 .mini-navbar {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  gap: 2rem; /* Even spacing between options */
   border-bottom: 2px solid #e0e0e0;
   margin-bottom: 1.5rem;
 }
@@ -34,10 +36,9 @@
   font-size: 1.1rem;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
-  transition: color 0.3s, border-bottom 0.3s;
-  margin-right: 1rem;
+  transition: color 0.3s;
   color: #666;
-  border-bottom: 3px solid transparent;
+  position: relative; /* Needed for positioning the underline */
 }
 
 .tab-button:hover {
@@ -46,7 +47,17 @@
 
 .tab-button.active {
   color: #000;
-  border-bottom: 3px solid #0077cc;
+}
+
+.tab-button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; /* Adjust if necessary */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 170px; /* Fixed underline width */
+  height: 3px;
+  background-color: #B500FF;
 }
 
 /* Tab Content Container (Modified to remove the card styling) */
