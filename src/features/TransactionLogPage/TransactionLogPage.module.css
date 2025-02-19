@@ -1,0 +1,33 @@
+.transactionLogPage {
+    background-color: #fff;
+    padding: 2rem;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: #111;
+  }
+  
+  .transactionLogHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0rem;
+  }
+  
+  .breadcrumb {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 960px) {
+    /* Adjust layout if additional components are added later */
+  }
+  
+  @media (max-width: 600px) {
+    .breadcrumb {
+      font-size: 2rem;
+    }
+  }
+  

@@ -141,7 +141,7 @@ const menuItems = [
       { label: "Cap Table", link: "/company/companyhome/captable" },
       { label: "Shareholders", link: "/company/companyhome/shareholders" },
       { label: "Share Classes", link: "/company/companyhome/shareclasses" },
-      { label: "Transaction Log", link: "/company/companyhome/underconstruction" },
+      { label: "Transaction Log", link: "/company/companyhome/transactionlog" },
     ],
   },
   {
