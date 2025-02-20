@@ -1,8 +1,13 @@
+"use client";
+
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import ShareClassCard from "../../components/ShareClassCard/ShareClassCard";
 import styles from "./ShareClassesPage.module.css"; // Import as a module
 
 const ShareClassesPage = () => {
+  const router = useRouter();
+
   const initialShareClasses = [
     {
       id: 1,
@@ -44,7 +49,8 @@ const ShareClassesPage = () => {
   };
 
   const handleAddCard = () => {
-    console.log("Add Share Class clicked");
+    // Navigate to the AddShareClassPage using Next.js router
+    router.push("/company/companyhome/shareclasses/addshareclass");
   };
 
   return (

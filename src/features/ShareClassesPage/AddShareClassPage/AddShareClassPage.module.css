@@ -1,0 +1,135 @@
+.addShareClassPage {
+    background-color: #fff;
+    padding: 2rem;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: #111;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .breadcrumb {
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    color: #000;
+  }
+  
+  .backLink {
+    cursor: pointer;
+    color: #000;
+  }
+  
+  .backLink:hover {
+    text-decoration: underline;
+  }
+  
+  .separator {
+    margin: 0 0.5rem;
+  }
+  
+  .formContainer {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    /* Integrated into the white background */
+    background-color: #fff;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+  
+  .fieldGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fieldGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .inputField {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  .inputField:focus {
+    border-color: #B500FF;
+    outline: none;
+  }
+  
+  .textArea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.2s;
+  }
+  
+  .textArea:focus {
+    border-color: #B500FF;
+    outline: none;
+  }
+  
+  .radioGroup {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .radioGroup label {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .advancedToggle {
+    cursor: pointer;
+    font-weight: 600;
+    color: #B500FF;
+    text-align: right;
+    font-size: 1.1rem;
+  }
+  
+  .advancedToggle:hover {
+    text-decoration: underline;
+  }
+  
+  .advancedSection {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+  }
+  
+  .submitButton {
+    background-color: #B500FF;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .submitButton:hover {
+    background-color: #a300d6;
+  }
+  
