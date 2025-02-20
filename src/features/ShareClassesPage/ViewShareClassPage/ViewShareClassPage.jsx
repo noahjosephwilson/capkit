@@ -39,7 +39,7 @@ const ViewShareClassPage = () => {
         <header className={styles.header}>
           <HeaderTitle
             backLinkText="Share Classes"
-            titleSuffix="View"
+            titleSuffix="View Class"
             backPath={backPath}
             showBack={true}
           />
@@ -54,7 +54,7 @@ const ViewShareClassPage = () => {
       <header className={styles.header}>
         <HeaderTitle
           backLinkText="Share Classes"
-          titleSuffix="View"
+          titleSuffix="View Class"
           backPath={backPath}
           showBack={true}
         />

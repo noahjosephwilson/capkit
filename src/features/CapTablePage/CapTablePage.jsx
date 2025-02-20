@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { Download, Plus, Edit3, Eye, Trash2, Search } from "lucide-react";
+import { Download, Plus, MoreVertical, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { db } from "../../firebase/firebaseConfig";
 import { useCompany } from "../../contexts/CompanyContext";
@@ -15,6 +15,7 @@ const CapTablePage = () => {
   const [capTableData, setCapTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(null);
 
   // Local state for search and sorting
   const [searchTerm, setSearchTerm] = useState("");
@@ -103,7 +104,7 @@ const CapTablePage = () => {
     );
   });
 
-  // Sorting logic: added missing requestSort helper
+  // Sorting logic
   const requestSort = (key) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
@@ -168,15 +169,22 @@ const CapTablePage = () => {
 
   // Navigation Handlers
   const handleAddPersonNavigation = () => {
-    router.push("/dashboard/shareholders?tab=add");
+    router.push("/company/companyhome/shareholders/addstakeholder");
   };
 
-  const handleEditStakeholder = (stakeholder) => {
-    router.push(`/dashboard/shareholders?tab=edit&id=${stakeholder.id}`);
+  const handleEditStakeholder = () => {
+    router.push(`/company/companyhome/shareholders/editstakeholder`);
+    setDropdownOpen(null);
+  };  
+
+  const handleViewStakeholder = () => {
+    router.push(`/company/companyhome/shareholders/stakeholderdetails`);
+    setDropdownOpen(null);
   };
 
-  const handleViewStakeholder = (stakeholder) => {
-    router.push(`/dashboard/shareholders?tab=details&id=${stakeholder.id}`);
+  const handleModifyTransactions = () => {
+    router.push(`/company/companyhome/shareholders/modifytransactions`);
+    setDropdownOpen(null);
   };
 
   // Delete action (only updates local state in this example)
@@ -188,10 +196,15 @@ const CapTablePage = () => {
     ) {
       setCapTableData((prev) => prev.filter((s) => s.id !== stakeholder.id));
     }
+    setDropdownOpen(null);
   };
 
   const handleDownload = () => {
     alert("Download functionality not implemented.");
+  };
+
+  const toggleDropdown = (id) => {
+    setDropdownOpen((prev) => (prev === id ? null : id));
   };
 
   if (loading) {
@@ -224,7 +237,7 @@ const CapTablePage = () => {
           </div>
           <div className={styles.capTableButtons}>
             <button className={styles.capTableButton} onClick={handleAddPersonNavigation}>
-              <Plus size={16} style={{ marginRight: "0.5rem" }} /> Add Person
+              <Plus size={16} style={{ marginRight: "0.5rem" }} /> Add Stakeholder
             </button>
             <button className={styles.capTableButton} onClick={handleDownload}>
               <Download size={16} style={{ marginRight: "0.5rem" }} /> Download Table
@@ -286,7 +299,6 @@ const CapTablePage = () => {
                   </span>
                 )}
               </th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -303,14 +315,50 @@ const CapTablePage = () => {
               const invested = computeInvestedAmount(entry);
               return (
                 <tr key={entry.id}>
-                  <td>
-                    <div className={styles.nameCell}>
+                  <td className={styles.nameCell}>
+                    <div className={styles.nameContent}>
                       <img
                         src={entry.image || "https://via.placeholder.com/40"}
                         alt={name}
                         className={styles.capTableAvatar}
                       />
-                      {name}
+                      <span>{name}</span>
+                    </div>
+                    <div className={styles.dropdownContainer}>
+                      <button
+                        className={styles.dropdownTrigger}
+                        onClick={() => toggleDropdown(entry.id)}
+                      >
+                        <MoreVertical size={16} />
+                      </button>
+                      {dropdownOpen === entry.id && (
+                        <div className={styles.dropdownMenu}>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() => handleViewStakeholder(entry)}
+                          >
+                            View Details
+                          </div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() => handleEditStakeholder(entry)}
+                          >
+                            Edit Stakeholder
+                          </div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() => handleModifyTransactions(entry)}
+                          >
+                            Modify Transactions
+                          </div>
+                          <div
+                            className={styles.dropdownItem}
+                            onClick={() => handleDeleteStakeholder(entry)}
+                          >
+                            Delete Stakeholder
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </td>
                   <td>{role}</td>
@@ -318,37 +366,6 @@ const CapTablePage = () => {
                   <td>{preferredShares ? preferredShares.toLocaleString() : "0"}</td>
                   <td>{percentOwnership}%</td>
                   <td>{invested ? "$" + invested.toLocaleString() : "0"}</td>
-                  <td>
-                    <div className={styles.actionButtons}>
-                      <div className={styles.actionButtonContainer}>
-                        <button
-                          className={`${styles.actionButton} ${styles.viewButton}`}
-                          onClick={() => handleViewStakeholder(entry)}
-                        >
-                          <Eye size={16} />
-                        </button>
-                        <div className={styles.tooltip}>View More</div>
-                      </div>
-                      <div className={styles.actionButtonContainer}>
-                        <button
-                          className={`${styles.actionButton} ${styles.editButton}`}
-                          onClick={() => handleEditStakeholder(entry)}
-                        >
-                          <Edit3 size={16} />
-                        </button>
-                        <div className={styles.tooltip}>Edit</div>
-                      </div>
-                      <div className={styles.actionButtonContainer}>
-                        <button
-                          className={`${styles.actionButton} ${styles.deleteButton}`}
-                          onClick={() => handleDeleteStakeholder(entry)}
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                        <div className={styles.tooltip}>Delete</div>
-                      </div>
-                    </div>
-                  </td>
                 </tr>
               );
             })}
