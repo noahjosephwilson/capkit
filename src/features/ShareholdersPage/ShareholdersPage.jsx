@@ -26,13 +26,13 @@ const ShareholdersPage = () => {
         );
       case "stockTransfers":
         return (
-          <div className={styles.tabSection}>
+          <div className={styles.contentSection}>
             <StockTransfer />
           </div>
         );
       case "issueShares":
         return (
-          <div className={styles.tabSection}>
+          <div className={styles.contentSection}>
             <p>Issue Shares content goes here.</p>
           </div>
         );
@@ -42,33 +42,33 @@ const ShareholdersPage = () => {
   };
 
   return (
-    <div className={styles.shareholdersPage}>
-      <div className={styles.headerSection}>
+    <div className={styles.shareholdersContainer}>
+      <div className={styles.headerContainer}>
         <h1 className={styles.pageTitle}>Shareholders</h1>
       </div>
 
-      <div className={styles.miniNavbar}>
+      <div className={styles.tabNav}>
         <button
-          className={`${styles.tabButton} ${activeTab === "details" ? styles.active : ""}`}
+          className={`${styles.navButton} ${activeTab === "details" ? styles.active : ""}`}
           onClick={() => setActiveTab("details")}
         >
           Shareholder Details
         </button>
         <button
-          className={`${styles.tabButton} ${activeTab === "stockTransfers" ? styles.active : ""}`}
+          className={`${styles.navButton} ${activeTab === "stockTransfers" ? styles.active : ""}`}
           onClick={() => setActiveTab("stockTransfers")}
         >
           Stock Transfers
         </button>
         <button
-          className={`${styles.tabButton} ${activeTab === "issueShares" ? styles.active : ""}`}
+          className={`${styles.navButton} ${activeTab === "issueShares" ? styles.active : ""}`}
           onClick={() => setActiveTab("issueShares")}
         >
           Issue Shares
         </button>
       </div>
 
-      <div className={styles.tabContent}>{renderTabContent()}</div>
+      <div className={styles.tabContentContainer}>{renderTabContent()}</div>
     </div>
   );
 };

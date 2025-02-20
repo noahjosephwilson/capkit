@@ -1,5 +1,5 @@
-/* General Page Styling */
-.shareholdersPage {
+/* Container for the entire shareholders page */
+.shareholdersContainer {
   background-color: #fff;
   padding: 2rem;
   min-height: 100vh;
@@ -7,8 +7,8 @@
   color: #333;
 }
 
-/* Header Section */
-.headerSection {
+/* Header Container */
+.headerContainer {
   text-align: left;
   margin-bottom: 1rem;
 }
@@ -20,8 +20,8 @@
   color: #000;
 }
 
-/* Mini Navbar Styling */
-.miniNavbar {
+/* Tab Navigation */
+.tabNav {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -30,7 +30,7 @@
   margin-bottom: 1.5rem;
 }
 
-.tabButton {
+.navButton {
   background: none;
   border: none;
   font-size: 1.1rem;
@@ -41,7 +41,7 @@
   position: relative;
 }
 
-.tabButton:hover {
+.navButton:hover {
   color: #000;
 }
 
@@ -53,29 +53,28 @@
   content: "";
   position: absolute;
   bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 170px;
+  left: 10px;
+  width: calc(100% - 20px);
   height: 3px;
   background-color: #B500FF;
 }
 
 /* Tab Content Container */
-.tabContent {
+.tabContentContainer {
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 0;
   box-shadow: none;
 }
 
-/* Tab Section Styling */
-.tabSection h2 {
+/* Content Section Styling */
+.contentSection h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   text-align: left;
 }
 
-.tabSection p {
+.contentSection p {
   font-size: 1rem;
   line-height: 1.6;
   text-align: left;
@@ -83,21 +82,21 @@
 }
 
 /* Form Styling for "Add Stakeholder" */
-.shareholderForm {
+.stakeholderForm {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   max-width: 400px;
 }
 
-.shareholderForm label {
+.stakeholderForm label {
   font-size: 1rem;
   color: #374151;
   display: flex;
   flex-direction: column;
 }
 
-.shareholderForm input {
+.stakeholderForm input {
   margin-top: 0.5rem;
   padding: 0.5rem;
   border: 1px solid #d1d5db;
@@ -107,12 +106,12 @@
   transition: border-color 0.2s ease;
 }
 
-.shareholderForm input:focus {
+.stakeholderForm input:focus {
   outline: none;
   border-color: #7c3aed;
 }
 
-.shareholderButton {
+.stakeholderButton {
   padding: 0.5rem 0.75rem;
   border: 2px solid #7c3aed;
   border-radius: 0.375rem;
@@ -124,7 +123,7 @@
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.shareholderButton:hover {
+.stakeholderButton:hover {
   background-color: #7c3aed;
   color: #fff;
 }

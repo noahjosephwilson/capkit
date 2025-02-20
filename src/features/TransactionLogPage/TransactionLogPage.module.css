@@ -1,88 +1,200 @@
 .transactionLogPage {
-    background-color: #fff;
-    padding: 2rem;
-    min-height: 100vh;
-    font-family: "Inter", sans-serif;
-    color: #111;
-  }
-  
-  .transactionLogHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
+  background-color: #fefefe;
+  padding: 2rem;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #333;
+}
+
+/* Header styling */
+.transactionLogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.titleContainer {
+  flex: 1;
+}
+
+.breadcrumb {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.topRightControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Header controls styling */
+.controlLabel {
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Enhanced select input for days back with white background and larger size */
+.enhancedSelectInput {
+  padding: 1.2rem 1.5rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 1.3rem;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.enhancedSelectInput:hover {
+  border-color: #B500FF;
+}
+.enhancedSelectInput:focus {
+  outline: none;
+  border-color: #B500FF;
+  box-shadow: 0 0 8px rgba(181, 0, 255, 0.3);
+}
+
+/* Controls container (search and buttons) placed above the table */
+.controlsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Search input styling */
+.searchContainer {
+  flex: 1;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 250px;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #B500FF;
+}
+
+/* Button group and panel buttons styling */
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.panelButton {
+  padding: 0.55rem 1rem;
+  border: 2px solid #B500FF;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #B500FF;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.2s ease;
+}
+
+.panelButton:hover {
+  opacity: 0.85;
+}
+
+.panelButton:active {
+  opacity: 0.75;
+}
+
+.activeButton {
+  background-color: #B500FF;
+  color: #fff;
+}
+
+/* Panel container styling */
+.panelContainer {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.panelTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.dropdownContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filterOptions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.checkboxLabel {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* Table container for additional spacing */
+.tableContainer {
+  overflow-x: auto;
+}
+
+/* Table styling */
+.transactionTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.transactionTable th,
+.transactionTable td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.transactionTable th {
+  background-color: #f7f7f7;
+  font-weight: 600;
+  color: #333;
+}
+
+.transactionTable tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
   .breadcrumb {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0;
+    font-size: 2rem;
   }
-  
-  .transactionLogButton {
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-    border: 2px solid #B500FF;
-    color: #B500FF;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  .controlsContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
-  
-  .transactionLogButton:hover {
-    background-color: #B500FF;
-    color: #fff;
-  }
-  
-  .filterPanel {
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border-radius: 0.375rem;
-  }
-  
-  .filterTitle {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-  
   .filterOptions {
-    display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
   }
-  
-  .transactionTable {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .transactionTable th,
-  .transactionTable td {
-    padding: 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .transactionTable th {
-    background-color: #f3f3f3;
-    font-weight: 600;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .breadcrumb {
-      font-size: 2rem;
-    }
-    .filterOptions {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  }
-  
+}
