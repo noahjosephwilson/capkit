@@ -1,7 +1,6 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import HeaderTitle from "../../components/HeaderTitle/HeaderTitle";
 import styles from "./ShareholdersPage.module.css";
 import ShareholderDetailsPage from "./StakeholderDetailsPage/StakeholderDetailsPage";
@@ -11,6 +10,7 @@ import IssueSharesPage from "./IssueSharesPage/IssueSharesPage";
 
 const ShareholdersPage = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const defaultTab = searchParams.get("tab") || "details";
   const [activeTab, setActiveTab] = useState(defaultTab);
 
@@ -18,6 +18,11 @@ const ShareholdersPage = () => {
     const tab = searchParams.get("tab") || "details";
     setActiveTab(tab);
   }, [searchParams]);
+
+  const handleAddStakeholder = () => {
+    // Adjust the route as necessary
+    router.push("/company/companyhome/shareholders/addstakeholder");
+  };
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -49,6 +54,12 @@ const ShareholdersPage = () => {
     <div className={styles.shareholdersContainer}>
       <div className={styles.headerContainer}>
         <HeaderTitle titleSuffix="Shareholders" showBack={false} />
+        <button 
+          className={styles.addStakeholderButton} 
+          onClick={handleAddStakeholder}
+        >
+          + Add Stakeholder
+        </button>
       </div>
 
       <div className={styles.tabNav}>

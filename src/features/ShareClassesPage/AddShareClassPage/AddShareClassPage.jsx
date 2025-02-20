@@ -42,7 +42,7 @@ const AddShareClassPage = () => {
       <header className={styles.header}>
         <HeaderTitle
           backLinkText="Share Classes"
-          titleSuffix="Add"
+          titleSuffix="Add Class"
           backPath={backPath}
           showBack={true}
         />

@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
-import styles from "../AddShareClassPage/AddShareClassPage.module.css";
+import styles from "./EditStakeholderPage.module.css";
 
-const EditShareClassPage = () => {
+const EditStakeholderPage = () => {
   const router = useRouter();
-  const backPath = "/company/companyhome/shareclasses";
+  const backPath = "/company/companyhome/shareholders";
 
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const toggleAdvanced = () => setAdvancedOpen(!advancedOpen);
@@ -35,15 +35,14 @@ const EditShareClassPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Perform save/update actions here
   };
 
   return (
-    <div className={styles.addShareClassPage}>
+    <div className={styles.addStakeholderPage}>
       <header className={styles.header}>
         <HeaderTitle
-          backLinkText="Share Classes"
-          titleSuffix="Edit Class"
+          backLinkText="Shareholders"
+          titleSuffix="Add Stakeholder"
           backPath={backPath}
           showBack={true}
         />
@@ -51,7 +50,7 @@ const EditShareClassPage = () => {
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.fieldGroup}>
-            <label htmlFor="abbreviation">Share Class Abbreviation</label>
+            <label htmlFor="abbreviation">Stakeholder Abbreviation</label>
             <input
               type="text"
               id="abbreviation"
@@ -59,12 +58,12 @@ const EditShareClassPage = () => {
               value={formData.abbreviation}
               onChange={handleInputChange}
               className={styles.inputField}
-              placeholder="e.g., COM"
+              placeholder="e.g., STK"
               required
             />
           </div>
           <div className={styles.fieldGroup}>
-            <label htmlFor="title">Share Class Title</label>
+            <label htmlFor="title">Stakeholder Title</label>
             <input
               type="text"
               id="title"
@@ -72,19 +71,19 @@ const EditShareClassPage = () => {
               value={formData.title}
               onChange={handleInputChange}
               className={styles.inputField}
-              placeholder="e.g., Class A Shares"
+              placeholder="e.g., John Doe"
               required
             />
           </div>
           <div className={styles.fieldGroup}>
-            <label htmlFor="description">Share Class Description</label>
+            <label htmlFor="description">Stakeholder Description</label>
             <textarea
               id="description"
               name="description"
               value={formData.description}
               onChange={handleInputChange}
               className={styles.textArea}
-              placeholder="Enter a description for the share class"
+              placeholder="Enter a description for the stakeholder"
               required
             />
           </div>
@@ -147,7 +146,7 @@ const EditShareClassPage = () => {
             </div>
           </div>
 
-          {/* Advanced settings toggle moved to right */}
+          {/* Advanced settings toggle */}
           <div className={styles.advancedToggle} onClick={toggleAdvanced}>
             <span className={styles.advancedText}>
               {advancedOpen ? "Basic Settings" : "Advanced Settings"}
@@ -266,7 +265,7 @@ const EditShareClassPage = () => {
             </div>
           )}
           <button type="submit" className={styles.submitButton}>
-            Edit Share Class
+            Add New Stakeholder
           </button>
         </form>
       </div>
@@ -274,4 +273,4 @@ const EditShareClassPage = () => {
   );
 };
 
-export default EditShareClassPage;
+export default EditStakeholderPage;

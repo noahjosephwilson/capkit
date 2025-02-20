@@ -6,21 +6,42 @@
   color: #333;
 }
 
-/* Header Container */
+/* Header Container updated for flex layout */
 .headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
   margin-bottom: 1rem;
+}
+
+/* New style for the "+ Add Stakeholder" button */
+.addStakeholderButton {
+  background-color: transparent;
+  border: 2px solid #B500FF;
+  color: #B500FF;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addStakeholderButton:hover {
+  background-color: #B500FF;
+  color: #fff;
 }
 
 /* Tab Navigation */
 .tabNav {
   display: flex;
-  justify-content: space-between; /* Spread the buttons evenly */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1200px;   /* Limit overall width */
-  margin: 0 auto;      /* Center the tab bar within the container */
-  padding: 0 3rem;     /* Add horizontal padding to move tabs away from the edges */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
   border-bottom: 2px solid #e0e0e0;
   margin-bottom: 1.5rem;
 }
@@ -125,6 +146,5 @@
 
 /* Add this new style for manually shifting the Stock Transfers button */
 .leftShift {
-  /* Adjust the value as needed */
   margin-left: -50px;
 }

@@ -2,11 +2,11 @@
 import React from "react";
 import "./StakeholderDetailsPage.module.css";
 
-const ShareholderDetailsPage = () => {
+const StakeholderDetailsPage = () => {
   return (
-    <div className="shareholderdetails">
+    <div className="stareholderdetails">
     </div>
   );
 };
 
-export default ShareholderDetailsPage;
+export default StakeholderDetailsPage;
