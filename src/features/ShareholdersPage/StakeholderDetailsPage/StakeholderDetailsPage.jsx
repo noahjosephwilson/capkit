@@ -1,6 +1,6 @@
 // /pages/ShareholdersPage/Details/Details.jsx
 import React from "react";
-import "./ShareholderDetailsPage.module.css";
+import "./StakeholderDetailsPage.module.css";
 
 const ShareholderDetailsPage = () => {
   return (

@@ -7,7 +7,7 @@ import "./SearchStakeholderPage.css";
 
 // Lazy-load EditStakeholder to break potential circular dependencies.
 const EditStakeholder = React.lazy(() =>
-  import("../EditStakeholder/EditStakeholder")
+  import("../StakeholderDetailsPage/StakeholderDetailsPage")
 );
 
 const placeholderImage = "https://via.placeholder.com/30";

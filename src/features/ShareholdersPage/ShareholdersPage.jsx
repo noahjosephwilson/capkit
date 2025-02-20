@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import HeaderTitle from "../../components/HeaderTitle/HeaderTitle";
 import styles from "./ShareholdersPage.module.css";
-import ShareholderDetailsPage from "./ShareholderDetailsPage/ShareholderDetailsPage";
+import ShareholderDetailsPage from "./StakeholderDetailsPage/StakeholderDetailsPage";
 import SearchStakeholder from "./SearchStakeholderPage/SearchStakeholderPage";
 import StockTransfer from "./StockTransfers/StockTransfers";
 
