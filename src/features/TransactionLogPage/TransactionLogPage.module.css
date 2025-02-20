@@ -20,12 +20,7 @@
   flex: 1;
 }
 
-.breadcrumb {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #111;
-  margin: 0;
-}
+/* (HeaderTitle component will apply its own styles for the title) */
 
 .topRightControls {
   display: flex;
@@ -47,9 +42,9 @@
 }
 
 .customDropdownButton {
-  padding: 0.5rem 0.8rem; /* Smaller padding */
-  width: 120px;          /* Reduced fixed width */
-  font-size: 1rem;       /* Smaller font size */
+  padding: 0.5rem 0.8rem;
+  width: 120px;
+  font-size: 1rem;
   border: 2px solid #ccc;
   border-radius: 6px;
   background-color: #fff;
@@ -64,13 +59,10 @@
 .dropdownText {
   flex: 1;
   text-align: center;
-  margin-left: 0rem;
 }
 
 .arrow {
   margin-left: 0.5rem;
-  display: flex;
-  align-items: center;
 }
 
 /* Hover & Focus states for button */

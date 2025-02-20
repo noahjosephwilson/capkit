@@ -1,5 +1,8 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import HeaderTitle from "../../components/HeaderTitle/HeaderTitle";
 import styles from "./ShareholdersPage.module.css";
 import ShareholderDetailsPage from "./ShareholderDetailsPage/ShareholderDetailsPage";
 import SearchStakeholder from "./SearchStakeholderPage/SearchStakeholderPage";
@@ -44,7 +47,7 @@ const ShareholdersPage = () => {
   return (
     <div className={styles.shareholdersContainer}>
       <div className={styles.headerContainer}>
-        <h1 className={styles.pageTitle}>Shareholders</h1>
+        <HeaderTitle titleSuffix="Shareholders" showBack={false} />
       </div>
 
       <div className={styles.tabNav}>

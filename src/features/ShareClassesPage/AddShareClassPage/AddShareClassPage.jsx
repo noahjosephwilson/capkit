@@ -2,15 +2,12 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
 import styles from "./AddShareClassPage.module.css";
 
 const AddShareClassPage = () => {
   const router = useRouter();
   const backPath = "/company/companyhome/shareclasses";
-
-  const handleBack = () => {
-    router.push(backPath);
-  };
 
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const toggleAdvanced = () => setAdvancedOpen(!advancedOpen);
@@ -42,13 +39,12 @@ const AddShareClassPage = () => {
   return (
     <div className={styles.addShareClassPage}>
       <header className={styles.header}>
-        <div className={styles.breadcrumb}>
-          <span className={styles.backLink} onClick={handleBack}>
-            Share Classes
-          </span>
-          <span className={styles.separator}>→</span>
-          <span>Add</span>
-        </div>
+        <HeaderTitle
+          backLinkText="Share Classes"
+          titleSuffix="Add"
+          backPath={backPath}
+          showBack={true}
+        />
       </header>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>

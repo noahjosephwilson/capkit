@@ -1,9 +1,12 @@
+"use client";
+
 import React, { useState, useMemo, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { Download, Plus, Edit3, Eye, Trash2, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { db } from "../../firebase/firebaseConfig";
 import { useCompany } from "../../contexts/CompanyContext";
+import HeaderTitle from "../../components/HeaderTitle/HeaderTitle";
 import styles from "./CapTablePage.module.css";
 
 const CapTablePage = () => {
@@ -100,7 +103,7 @@ const CapTablePage = () => {
     );
   });
 
-  // Sorting logic
+  // Sorting logic: added missing requestSort helper
   const requestSort = (key) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
@@ -203,7 +206,9 @@ const CapTablePage = () => {
     <div className={styles.capTablePage}>
       {/* Header */}
       <header className={styles.capTableHeader}>
-        <div className={styles.breadcrumb}>Cap Table</div>
+        <div className={styles.headerLeft}>
+          <HeaderTitle titleSuffix="Cap Table" showBack={false} />
+        </div>
         <div className={styles.capTableControls}>
           <div className={styles.searchContainer}>
             <div className={styles.inputWithIcon}>

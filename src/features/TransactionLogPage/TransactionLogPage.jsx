@@ -1,6 +1,8 @@
 "use client";
+
 import React, { useState } from "react";
 import { Download, ChevronDown, ChevronUp } from "lucide-react";
+import HeaderTitle from "../../components/HeaderTitle/HeaderTitle";
 import styles from "./TransactionLogPage.module.css";
 
 // Custom dropdown component for Days Back
@@ -117,7 +119,7 @@ const TransactionLogPage = () => {
     <div className={styles.transactionLogPage}>
       <header className={styles.transactionLogHeader}>
         <div className={styles.titleContainer}>
-          <h1 className={styles.breadcrumb}>Transaction Log</h1>
+          <HeaderTitle titleSuffix="Transaction Log" showBack={false} />
         </div>
         <div className={styles.topRightControls}>
           <label htmlFor="daysSelect" className={styles.controlLabel}>

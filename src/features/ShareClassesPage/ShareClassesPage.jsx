@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import ShareClassCard from "../../components/ShareClassCard/ShareClassCard";
+import HeaderTitle from "../../components/HeaderTitle/HeaderTitle";
 import styles from "./ShareClassesPage.module.css"; // Import as a module
 
 const ShareClassesPage = () => {
@@ -56,7 +57,7 @@ const ShareClassesPage = () => {
   return (
     <div className={styles.shareClassesPage}>
       <header className={styles.shareClassesHeader}>
-        <div className={styles.breadcrumb}>Share Classes</div>
+        <HeaderTitle titleSuffix="Share Classes" showBack={false} />
         <button className={styles.shareClassesButton} onClick={handleAddCard}>
           + Add Class
         </button>

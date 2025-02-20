@@ -1,0 +1,25 @@
+.breadcrumb {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    display: flex;
+    align-items: center;
+  }
+  
+  .backLink {
+    cursor: pointer;
+    color: #000;
+  }
+  
+  .backLink:hover {
+    text-decoration: underline;
+  }
+  
+  .separator {
+    margin: 0 0.5rem;
+  }
+  
+  .titleSuffix {
+    /* Additional styling can be added here if needed */
+  }
+  
