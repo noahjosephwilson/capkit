@@ -1,7 +1,22 @@
 import React from "react";
+import { useRouter } from "next/navigation";
 import "./ShareClassCard.css";
 
 const ShareClassCard = ({ label, description, cardDescription, onDelete }) => {
+  const router = useRouter();
+
+  const handleView = (e) => {
+    e.stopPropagation();
+    // Navigate to the view page. Adjust the URL as necessary.
+    router.push(`/company/companyhome/shareclasses/viewshareclass?label=${encodeURIComponent(label)}`);
+  };
+
+  const handleEdit = (e) => {
+    e.stopPropagation();
+    // Navigate to the edit page. Adjust the URL as necessary.
+    router.push(`/company/companyhome/shareclasses/editshareclass?label=${encodeURIComponent(label)}`);
+  };
+
   return (
     <div className="shareclass-card">
       <div
@@ -51,8 +66,8 @@ const ShareClassCard = ({ label, description, cardDescription, onDelete }) => {
         </p>
       </div>
       <div className="card-footer">
-        <button className="view-btn">View</button>
-        <button className="edit-btn">Edit</button>
+        <button className="view-btn" onClick={handleView}>View</button>
+        <button className="edit-btn" onClick={handleEdit}>Edit</button>
       </div>
     </div>
   );

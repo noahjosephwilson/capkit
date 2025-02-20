@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Updated hook
+import { usePathname } from "next/navigation";
 import {
   ChevronDown,
   Home,
@@ -80,13 +80,14 @@ const SidebarMenuItem = ({
                   </li>
                 );
               }
-              // Use the link provided in subItem directly
+              // For "Share Classes", we want the active state to cover child routes.
+              const useExact = subItem.label !== "Share Classes";
               const link = subItem.link;
               return (
                 <li key={subItem.label} className="sidebar-menu-sub-item">
                   <NavLink
                     to={link}
-                    end
+                    end={useExact}
                     onClick={() => setActiveCategory(item.label)}
                     className={({ isActive }) =>
                       `sidebar-menu-sub-button ${isActive ? "active" : ""}`

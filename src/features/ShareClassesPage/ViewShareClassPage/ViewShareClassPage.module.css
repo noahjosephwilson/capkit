@@ -1,0 +1,51 @@
+.viewShareClassPage {
+    background-color: #fff;
+    padding: 2rem;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: #111;
+  }
+  
+  .header {
+    margin-bottom: 2rem;
+  }
+  
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .abbreviation,
+  .description {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .stats {
+    margin-top: 2rem;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+  }
+  
+  .statItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .statLabel {
+    font-weight: 600;
+  }
+  
+  .statValue {
+    font-weight: 400;
+  }
+  

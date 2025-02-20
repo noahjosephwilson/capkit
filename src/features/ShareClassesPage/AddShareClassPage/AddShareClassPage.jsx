@@ -22,6 +22,8 @@ const AddShareClassPage = () => {
     lockupPeriod: "",
     transferRestrictions: "",
     vestingSchedule: "",
+    conversionTerms: "",
+    liquidationPreference: "",
     antiDilutionProtection: "no",
   });
 
@@ -32,7 +34,6 @@ const AddShareClassPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically submit the formData to your API
     console.log("Form submitted:", formData);
   };
 
@@ -86,61 +87,72 @@ const AddShareClassPage = () => {
               required
             />
           </div>
-          <div className={styles.fieldGroup}>
-            <label>Voting Rights</label>
-            <div className={styles.radioGroup}>
-              <label>
-                <input
-                  type="radio"
-                  name="votingRights"
-                  value="yes"
-                  checked={formData.votingRights === "yes"}
-                  onChange={handleInputChange}
-                />
-                Yes
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="votingRights"
-                  value="no"
-                  checked={formData.votingRights === "no"}
-                  onChange={handleInputChange}
-                />
-                No
-              </label>
+
+          {/* Voting Rights and Dividend Rights displayed side-by-side */}
+          <div className={styles.radioGroupContainer}>
+            <div className={styles.radioItem}>
+              <label className={styles.fieldLabel}>Voting Rights</label>
+              <div className={styles.radioGroup}>
+                <label>
+                  <input
+                    type="radio"
+                    name="votingRights"
+                    value="yes"
+                    checked={formData.votingRights === "yes"}
+                    onChange={handleInputChange}
+                    className={styles.radioButton}
+                  />
+                  Yes
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="votingRights"
+                    value="no"
+                    checked={formData.votingRights === "no"}
+                    onChange={handleInputChange}
+                    className={styles.radioButton}
+                  />
+                  No
+                </label>
+              </div>
+            </div>
+            <div className={styles.radioItem}>
+              <label className={styles.fieldLabel}>Dividend Rights</label>
+              <div className={styles.radioGroup}>
+                <label>
+                  <input
+                    type="radio"
+                    name="dividendRights"
+                    value="yes"
+                    checked={formData.dividendRights === "yes"}
+                    onChange={handleInputChange}
+                    className={styles.radioButton}
+                  />
+                  Yes
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="dividendRights"
+                    value="no"
+                    checked={formData.dividendRights === "no"}
+                    onChange={handleInputChange}
+                    className={styles.radioButton}
+                  />
+                  No
+                </label>
+              </div>
             </div>
           </div>
-          <div className={styles.fieldGroup}>
-            <label>Dividend Rights</label>
-            <div className={styles.radioGroup}>
-              <label>
-                <input
-                  type="radio"
-                  name="dividendRights"
-                  value="yes"
-                  checked={formData.dividendRights === "yes"}
-                  onChange={handleInputChange}
-                />
-                Yes
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="dividendRights"
-                  value="no"
-                  checked={formData.dividendRights === "no"}
-                  onChange={handleInputChange}
-                />
-                No
-              </label>
-            </div>
-          </div>
+
+          {/* Advanced settings toggle moved to right */}
           <div className={styles.advancedToggle} onClick={toggleAdvanced}>
             <span className={styles.advancedText}>
               {advancedOpen ? "Basic Settings" : "Advanced Settings"}
             </span>
           </div>
+
           {advancedOpen && (
             <div className={styles.advancedSection}>
               <div className={styles.fieldGroup}>
@@ -180,7 +192,7 @@ const AddShareClassPage = () => {
                   value={formData.transferRestrictions}
                   onChange={handleInputChange}
                   className={styles.inputField}
-                  placeholder="e.g., No transfers during the lockup period"
+                  placeholder="e.g., No transfers during lockup"
                 />
               </div>
               <div className={styles.fieldGroup}>
@@ -192,11 +204,39 @@ const AddShareClassPage = () => {
                   value={formData.vestingSchedule}
                   onChange={handleInputChange}
                   className={styles.inputField}
-                  placeholder="e.g., 4-year vesting with a 1-year cliff"
+                  placeholder="e.g., 4-year vesting with 1-year cliff"
                 />
               </div>
               <div className={styles.fieldGroup}>
-                <label>Anti-Dilution Protection</label>
+                <label htmlFor="conversionTerms">Conversion Terms</label>
+                <input
+                  type="text"
+                  id="conversionTerms"
+                  name="conversionTerms"
+                  value={formData.conversionTerms}
+                  onChange={handleInputChange}
+                  className={styles.inputField}
+                  placeholder="e.g., automatic conversion on IPO"
+                />
+              </div>
+              <div className={styles.fieldGroup}>
+                <label htmlFor="liquidationPreference">
+                  Liquidation Preference (% or multiple)
+                </label>
+                <input
+                  type="text"
+                  id="liquidationPreference"
+                  name="liquidationPreference"
+                  value={formData.liquidationPreference}
+                  onChange={handleInputChange}
+                  className={styles.inputField}
+                  placeholder="e.g., 1x, 2x, or 20%"
+                />
+              </div>
+              <div className={styles.radioItem}>
+                <label className={styles.fieldLabel}>
+                  Anti-Dilution Protection
+                </label>
                 <div className={styles.radioGroup}>
                   <label>
                     <input
@@ -205,6 +245,7 @@ const AddShareClassPage = () => {
                       value="yes"
                       checked={formData.antiDilutionProtection === "yes"}
                       onChange={handleInputChange}
+                      className={styles.radioButton}
                     />
                     Yes
                   </label>
@@ -215,6 +256,7 @@ const AddShareClassPage = () => {
                       value="no"
                       checked={formData.antiDilutionProtection === "no"}
                       onChange={handleInputChange}
+                      className={styles.radioButton}
                     />
                     No
                   </label>
