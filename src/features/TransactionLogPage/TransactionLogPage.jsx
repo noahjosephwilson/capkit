@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Download } from "lucide-react";
 import styles from "./TransactionLogPage.module.css";
 
 const TransactionLogPage = () => {
@@ -49,6 +50,11 @@ const TransactionLogPage = () => {
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
+  };
+
+  // New download log handler
+  const handleDownloadLog = () => {
+    alert("Download Log functionality not implemented.");
   };
 
   // Filter the transactions based on selected types and search query
@@ -109,6 +115,12 @@ const TransactionLogPage = () => {
             onClick={() => togglePanel("detailsShown")}
           >
             Details Shown
+          </button>
+          <button
+            className={styles.downloadLogButton}
+            onClick={handleDownloadLog}
+          >
+            <Download size={16} style={{ marginRight: "0.5rem" }} /> Download Log
           </button>
         </div>
       </div>

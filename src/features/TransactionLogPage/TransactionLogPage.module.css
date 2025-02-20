@@ -95,6 +95,7 @@
   gap: 0.5rem;
 }
 
+/* Panel button styling for Filter History and Details Shown */
 .panelButton {
   padding: 0.55rem 1rem;
   border: 2px solid #B500FF;
@@ -118,6 +119,25 @@
 .activeButton {
   background-color: #B500FF;
   color: #fff;
+}
+
+/* Download Log button styled similar to the CapTablePage button */
+.downloadLogButton {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid #B500FF;
+  color: #B500FF;
+  padding: 0.55rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.2s ease;
+}
+
+.downloadLogButton:hover {
+  opacity: 0.85;
 }
 
 /* Panel container styling */
@@ -154,9 +174,11 @@
   color: #444;
 }
 
-/* Table container for additional spacing */
+/* Table container with rounded corners using a wrapper */
 .tableContainer {
-  overflow-x: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 /* Table styling */
@@ -170,7 +192,7 @@
 .transactionTable td {
   padding: 1rem;
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border: 1px solid #e0e0e0;
 }
 
 .transactionTable th {
