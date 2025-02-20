@@ -40,23 +40,73 @@
   font-weight: 500;
 }
 
-/* Enhanced select input for days back with white background and larger size */
-.enhancedSelectInput {
-  padding: 1.2rem 1.5rem;
+/* Custom Dropdown Styles */
+.customDropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.customDropdownButton {
+  padding: 0.5rem 0.8rem; /* Smaller padding */
+  width: 120px;          /* Reduced fixed width */
+  font-size: 1rem;       /* Smaller font size */
   border: 2px solid #ccc;
   border-radius: 6px;
-  font-size: 1.3rem;
   background-color: #fff;
   color: #333;
+  cursor: pointer;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.enhancedSelectInput:hover {
+
+.dropdownText {
+  flex: 1;
+  text-align: center;
+  margin-left: 0rem;
+}
+
+.arrow {
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Hover & Focus states for button */
+.customDropdownButton:hover {
   border-color: #B500FF;
 }
-.enhancedSelectInput:focus {
+
+.customDropdownButton:focus {
   outline: none;
   border-color: #B500FF;
   box-shadow: 0 0 8px rgba(181, 0, 255, 0.3);
+}
+
+/* Dropdown menu styles */
+.customDropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.customDropdownOption {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+}
+
+.customDropdownOption:hover {
+  background-color: #f7f7f7;
 }
 
 /* Controls container (search and buttons) placed above the table */

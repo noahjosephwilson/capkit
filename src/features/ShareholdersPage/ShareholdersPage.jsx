@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import styles from "./ShareholdersPage.module.css";
-import Details from "./Details/Details";
+import ShareholderDetailsPage from "./ShareholderDetailsPage/ShareholderDetailsPage";
 import SearchStakeholder from "./SearchStakeholderPage/SearchStakeholderPage";
 import StockTransfer from "./StockTransfers/StockTransfers";
 
@@ -20,7 +20,7 @@ const ShareholdersPage = () => {
       case "details":
         return (
           <>
-            <Details />
+            <ShareholderDetailsPage />
             <SearchStakeholder />
           </>
         );

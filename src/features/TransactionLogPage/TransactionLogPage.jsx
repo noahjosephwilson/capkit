@@ -1,6 +1,47 @@
+"use client";
 import React, { useState } from "react";
-import { Download } from "lucide-react";
+import { Download, ChevronDown, ChevronUp } from "lucide-react";
 import styles from "./TransactionLogPage.module.css";
+
+// Custom dropdown component for Days Back
+const CustomDropdown = ({ options, selected, onSelect }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSelect = (option) => {
+    onSelect(option.value);
+    setIsOpen(false);
+  };
+
+  return (
+    <div className={styles.customDropdownContainer}>
+      <button
+        type="button"
+        className={styles.customDropdownButton}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className={styles.dropdownText}>{selected} Days</span>
+        {isOpen ? (
+          <ChevronUp size={16} className={styles.arrow} />
+        ) : (
+          <ChevronDown size={16} className={styles.arrow} />
+        )}
+      </button>
+      {isOpen && (
+        <ul className={styles.customDropdownMenu}>
+          {options.map((option) => (
+            <li
+              key={option.value}
+              className={styles.customDropdownOption}
+              onClick={() => handleSelect(option)}
+            >
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 const TransactionLogPage = () => {
   // Sample transactions array
@@ -10,6 +51,14 @@ const TransactionLogPage = () => {
     { id: 3, date: "2025-01-17", type: "Refund", amount: "$120.00", status: "Completed" },
     { id: 4, date: "2025-01-18", type: "Credit", amount: "$2,500.00", status: "Completed" },
     { id: 5, date: "2025-01-19", type: "Debit", amount: "$600.00", status: "Failed" },
+  ];
+
+  // Options for days dropdown
+  const daysOptions = [
+    { value: "7", label: "7 Days" },
+    { value: "14", label: "14 Days" },
+    { value: "30", label: "30 Days" },
+    { value: "60", label: "60 Days" },
   ];
 
   // State for filtering by transaction type
@@ -38,10 +87,6 @@ const TransactionLogPage = () => {
       ...filters,
       [type]: !filters[type],
     });
-  };
-
-  const handleDaysChange = (e) => {
-    setDays(e.target.value);
   };
 
   const handleDetailsChange = (e) => {
@@ -78,17 +123,7 @@ const TransactionLogPage = () => {
           <label htmlFor="daysSelect" className={styles.controlLabel}>
             Days Back:
           </label>
-          <select
-            id="daysSelect"
-            value={days}
-            onChange={handleDaysChange}
-            className={styles.enhancedSelectInput}
-          >
-            <option value="7">7 Days</option>
-            <option value="14">14 Days</option>
-            <option value="30">30 Days</option>
-            <option value="60">60 Days</option>
-          </select>
+          <CustomDropdown options={daysOptions} selected={days} onSelect={setDays} />
         </div>
       </header>
 
@@ -116,10 +151,7 @@ const TransactionLogPage = () => {
           >
             Details Shown
           </button>
-          <button
-            className={styles.downloadLogButton}
-            onClick={handleDownloadLog}
-          >
+          <button className={styles.downloadLogButton} onClick={handleDownloadLog}>
             <Download size={16} style={{ marginRight: "0.5rem" }} /> Download Log
           </button>
         </div>
@@ -132,12 +164,7 @@ const TransactionLogPage = () => {
           <div className={styles.filterOptions}>
             {Object.keys(filters).map((type) => (
               <label key={type} className={styles.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  checked={filters[type]}
-                  onChange={() => handleCheckboxChange(type)}
-                />{" "}
-                {type}
+                <input type="checkbox" checked={filters[type]} onChange={() => handleCheckboxChange(type)} /> {type}
               </label>
             ))}
           </div>
