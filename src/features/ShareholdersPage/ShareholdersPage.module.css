@@ -15,9 +15,12 @@
 /* Tab Navigation */
 .tabNav {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between; /* Spread the buttons evenly */
   align-items: center;
-  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;   /* Limit overall width */
+  margin: 0 auto;      /* Center the tab bar within the container */
+  padding: 0 2rem;     /* Add horizontal padding to move tabs away from the edges */
   border-bottom: 2px solid #e0e0e0;
   margin-bottom: 1.5rem;
 }
@@ -118,4 +121,10 @@
 .stakeholderButton:hover {
   background-color: #7c3aed;
   color: #fff;
+}
+
+/* Add this new style for manually shifting the Stock Transfers button */
+.leftShift {
+  /* Adjust the value as needed */
+  margin-left: -50px;
 }

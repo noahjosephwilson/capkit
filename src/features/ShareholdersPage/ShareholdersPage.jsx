@@ -55,10 +55,10 @@ const ShareholdersPage = () => {
           className={`${styles.navButton} ${activeTab === "details" ? styles.active : ""}`}
           onClick={() => setActiveTab("details")}
         >
-          Shareholder Details
+          Stakeholder Details
         </button>
         <button
-          className={`${styles.navButton} ${activeTab === "stockTransfers" ? styles.active : ""}`}
+          className={`${styles.navButton} ${activeTab === "stockTransfers" ? styles.active : ""} ${styles.leftShift}`}
           onClick={() => setActiveTab("stockTransfers")}
         >
           Stock Transfers
