@@ -7,6 +7,7 @@ import styles from "./ShareholdersPage.module.css";
 import ShareholderDetailsPage from "./StakeholderDetailsPage/StakeholderDetailsPage";
 import SearchStakeholder from "./SearchStakeholderPage/SearchStakeholderPage";
 import StockTransfer from "./StockTransfers/StockTransfers";
+import IssueSharesPage from "./IssueSharesPage/IssueSharesPage";
 
 const ShareholdersPage = () => {
   const searchParams = useSearchParams();
@@ -36,7 +37,7 @@ const ShareholdersPage = () => {
       case "issueShares":
         return (
           <div className={styles.contentSection}>
-            <p>Issue Shares content goes here.</p>
+            <IssueSharesPage />
           </div>
         );
       default:
