@@ -181,3 +181,92 @@
   font-size: 0.8rem;
   margin-left: 0.2rem;
 }
+
+/* --- New Styles for "Details Shown" Panel --- */
+
+/* Container for the Details Shown button */
+.panelButtonsContainer {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Panel Button styled like in TransactionLogPage */
+.panelButton {
+  padding: 0.55rem 1rem;
+  border: 2px solid #B500FF;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #B500FF;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.2s ease;
+}
+
+.panelButton:hover {
+  opacity: 0.85;
+}
+
+.activeButton {
+  background-color: #B500FF;
+  color: #fff;
+}
+
+/* Panel Container for the Details Shown options */
+.panelContainer {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.panelTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+/* Dropdown container and select input for Details Shown */
+.dropdownContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selectInput {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.selectInput:focus {
+  outline: none;
+  border-color: #B500FF;
+}
+
+/* Details Shown Panel - New Styles */
+
+.detailsSection {
+  margin-top: 1rem;
+}
+
+.detailsSection h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}

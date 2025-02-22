@@ -9,23 +9,26 @@ const EditStakeholderPage = () => {
   const router = useRouter();
   const backPath = "/company/companyhome/shareholders";
 
-  const [advancedOpen, setAdvancedOpen] = useState(false);
-  const toggleAdvanced = () => setAdvancedOpen(!advancedOpen);
-
+  // Form state for editing stakeholder details.
+  // You can pre-populate these values when editing an existing stakeholder.
   const [formData, setFormData] = useState({
-    abbreviation: "",
-    title: "",
-    description: "",
-    votingRights: "no",
-    dividendRights: "no",
-    minimumInvestment: "",
-    lockupPeriod: "",
-    transferRestrictions: "",
-    vestingSchedule: "",
-    conversionTerms: "",
-    liquidationPreference: "",
-    antiDilutionProtection: "no",
+    name: "",
+    nickname: "",
+    email: "",
+    role: "",
+    otherRole: "",
   });
+
+  // Role options with an "Other" option.
+  const roleOptions = [
+    { value: "", label: "Select Role" },
+    { value: "CEO", label: "CEO" },
+    { value: "CFO", label: "CFO" },
+    { value: "CTO", label: "CTO" },
+    { value: "Investor", label: "Investor" },
+    { value: "Employee", label: "Employee" },
+    { value: "other", label: "Other" },
+  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -35,14 +38,15 @@ const EditStakeholderPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+    // Add your update logic here
   };
 
   return (
-    <div className={styles.addStakeholderPage}>
+    <div className={styles.editStakeholderPage}>
       <header className={styles.header}>
         <HeaderTitle
           backLinkText="Shareholders"
-          titleSuffix="Add Stakeholder"
+          titleSuffix="Edit Stakeholder"
           backPath={backPath}
           showBack={true}
         />
@@ -50,25 +54,12 @@ const EditStakeholderPage = () => {
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.fieldGroup}>
-            <label htmlFor="abbreviation">Stakeholder Abbreviation</label>
+            <label htmlFor="name">Stakeholder Name</label>
             <input
               type="text"
-              id="abbreviation"
-              name="abbreviation"
-              value={formData.abbreviation}
-              onChange={handleInputChange}
-              className={styles.inputField}
-              placeholder="e.g., STK"
-              required
-            />
-          </div>
-          <div className={styles.fieldGroup}>
-            <label htmlFor="title">Stakeholder Title</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={handleInputChange}
               className={styles.inputField}
               placeholder="e.g., John Doe"
@@ -76,196 +67,64 @@ const EditStakeholderPage = () => {
             />
           </div>
           <div className={styles.fieldGroup}>
-            <label htmlFor="description">Stakeholder Description</label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
+            <label htmlFor="nickname">Nickname (Optional)</label>
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              value={formData.nickname}
               onChange={handleInputChange}
-              className={styles.textArea}
-              placeholder="Enter a description for the stakeholder"
+              className={styles.inputField}
+              placeholder="e.g., Johnny"
+            />
+          </div>
+          <div className={styles.fieldGroup}>
+            <label htmlFor="email">Stakeholder Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className={styles.inputField}
+              placeholder="e.g., john.doe@example.com"
               required
             />
           </div>
-
-          {/* Voting Rights and Dividend Rights displayed side-by-side */}
-          <div className={styles.radioGroupContainer}>
-            <div className={styles.radioItem}>
-              <label className={styles.fieldLabel}>Voting Rights</label>
-              <div className={styles.radioGroup}>
-                <label>
-                  <input
-                    type="radio"
-                    name="votingRights"
-                    value="yes"
-                    checked={formData.votingRights === "yes"}
-                    onChange={handleInputChange}
-                    className={styles.radioButton}
-                  />
-                  Yes
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="votingRights"
-                    value="no"
-                    checked={formData.votingRights === "no"}
-                    onChange={handleInputChange}
-                    className={styles.radioButton}
-                  />
-                  No
-                </label>
-              </div>
-            </div>
-            <div className={styles.radioItem}>
-              <label className={styles.fieldLabel}>Dividend Rights</label>
-              <div className={styles.radioGroup}>
-                <label>
-                  <input
-                    type="radio"
-                    name="dividendRights"
-                    value="yes"
-                    checked={formData.dividendRights === "yes"}
-                    onChange={handleInputChange}
-                    className={styles.radioButton}
-                  />
-                  Yes
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="dividendRights"
-                    value="no"
-                    checked={formData.dividendRights === "no"}
-                    onChange={handleInputChange}
-                    className={styles.radioButton}
-                  />
-                  No
-                </label>
-              </div>
-            </div>
+          <div className={styles.fieldGroup}>
+            <label htmlFor="role">Role</label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleInputChange}
+              className={styles.selectInput}
+              required
+            >
+              {roleOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
-
-          {/* Advanced settings toggle */}
-          <div className={styles.advancedToggle} onClick={toggleAdvanced}>
-            <span className={styles.advancedText}>
-              {advancedOpen ? "Basic Settings" : "Advanced Settings"}
-            </span>
-          </div>
-
-          {advancedOpen && (
-            <div className={styles.advancedSection}>
-              <div className={styles.fieldGroup}>
-                <label htmlFor="minimumInvestment">
-                  Minimum Investment (USD)
-                </label>
-                <input
-                  type="number"
-                  id="minimumInvestment"
-                  name="minimumInvestment"
-                  value={formData.minimumInvestment}
-                  onChange={handleInputChange}
-                  className={styles.inputField}
-                  placeholder="e.g., 1000"
-                />
-              </div>
-              <div className={styles.fieldGroup}>
-                <label htmlFor="lockupPeriod">Lockup Period (Months)</label>
-                <input
-                  type="number"
-                  id="lockupPeriod"
-                  name="lockupPeriod"
-                  value={formData.lockupPeriod}
-                  onChange={handleInputChange}
-                  className={styles.inputField}
-                  placeholder="e.g., 12"
-                />
-              </div>
-              <div className={styles.fieldGroup}>
-                <label htmlFor="transferRestrictions">
-                  Transfer Restrictions
-                </label>
-                <input
-                  type="text"
-                  id="transferRestrictions"
-                  name="transferRestrictions"
-                  value={formData.transferRestrictions}
-                  onChange={handleInputChange}
-                  className={styles.inputField}
-                  placeholder="e.g., No transfers during lockup"
-                />
-              </div>
-              <div className={styles.fieldGroup}>
-                <label htmlFor="vestingSchedule">Vesting Schedule</label>
-                <input
-                  type="text"
-                  id="vestingSchedule"
-                  name="vestingSchedule"
-                  value={formData.vestingSchedule}
-                  onChange={handleInputChange}
-                  className={styles.inputField}
-                  placeholder="e.g., 4-year vesting with 1-year cliff"
-                />
-              </div>
-              <div className={styles.fieldGroup}>
-                <label htmlFor="conversionTerms">Conversion Terms</label>
-                <input
-                  type="text"
-                  id="conversionTerms"
-                  name="conversionTerms"
-                  value={formData.conversionTerms}
-                  onChange={handleInputChange}
-                  className={styles.inputField}
-                  placeholder="e.g., automatic conversion on IPO"
-                />
-              </div>
-              <div className={styles.fieldGroup}>
-                <label htmlFor="liquidationPreference">
-                  Liquidation Preference (% or multiple)
-                </label>
-                <input
-                  type="text"
-                  id="liquidationPreference"
-                  name="liquidationPreference"
-                  value={formData.liquidationPreference}
-                  onChange={handleInputChange}
-                  className={styles.inputField}
-                  placeholder="e.g., 1x, 2x, or 20%"
-                />
-              </div>
-              <div className={styles.radioItem}>
-                <label className={styles.fieldLabel}>
-                  Anti-Dilution Protection
-                </label>
-                <div className={styles.radioGroup}>
-                  <label>
-                    <input
-                      type="radio"
-                      name="antiDilutionProtection"
-                      value="yes"
-                      checked={formData.antiDilutionProtection === "yes"}
-                      onChange={handleInputChange}
-                      className={styles.radioButton}
-                    />
-                    Yes
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="antiDilutionProtection"
-                      value="no"
-                      checked={formData.antiDilutionProtection === "no"}
-                      onChange={handleInputChange}
-                      className={styles.radioButton}
-                    />
-                    No
-                  </label>
-                </div>
-              </div>
+          {formData.role === "other" && (
+            <div className={styles.fieldGroup}>
+              <label htmlFor="otherRole">Other</label>
+              <input
+                type="text"
+                id="otherRole"
+                name="otherRole"
+                value={formData.otherRole}
+                onChange={handleInputChange}
+                className={styles.inputField}
+                placeholder="Please specify the role"
+                required
+              />
             </div>
           )}
           <button type="submit" className={styles.submitButton}>
-            Add New Stakeholder
+            Edit Stakeholder
           </button>
         </form>
       </div>

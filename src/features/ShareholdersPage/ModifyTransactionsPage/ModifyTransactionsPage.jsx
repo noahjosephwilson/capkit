@@ -10,11 +10,21 @@ const ModifyTransactionsPage = () => {
   const backPath = "/company/companyhome/shareholders";
 
   const [formData, setFormData] = useState({
-    transactionType: "",
-    shares: "",
-    price: "",
-    description: "",
+    transactionNumber: "",
+    shareClass: "",
+    shareNumber: "",
+    amountPaid: "",
+    amountToPay: "",
+    transactionDate: "",
   });
+
+  // Example transaction number options
+  const transactionNumbers = [
+    { value: "", label: "Select Transaction Number" },
+    { value: "T001", label: "Transaction 001" },
+    { value: "T002", label: "Transaction 002" },
+    { value: "T003", label: "Transaction 003" },
+  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,59 +49,94 @@ const ModifyTransactionsPage = () => {
       </header>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>
+          {/* Top Dropdown for Transaction Number */}
           <div className={styles.fieldGroup}>
-            <label htmlFor="transactionType">Transaction Type</label>
+            <label htmlFor="transactionNumber">Transaction Number</label>
             <select
-              id="transactionType"
-              name="transactionType"
-              value={formData.transactionType}
+              id="transactionNumber"
+              name="transactionNumber"
+              value={formData.transactionNumber}
               onChange={handleInputChange}
-              className={styles.inputField}
+              className={styles.selectInput}
               required
             >
-              <option value="">Select transaction type</option>
-              <option value="buy">Buy</option>
-              <option value="sell">Sell</option>
-              <option value="transfer">Transfer</option>
+              {transactionNumbers.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </div>
-          <div className={styles.fieldGroup}>
-            <label htmlFor="shares">Number of Shares</label>
-            <input
-              type="number"
-              id="shares"
-              name="shares"
-              value={formData.shares}
-              onChange={handleInputChange}
-              className={styles.inputField}
-              placeholder="Enter number of shares"
-              required
-            />
-          </div>
-          <div className={styles.fieldGroup}>
-            <label htmlFor="price">Price per Share (USD)</label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              value={formData.price}
-              onChange={handleInputChange}
-              className={styles.inputField}
-              placeholder="Enter price per share"
-              required
-            />
-          </div>
-          <div className={styles.fieldGroup}>
-            <label htmlFor="description">Transaction Description</label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              className={styles.textArea}
-              placeholder="Enter a description for the transaction"
-            />
-          </div>
+
+          {/* Render additional fields when a transaction number is selected */}
+          {formData.transactionNumber !== "" && (
+            <>
+              <div className={styles.fieldGroup}>
+                <label htmlFor="shareClass">Share Class</label>
+                <input
+                  type="text"
+                  id="shareClass"
+                  name="shareClass"
+                  value={formData.shareClass}
+                  onChange={handleInputChange}
+                  className={styles.inputField}
+                  placeholder="e.g., Common, Preferred"
+                  required
+                />
+              </div>
+              <div className={styles.fieldGroup}>
+                <label htmlFor="shareNumber">Share Number</label>
+                <input
+                  type="number"
+                  id="shareNumber"
+                  name="shareNumber"
+                  value={formData.shareNumber}
+                  onChange={handleInputChange}
+                  className={styles.inputField}
+                  placeholder="Enter number of shares"
+                  required
+                />
+              </div>
+              <div className={styles.fieldGroup}>
+                <label htmlFor="amountPaid">Amount Paid (USD)</label>
+                <input
+                  type="number"
+                  id="amountPaid"
+                  name="amountPaid"
+                  value={formData.amountPaid}
+                  onChange={handleInputChange}
+                  className={styles.inputField}
+                  placeholder="Enter amount paid"
+                  required
+                />
+              </div>
+              <div className={styles.fieldGroup}>
+                <label htmlFor="amountToPay">Amount To Pay (USD)</label>
+                <input
+                  type="number"
+                  id="amountToPay"
+                  name="amountToPay"
+                  value={formData.amountToPay}
+                  onChange={handleInputChange}
+                  className={styles.inputField}
+                  placeholder="Enter amount to pay"
+                  required
+                />
+              </div>
+              <div className={styles.fieldGroup}>
+                <label htmlFor="transactionDate">Transaction Date</label>
+                <input
+                  type="date"
+                  id="transactionDate"
+                  name="transactionDate"
+                  value={formData.transactionDate}
+                  onChange={handleInputChange}
+                  className={styles.inputField}
+                  required
+                />
+              </div>
+            </>
+          )}
           <button type="submit" className={styles.submitButton}>
             Modify Transaction
           </button>

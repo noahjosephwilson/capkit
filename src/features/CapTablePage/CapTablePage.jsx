@@ -21,6 +21,27 @@ const CapTablePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortConfig, setSortConfig] = useState({ key: "ownership", direction: "descending" });
 
+  // New state for panel toggling and details shown options
+  const [activePanel, setActivePanel] = useState(null);
+  const [detailsShownOptions, setDetailsShownOptions] = useState({
+    name: true,
+    role: true,
+    shares: true,
+    ownership: true,
+    invested: true,
+  });
+
+  const togglePanel = (panel) => {
+    setActivePanel(activePanel === panel ? null : panel);
+  };
+
+  const handleCheckboxChange = (option) => {
+    setDetailsShownOptions((prev) => ({
+      ...prev,
+      [option]: !prev[option],
+    }));
+  };
+
   // Firestore fetch: load stakeholders for the current company
   useEffect(() => {
     const fetchStakeholders = async () => {
@@ -175,7 +196,7 @@ const CapTablePage = () => {
   const handleEditStakeholder = () => {
     router.push(`/company/companyhome/shareholders/editstakeholder`);
     setDropdownOpen(null);
-  };  
+  };
 
   const handleViewStakeholder = () => {
     router.push(`/company/companyhome/shareholders/stakeholderdetails`);
@@ -236,6 +257,13 @@ const CapTablePage = () => {
             </div>
           </div>
           <div className={styles.capTableButtons}>
+            {/* Details Shown button placed to the left */}
+            <button
+              className={`${styles.panelButton} ${activePanel === "detailsShown" ? styles.activeButton : ""}`}
+              onClick={() => togglePanel("detailsShown")}
+            >
+              Details Shown
+            </button>
             <button className={styles.capTableButton} onClick={handleAddPersonNavigation}>
               <Plus size={16} style={{ marginRight: "0.5rem" }} /> Add Stakeholder
             </button>
@@ -245,6 +273,56 @@ const CapTablePage = () => {
           </div>
         </div>
       </header>
+
+      {/* "Details Shown" Panel */}
+      {activePanel === "detailsShown" && (
+        <div className={styles.panelContainer}>
+          <div className={styles.panelTitle}>Details Shown</div>
+          <div className={styles.detailsSection}>
+            <h4>Basics</h4>
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                checked={detailsShownOptions.name}
+                onChange={() => handleCheckboxChange("name")}
+              />
+              Name
+            </label>
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                checked={detailsShownOptions.role}
+                onChange={() => handleCheckboxChange("role")}
+              />
+              Role
+            </label>
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                checked={detailsShownOptions.shares}
+                onChange={() => handleCheckboxChange("shares")}
+              />
+              Shares
+            </label>
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                checked={detailsShownOptions.ownership}
+                onChange={() => handleCheckboxChange("ownership")}
+              />
+              % Ownership
+            </label>
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                checked={detailsShownOptions.invested}
+                onChange={() => handleCheckboxChange("invested")}
+              />
+              Invested Amount
+            </label>
+          </div>
+        </div>
+      )}
 
       {/* Table */}
       <div className={styles.capTableContainer}>
