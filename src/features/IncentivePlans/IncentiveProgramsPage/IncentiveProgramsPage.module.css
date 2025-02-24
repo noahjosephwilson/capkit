@@ -1,0 +1,86 @@
+.incentiveProgramsPage {
+    background-color: #fff;
+    padding: 2rem;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: #111;
+  }
+  
+  /* Header Container */
+  .headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  /* Button Styling for "+ Add New Incentive Plan" with purple background */
+  .addIncentivePlanButton {
+    background-color: #B500FF;
+    border: 2px solid #B500FF;
+    color: #fff;
+    padding: 0.5rem 0.75rem;
+    border-radius: 3rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .addIncentivePlanButton:hover {
+    background-color: #a300e0;
+    border-color: #a300e0;
+  }
+  
+  /* Container for all pool sections */
+  .sectionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* Pool Section */
+  .poolSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  /* Styling for the smaller title */
+  .subTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Empty Pool Container */
+  .emptyPoolContainer {
+    background-color: #fff;
+    border: 2px solid #B500FF;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    min-height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .emptyPoolContainer:hover {
+    background-color: #f5e8ff;
+    box-shadow: rgba(181, 0, 255, 0.3);
+  }
+  
+  /* Empty Pool Text */
+  .emptyPoolText {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #B500FF;
+    margin: 0;
+    text-align: center;
+  }
+  

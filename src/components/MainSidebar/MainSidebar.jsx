@@ -149,10 +149,9 @@ const menuItems = [
     label: "Incentive Plans",
     icon: Award,
     items: [
-      { label: "Vested Equity", link: "/company/companyhome/underconstruction" },
-      { label: "Stock Options", link: "/company/companyhome/underconstruction" },
-      { label: "Incentive Programs", link: "/company/companyhome/underconstruction" },
-      { label: "Exercise Requests", link: "/company/companyhome/underconstruction" },
+      { label: "Incentive Programs", link: "/company/companyhome/incentiveprograms" },
+      { label: "Exercise Requests", link: "/company/companyhome/exerciserequests" },
+      { label: "Employee Releases", link: "/company/companyhome/employeereleases" },
     ],
   },
   {
@@ -178,7 +177,6 @@ const menuItems = [
     icon: Briefcase,
     items: [
       { label: "Executive Board", link: "/company/companyhome/underconstruction" },
-      { label: "Communications", link: "/company/companyhome/underconstruction" },
       { label: "Bylaws", link: "/company/companyhome/underconstruction" },
       { label: "Voting", link: "/company/companyhome/underconstruction" },
       { label: "Manage Officers", link: "/company/companyhome/underconstruction" },
