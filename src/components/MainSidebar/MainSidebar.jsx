@@ -167,9 +167,9 @@ const menuItems = [
     label: "Documents",
     icon: FileText,
     items: [
-      { label: "View Documents", link: "/company/companyhome/underconstruction" },
-      { label: "Create Documents", link: "/company/companyhome/underconstruction" },
-      { label: "Pending Agreements", link: "/company/companyhome/underconstruction" },
+      { label: "View Documents", link: "/company/companyhome/viewdocuments" },
+      { label: "Create Documents", link: "/company/companyhome/createdocument" },
+      { label: "Pending Agreements", link: "/company/companyhome/pendingagreements" },
     ],
   },
   {
