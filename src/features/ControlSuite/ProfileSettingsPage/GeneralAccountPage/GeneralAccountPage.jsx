@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./GeneralAccountPage.css";
-import profileIcon from "../../../assets/profile-icon.png"; // Default placeholder image
+import profileIcon from "../../../../../public/assets/profile-icon.png"; // Default placeholder image
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from "../../../../contexts/AuthContext";
 
 const GeneralAccountPage = () => {
   const { currentUser } = useAuth();
