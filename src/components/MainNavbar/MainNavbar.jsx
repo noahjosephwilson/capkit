@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../firebase/firebaseConfig";
 import { doc, onSnapshot, collection, getDocs, getDoc } from "firebase/firestore";
-import "./MainNavbar.css";
+import styles from "./MainNavbar.module.css";
 
 const MainNavbar = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -107,93 +107,105 @@ const MainNavbar = () => {
   };
 
   return (
-    <header className="main-navbar">
-      <div className="navbar-left">
+    <header className={styles["main-navbar"]}>
+      <div className={styles["navbar-left"]}>
         {/* Logo */}
-        <img src="/assets/capkitlogo.png" alt="Logo" className="logo" />
+        <img src="/assets/capkitlogo.png" alt="Logo" className={styles.logo} />
 
         {/* Company dropdown */}
         <div
-          className={`company-dropdown-container ${showCompanyDropdown ? "open" : ""}`}
+          className={`${styles["company-dropdown-container"]} ${
+            showCompanyDropdown ? styles.open : ""
+          }`}
           onClick={() => setShowCompanyDropdown(!showCompanyDropdown)}
           ref={companyRef}
           aria-haspopup="true"
           aria-expanded={showCompanyDropdown}
         >
-          <div className="company-box">
+          <div className={styles["company-box"]}>
             <img
               src={companyImageUrl ? companyImageUrl : "/assets/profile-icon.png"}
               alt="Company"
-              className="company-icon"
+              className={styles["company-icon"]}
             />
-            <span className="company-name">
+            <span className={styles["company-name"]}>
               {companyName ? companyName : " + Add New Company"}
             </span>
-            <span className={`dropdown-arrow ${showCompanyDropdown ? "open" : ""}`}>
+            <span className={`${styles["dropdown-arrow"]} ${showCompanyDropdown ? styles.open : ""}`}>
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2" />
               </svg>
             </span>
           </div>
           {showCompanyDropdown && (
-            <div className="company-dropdown" role="menu">
-              <Link href="/createaddhome" className="dropdown-item" role="menuitem">
-                <span className="big-plus">+</span>&nbsp;&nbsp;&nbsp;Add New Company
+            <div className={styles["company-dropdown"]} role="menu">
+              <Link href="/createaddhome" className={styles["dropdown-item"]} role="menuitem">
+                <span className={styles["big-plus"]}>+</span>&nbsp;&nbsp;&nbsp;Add New Company
               </Link>
             </div>
           )}
         </div>
 
         {/* Invite Officers button */}
-        <button className="invite-btn">
-          <img src="/assets/inviteOfficerIcon.png" alt="Invite Icon" className="invite-icon" />
+        <button className={styles["invite-btn"]}>
+          <img src="/assets/inviteOfficerIcon.png" alt="Invite Icon" className={styles["invite-icon"]} />
           <span>Invite Officers</span>
         </button>
       </div>
 
-      <div className="navbar-right">
+      <div className={styles["navbar-right"]}>
         {/* Upgrade button */}
-        <button className="upgrade-btn">Upgrade</button>
+        <button className={styles["upgrade-btn"]}>Upgrade</button>
 
         {/* Segmented Toggle Control */}
-        <div className="toggle-container">
+        <div className={styles["toggle-container"]}>
           <div
-            className={`toggle-option ${!isPersonal ? "active" : ""}`}
-            onClick={() => setIsPersonal(false)}
+            className={`${styles["toggle-option"]} ${!isPersonal ? styles.active : ""}`}
+            onClick={() => {
+              setIsPersonal(false);
+              router.push("/company");
+            }}
           >
             Company
           </div>
           <div
-            className={`toggle-option ${isPersonal ? "active" : ""}`}
-            onClick={() => setIsPersonal(true)}
+            className={`${styles["toggle-option"]} ${isPersonal ? styles.active : ""}`}
+            onClick={() => {
+              setIsPersonal(true);
+              router.push("/personal");
+            }}
           >
             Personal
           </div>
         </div>
 
         {/* Notification icon */}
-        <div className="notification-container">
-          <img src="/assets/notification.png" alt="Notifications" className="notification-icon" />
+        <div className={styles["notification-container"]}>
+          <img src="/assets/notification.png" alt="Notifications" className={styles["notification-icon"]} />
         </div>
 
         {/* Profile container */}
         <div
-          className="profile-container"
+          className={styles["profile-container"]}
           onClick={() => setShowProfileMenu(!showProfileMenu)}
           ref={profileRef}
           aria-haspopup="true"
           aria-expanded={showProfileMenu}
         >
-          <img src={userProfileImage || "/assets/profile-icon.png"} alt="Profile" className="profile-icon" />
+          <img
+            src={userProfileImage || "/assets/profile-icon.png"}
+            alt="Profile"
+            className={styles["profile-icon"]}
+          />
           {showProfileMenu && (
-            <div className="profile-dropdown" role="menu">
-              <Link href="/profile" className="dropdown-item" role="menuitem">
+            <div className={styles["profile-dropdown"]} role="menu">
+              <Link href="/profile" className={styles["dropdown-item"]} role="menuitem">
                 Profile
               </Link>
-              <Link href="/settings" className="dropdown-item" role="menuitem">
+              <Link href="/settings" className={styles["dropdown-item"]} role="menuitem">
                 Settings
               </Link>
-              <button onClick={handleLogout} className="dropdown-item logout-btn" role="menuitem">
+              <button onClick={handleLogout} className={`${styles["dropdown-item"]} ${styles["logout-btn"]}`} role="menuitem">
                 Logout
               </button>
             </div>

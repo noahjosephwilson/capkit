@@ -2,21 +2,21 @@
 
 import React from "react";
 import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
-import styles from "./PendingAgreementsPage.module.css";
+import styles from "./BillingInfoPage.module.css";
 
-const PendingAgreementsPage = () => {
+const BillingInfoPage = () => {
   return (
     <div className={styles.pageContainer}>
       <header className={styles.header}>
         <div className={styles.headerLeft}>
-          <HeaderTitle titleSuffix="Pending Agreements" showBack={false} />
+          <HeaderTitle titleSuffix="Billing Info" showBack={false} />
         </div>
       </header>
       <div className={styles.content}>
-        {/* Future content for pending agreements goes here */}
+        {/* Future content for billing info goes here */}
       </div>
     </div>
   );
 };
 
-export default PendingAgreementsPage;
+export default BillingInfoPage;

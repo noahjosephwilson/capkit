@@ -2,21 +2,21 @@
 
 import React from "react";
 import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
-import styles from "./PendingAgreementsPage.module.css";
+import styles from "./ConvertEntityPage.module.css";
 
-const PendingAgreementsPage = () => {
+const ConvertEntityPage = () => {
   return (
     <div className={styles.pageContainer}>
       <header className={styles.header}>
         <div className={styles.headerLeft}>
-          <HeaderTitle titleSuffix="Pending Agreements" showBack={false} />
+          <HeaderTitle titleSuffix="Convert Entity" showBack={false} />
         </div>
       </header>
       <div className={styles.content}>
-        {/* Future content for pending agreements goes here */}
+        {/* Future content for converting entity goes here */}
       </div>
     </div>
   );
 };
 
-export default PendingAgreementsPage;
+export default ConvertEntityPage;

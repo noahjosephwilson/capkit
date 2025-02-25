@@ -8,7 +8,9 @@ const ViewDocumentsPage = () => {
   return (
     <div className={styles.pageContainer}>
       <header className={styles.header}>
-        <HeaderTitle titleSuffix="View Documents" showBack={false} />
+        <div className={styles.headerLeft}>
+          <HeaderTitle titleSuffix="View Documents" showBack={false} />
+        </div>
       </header>
       <div className={styles.content}>
         {/* Future content for viewing documents goes here */}
