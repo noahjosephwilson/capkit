@@ -62,6 +62,16 @@ const MainNavbar = () => {
     };
   }, []);
 
+  // Hide mobile dropdown when the window is resized
+  useEffect(() => {
+    const handleResize = () => {
+      setShowMobileMenu(false);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Fetch the user's mycompanies subcollection.
   useEffect(() => {
     const fetchMyCompany = async () => {

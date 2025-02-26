@@ -1,5 +1,6 @@
+/* Animate the sidebar width for a smooth transition */
 .main-sidebar {
-  width: 16rem; /* Increased width */
+  width: 16rem; /* Expanded width */
   background-color: #ffffff;
   border-right: 1px solid #e5e7eb;
   height: 100vh;
@@ -7,13 +8,48 @@
   padding: 1rem;
   font-size: 16px;
   margin-top: 5px;
+  transition: width 0.3s ease;
 }
+
+/* Collapsed state: adjust width and remove extra layout centering */
+.main-sidebar.collapsed {
+  width: 4rem; /* Collapsed width */
+  padding: 1rem;
+}
+
+/* Container for the collapse/expand image when sidebar is collapsed */
+.collapsed-sidebar {
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+/* Force the collapse image to maintain its size */
+.dashboard-pointer {
+  width: 25px;
+  height: 28px;
+  margin-left: 7px;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Animate rotation */
+  margin-right: 5px;
+}
+
+/* When the sidebar is expanded, image is unrotated */
+.main-sidebar:not(.collapsed) .dashboard-pointer {
+  transform: rotate(0deg);
+}
+
+/* When collapsed, flip the image by 180 degrees */
+.main-sidebar.collapsed .dashboard-pointer {
+  transform: rotate(180deg);
+}
+
+/* Rest of your CSS remains unchanged... */
 
 /* Spacer for scrolling */
 .sidebar-nav::after {
   content: "";
   display: block;
-  height: 5rem; /* Extra scroll space */
+  height: 5rem;
 }
 
 /* Navigation container */
@@ -162,4 +198,11 @@
   background: none;
   content: none;
   color: inherit;
+}
+
+/* Ensure that the content inside the Dashboard menu item stays aligned */
+.dashboard-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
