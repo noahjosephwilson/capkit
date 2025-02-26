@@ -1,190 +1,225 @@
-import React from "react";
-import { useAuth } from "../../contexts/AuthContext";
-import "./DashboardPage.css";
+"use client";
 
-// InfoCard: Displays a quick metric with an animated number.
-const InfoCard = ({ title, value, details }) => {
+import React, { useEffect, useState } from "react";
+import { Doughnut, Pie, Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import styles from "./DashboardPage.module.css";
+
+// Register Chart.js components
+ChartJS.register(
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend
+);
+
+const DashboardPage = () => {
+  // Dummy data – replace with your real API calls.
+  const [loading, setLoading] = useState(true);
+  const [summaryData, setSummaryData] = useState({
+    totalShares: 0,
+    totalInvestment: 0,
+    stakeholderCount: 0,
+    avgSharePrice: 0,
+    marketValuation: 0,
+    fundingRounds: 0,
+  });
+  const [capTableChartData, setCapTableChartData] = useState({});
+  const [investmentChartData, setInvestmentChartData] = useState({});
+  const [valuationData, setValuationData] = useState({});
+  const [transactions, setTransactions] = useState([]);
+  const [currentStage, setCurrentStage] = useState("Series A");
+
+  useEffect(() => {
+    // Simulate API call
+    setTimeout(() => {
+      const totalShares = 20000;
+      const totalInvestment = 500000;
+      const stakeholderCount = 10;
+      const avgSharePrice = (totalInvestment / totalShares).toFixed(2);
+      const marketValuation = totalInvestment * 5;
+      const fundingRounds = 4;
+      setSummaryData({ totalShares, totalInvestment, stakeholderCount, avgSharePrice, marketValuation, fundingRounds });
+
+      // Cap Table Breakdown (Doughnut chart)
+      const capLabels = ["Founders", "Investors", "Employees", "Advisors"];
+      const capValues = [8000, 7000, 3000, 2000];
+      setCapTableChartData({
+        labels: capLabels,
+        datasets: [
+          {
+            data: capValues,
+            backgroundColor: ["#B500FF", "#FF6B6B", "#4ECDC4", "#FFD93D"],
+          },
+        ],
+      });
+
+      // Investment Breakdown (Pie chart)
+      const invLabels = ["Angel", "VC", "Private Equity", "Others"];
+      const invValues = [150000, 250000, 70000, 30000];
+      setInvestmentChartData({
+        labels: invLabels,
+        datasets: [
+          {
+            data: invValues,
+            backgroundColor: ["#B500FF", "#FF6B6B", "#4ECDC4", "#FFD93D"],
+          },
+        ],
+      });
+
+      // Valuation Progression (Line chart)
+      const devLabels = ["Pre-seed", "Seed", "Series A", "Series B", "IPO"];
+      const devValues = [1, 5, 20, 50, 200]; // in millions
+      setValuationData({
+        labels: devLabels,
+        datasets: [
+          {
+            label: "Valuation (M USD)",
+            data: devValues,
+            borderColor: "#B500FF",
+            backgroundColor: "rgba(181, 0, 255, 0.2)",
+            tension: 0.3,
+            fill: true,
+          },
+        ],
+      });
+
+      // Recent Transactions (dummy data)
+      setTransactions([
+        { date: "2023-06-01", type: "Buy", shares: 1000, price: 25, investor: "VC Fund A" },
+        { date: "2023-06-15", type: "Sell", shares: 500, price: 27, investor: "Investor X" },
+        { date: "2023-07-01", type: "Buy", shares: 1500, price: 26, investor: "Angel Y" },
+        { date: "2023-07-10", type: "Buy", shares: 800, price: 24, investor: "VC Fund B" },
+        { date: "2023-07-20", type: "Transfer", shares: 300, price: 0, investor: "Employee Z" },
+      ]);
+
+      // Set current development stage.
+      setCurrentStage("Series A");
+
+      setLoading(false);
+    }, 1200);
+  }, []);
+
+  // Define development stages.
+  const developmentSteps = ["Pre-seed", "Seed", "Series A", "Series B", "IPO"];
+  const currentStageIndex = developmentSteps.indexOf(currentStage);
+
+  if (loading) {
+    return <div className={styles.dashboard}>Loading Dashboard...</div>;
+  }
+
   return (
-    <div className="info-card">
-      <div className="info-card-title">{title}</div>
-      <div className="info-card-value">
-        <span className="animated-number">{value}</span>
-      </div>
-      {details && <div className="info-card-details">{details}</div>}
-    </div>
-  );
-};
+    <div className={styles.dashboard}>
+      {/* Top Summary Row */}
+      <section className={styles.summaryGrid}>
+        <div className={styles.summaryCard}>
+          <div className={styles.cardLabel}>Total Shares</div>
+          <div className={styles.cardValue}>{summaryData.totalShares.toLocaleString()}</div>
+        </div>
+        <div className={styles.summaryCard}>
+          <div className={styles.cardLabel}>Total Investment</div>
+          <div className={styles.cardValue}>${summaryData.totalInvestment.toLocaleString()}</div>
+        </div>
+        <div className={styles.summaryCard}>
+          <div className={styles.cardLabel}>Stakeholders</div>
+          <div className={styles.cardValue}>{summaryData.stakeholderCount}</div>
+        </div>
+        <div className={styles.summaryCard}>
+          <div className={styles.cardLabel}>Avg. Share Price</div>
+          <div className={styles.cardValue}>${summaryData.avgSharePrice}</div>
+        </div>
+        <div className={styles.summaryCard}>
+          <div className={styles.cardLabel}>Market Valuation</div>
+          <div className={styles.cardValue}>${summaryData.marketValuation.toLocaleString()}</div>
+        </div>
+        <div className={styles.summaryCard}>
+          <div className={styles.cardLabel}>Funding Rounds</div>
+          <div className={styles.cardValue}>{summaryData.fundingRounds}</div>
+        </div>
+      </section>
 
-// RingPieChart: A sample donut chart showing equity distribution.
-// The animation makes each segment appear in a clockwise sequence.
-// Each segment starts with a full offset (none visible) and animates to its final value.
-// RingPieChart: A sample donut chart showing equity distribution.
-// The graph simply fades in on page load.
-const RingPieChart = () => {
-  const segments = [
-    { label: 'Founders', percentage: 30, color: '#6A0DAD' },
-    { label: 'Investors', percentage: 20, color: '#8A2BE2' },
-    { label: 'Employees', percentage: 15, color: '#B19CD9' },
-    { label: 'Ex-Employees', percentage: 5, color: '#D8BFD8' },
-    { label: 'Advisors', percentage: 10, color: '#9370DB' },
-    { label: 'Consultants', percentage: 5, color: '#663399' },
-    { label: 'Other', percentage: 10, color: '#836FFF' },
-    { label: 'Unallocated', percentage: 5, color: '#E6E6FA' }
-  ];
+      {/* Middle Charts Section */}
+      <section className={styles.chartsGrid}>
+        <div className={styles.chartCard}>
+          <div className={styles.chartTitle}>Cap Table Breakdown</div>
+          <div className={styles.chartWrapper}>
+            <Doughnut
+              data={capTableChartData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: "bottom" } },
+              }}
+            />
+          </div>
+        </div>
+        <div className={styles.chartCard}>
+          <div className={styles.chartTitle}>Investment Breakdown</div>
+          <div className={styles.chartWrapper}>
+            <Pie
+              data={investmentChartData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: "bottom" } },
+              }}
+            />
+          </div>
+        </div>
+      </section>
 
-  const radius = 130;
-  const circumference = 2 * Math.PI * radius;
-  let offset = 0;
-
-  return (
-    <div className="ring-pie-chart">
-      <div className="box-header">
-        <h3 className="chart-title">Equity Distribution</h3>
-        <a href="#" className="show-more">Show More</a>
-      </div>
-      <div className="ring-chart-container animate-fadeIn">
-        <svg viewBox="0 0 300 300" className="ring-svg">
-          {/* Background ring */}
-          <circle
-            cx="150"
-            cy="150"
-            r={radius}
-            fill="none"
-            stroke="#eee"
-            strokeWidth="25"
-          />
-          {segments.map((segment, index) => {
-            const segmentLength = (segment.percentage / 100) * circumference;
-            const dashArray = `${segmentLength} ${circumference}`;
-            const finalDashOffset = -offset;
-            offset += segmentLength;
-            return (
-              <circle
-                key={index}
-                cx="150"
-                cy="150"
-                r={radius}
-                fill="none"
-                stroke={segment.color}
-                strokeWidth="25"
-                strokeDasharray={dashArray}
-                strokeDashoffset={finalDashOffset}
-                transform="rotate(-90 150 150)"
-                strokeLinecap="butt"
-              />
-            );
-          })}
-        </svg>
-        <div className="ring-legend">
-          {segments.map((seg, idx) => (
-            <div key={idx}>
-              <span className="legend-color" style={{ background: seg.color }}></span>
-              {seg.label} ({seg.percentage}%)
+      {/* Development Timeline */}
+      <section className={styles.developmentSection}>
+        <h3 className={styles.developmentTitle}>Development Stages</h3>
+        <div className={styles.timeline}>
+          {developmentSteps.map((step, index) => (
+            <div key={index} className={styles.timelineItem}>
+              <div className={styles.stepLabel}>{step}</div>
+              <div className={`${styles.circle} ${index <= currentStageIndex ? styles.active : ""}`}></div>
+              {index < developmentSteps.length - 1 && <div className={styles.connector}></div>}
             </div>
           ))}
         </div>
-      </div>
-    </div>
-  );
-};
+      </section>
 
-
-// GuidesBox: Displays four clickable square boxes side by side.
-const GuidesBox = () => {
-  const guides = [
-    { label: "Getting Started", color: "#E6E6FA" },
-    { label: "Equity 101", color: "#D8BFD8" },
-    { label: "Advanced Tips", color: "#9370DB" },
-    { label: "FAQ", color: "#9966CC" }
-  ];
-
-  return (
-    <div className="guides-box">
-      <h3>Guides</h3>
-      <div className="guide-squares">
-        {guides.map((guide, idx) => (
-          <div
-            key={idx}
-            className="guide-box"
-            style={{ backgroundColor: guide.color }}
-            onClick={() => alert(`Clicked on: ${guide.label}`)}
-          >
-            {guide.label}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// ActivityBox: A box displaying recent activity as a simple bulleted list.
-// Includes a header with a "Show More" link.
-const ActivityBox = () => {
-  const activities = [
-    "User A updated their profile.",
-    "User B issued new shares.",
-    "Quarterly funding round completed.",
-    "New guide added: 'Equity Management 101'"
-  ];
-  return (
-    <div className="activity-box">
-      <div className="box-header">
-        <h3>Recent Activity</h3>
-        <a href="#" className="show-more">Show More</a>
-      </div>
-      <ul>
-        {activities.slice(0, 3).map((activity, idx) => (
-          <li key={idx}>{activity}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-const DashboardPage = () => {
-  const { currentUser } = useAuth();
-
-  const data = {
-    sharesIssued: 1500000,
-    shareholders: 75,
-    valuation: "$30,000,000"
-  };
-
-  return (
-    <div className="dashboard-page">
-      <div className="top-row">
-        <InfoCard
-          title="Shares Issued"
-          value={data.sharesIssued.toLocaleString()}
-          details="Total shares issued"
-        />
-        <InfoCard
-          title="Shareholders"
-          value={data.shareholders}
-          details="Active investors"
-        />
-        <InfoCard
-          title="Latest Valuation"
-          value={data.valuation}
-          details="Based on recent funding"
-        />
-      </div>
-      <div className="bottom-row">
-        <div className="left-bottom">
-          <RingPieChart />
-        </div>
-        <div className="right-bottom">
-          <GuidesBox />
-          <ActivityBox />
-        </div>
-      </div>
-      {currentUser && (
-        <div className="dashboard-footer">
-          <p>
-            Logged in as: <strong>{currentUser.displayName}</strong> ({currentUser.email})
-          </p>
-        </div>
-      )}
+      {/* Recent Transactions Table */}
+      <section className={styles.tableSection}>
+        <h3 className={styles.tableTitle}>Recent Transactions</h3>
+        <table className={styles.dataTable}>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Shares</th>
+              <th>Price</th>
+              <th>Investor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map((tx, idx) => (
+              <tr key={idx}>
+                <td>{tx.date}</td>
+                <td>{tx.type}</td>
+                <td>{tx.shares.toLocaleString()}</td>
+                <td>{tx.price > 0 ? `$${tx.price}` : "-"}</td>
+                <td>{tx.investor}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     </div>
   );
 };

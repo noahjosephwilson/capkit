@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import AddCompanyCodePage from '../../../../features/SignUpPage/CreateAddCompany/AddCompanyCodePage/AddCompanyCodePage';
+import AddCompanyCodePage from '../../../../features/Home/SignUpPage/CreateAddCompany/AddCompanyCodePage/AddCompanyCodePage';
 
 export default function Page() {
   return (

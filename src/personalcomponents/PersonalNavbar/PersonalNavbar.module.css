@@ -1,0 +1,203 @@
+.personal-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0 1.5rem;
+  box-shadow: none;
+  border-bottom: 1px solid #eee;
+  z-index: 1500;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 95px;
+  height: 55px;
+  margin-right: 25px;
+}
+
+/* Navbar right: contains Menu, toggle, notification and profile */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  position: relative;
+}
+
+/* Menu container with adjusted margin to bring it closer to the toggle */
+.menu-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  margin-right: -10px; /* Adjusted to bring Menu closer to the toggle */
+}
+
+.menu-container:hover {
+  background-color: #f5f5f5;
+}
+
+.menu-label {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.menu-arrow {
+  transition: transform 0.2s ease;
+}
+
+/* Rotate the arrow when the menu is open */
+.menu-container[aria-expanded="true"] .menu-arrow {
+  transform: rotate(180deg);
+}
+
+/* Full-width mobile dropdown styling with animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-dropdown {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1600;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: slideDown 0.15s ease-out forwards;
+}
+
+.mobile-dropdown-item {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+  background: none;
+  text-align: center; /* Center the text */
+  cursor: pointer;
+}
+
+.mobile-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+/* Notification container */
+.notification-container {
+  position: relative;
+  cursor: pointer;
+  margin-right: -5px;
+}
+
+.notification-icon {
+  width: 28px;
+  height: 30px;
+}
+
+/* Profile container */
+.profile-container {
+  position: relative;
+  cursor: pointer;
+  margin-right: -5px;
+}
+
+.profile-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+/* Profile dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1600;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropdown-item.logout-btn {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  color: #333;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-item.logout-btn:hover,
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Toggle container and options */
+.toggle-container {
+  display: flex;
+  width: 130px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 35px;
+  background-color: #fff;
+}
+
+.toggle-option {
+  flex: 1;
+  padding: 6px 0;
+  text-align: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+}
+
+.toggle-option:not(.active) {
+  background-color: #fff;
+  color: #333;
+}
+
+.toggle-option.active {
+  background-color: #d3d3d3;
+  color: #333;
+}
+
+.toggle-option:first-child {
+  border-right: 1px solid #ddd;
+}

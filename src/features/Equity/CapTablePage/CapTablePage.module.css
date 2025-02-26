@@ -1,0 +1,272 @@
+.capTablePage {
+  background-color: #fff;
+  padding: 2rem;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #111;
+}
+
+/* Updated Header Section for Cap Table Page */
+.capTableHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-left: 0;
+}
+
+.headerLeft {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+/* Cap Table Controls */
+.capTableControls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+}
+
+.inputWithIcon {
+  position: relative;
+  display: inline-block;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #000;
+}
+
+.capTableSearch {
+  flex-grow: 1;
+  max-width: 300px;
+  padding: 0.5rem 0.75rem;
+  padding-left: 30px;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  background-color: transparent;
+  transition: border-color 0.2s ease;
+}
+
+.capTableSearch:focus {
+  outline: none;
+  border-color: #B500FF;
+}
+
+.capTableButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Button Styling for Add Person & Download Table */
+.capTableButton {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid #B500FF;
+  color: #B500FF;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.capTableButton:hover {
+  background-color: #B500FF;
+  color: #fff;
+}
+
+/* Table Container with Rounded Edges */
+.capTableContainer {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+/* Table Styling */
+.capTable {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+.capTable th,
+.capTable td {
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.capTable th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+.capTable th:first-child,
+.capTable td:first-child {
+  min-width: 250px;
+}
+
+/* Name cell styling with dropdown trigger */
+.nameCell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nameContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.capTableAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Dropdown Styles for Actions */
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownTrigger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-width: 150px;
+}
+
+.dropdownItem {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background-color: #f3f4f6;
+}
+
+.sortArrow {
+  font-size: 0.8rem;
+  margin-left: 0.2rem;
+}
+
+/* --- New Styles for "Details Shown" Panel --- */
+
+/* Container for the Details Shown button */
+.panelButtonsContainer {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Panel Button styled like in TransactionLogPage */
+.panelButton {
+  padding: 0.55rem 1rem;
+  border: 2px solid #B500FF;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #B500FF;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.2s ease;
+}
+
+.panelButton:hover {
+  opacity: 0.85;
+}
+
+.activeButton {
+  background-color: #B500FF;
+  color: #fff;
+}
+
+/* Panel Container for the Details Shown options */
+.panelContainer {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.panelTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+/* Dropdown container and select input for Details Shown */
+.dropdownContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selectInput {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.selectInput:focus {
+  outline: none;
+  border-color: #B500FF;
+}
+
+/* Details Shown Panel - New Styles */
+
+.detailsSection {
+  margin-top: 1rem;
+}
+
+.detailsSection h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
