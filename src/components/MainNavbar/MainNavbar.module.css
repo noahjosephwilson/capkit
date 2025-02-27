@@ -93,6 +93,9 @@
   border-radius: 4px;
   overflow: hidden;
   z-index: 1600;
+  /* Added properties for scrolling if needed */
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 
 .dropdown-item {
@@ -220,6 +223,9 @@
   opacity: 0;
   transform: translateY(-10px);
   animation: slideDown 0.15s ease-out forwards;
+  /* Added properties for scrolling */
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 
 .big-plus {
@@ -337,6 +343,9 @@
   opacity: 0;
   transform: translateY(-10px);
   animation: slideDown 0.15s ease-out forwards;
+  /* Added properties for scrolling */
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 
 .mobile-dropdown-item {
