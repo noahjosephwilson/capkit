@@ -20,7 +20,7 @@ const PersonalNavbar = () => {
   const router = useRouter();
   const { currentUser, logout } = useAuth();
 
-  // Determine mobile view
+  // Determine mobile view using 1024px breakpoint (same as MainNavbar)
   useEffect(() => {
     const checkMobileView = () => {
       setIsMobileView(window.innerWidth < 1024);
@@ -93,7 +93,7 @@ const PersonalNavbar = () => {
 
         <div className={styles["navbar-right"]}>
           {isMobileView ? (
-            // Only show hamburger button in mobile view
+            // In mobile view, show only the hamburger button
             <button
               className={styles["hamburger-btn"]}
               onClick={() => setShowMenu(!showMenu)}
@@ -104,7 +104,7 @@ const PersonalNavbar = () => {
               </svg>
             </button>
           ) : (
-            // Show full options in desktop view
+            // In desktop view, show full navbar options
             <>
               <div
                 className={styles["menu-container"]}
@@ -174,6 +174,10 @@ const PersonalNavbar = () => {
       </header>
       {showMenu && (
         <div className={styles["mobile-dropdown"]}>
+          {/* New option to navigate back to company pages */}
+          <Link href="/company" className={styles["mobile-dropdown-item"]}>
+            Back to Company
+          </Link>
           <Link href="/option1" className={styles["mobile-dropdown-item"]}>
             Option 1
           </Link>
