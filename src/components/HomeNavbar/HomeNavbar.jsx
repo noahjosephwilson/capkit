@@ -154,10 +154,10 @@ export default function HomeNavbar() {
         </div>
       </div>
       <div className="nav-right">
-        <Link href="/login" className="navLink">
+        <Link href="/home/registration/login" className="navLink">
           Login
         </Link>
-        <Link href="/signup" className="signupBtn">
+        <Link href="/home/registration/signup" className="signupBtn">
           Sign up free
         </Link>
       </div>
@@ -336,7 +336,7 @@ export default function HomeNavbar() {
       {/* Login & Sign Up */}
       <div className="mobile-dropdown-item">
         <Link
-          href="/login"
+          href="/home/registration/login"
           className="mobile-nav-link"
           onClick={() => setShowMobileMenu(false)}
         >
@@ -345,7 +345,7 @@ export default function HomeNavbar() {
       </div>
       <div className="mobile-dropdown-item">
         <Link
-          href="/signup"
+          href="/home/registration/signup"
           className="mobile-nav-link"
           onClick={() => setShowMobileMenu(false)}
         >
