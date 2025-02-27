@@ -1,114 +1,172 @@
-/* Keyframes for dropdown animation */
-@keyframes dropdownFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-/* Overall navbar styling */
+/* Base navbar styling */
 .navbar {
-  @apply w-full bg-white shadow-sm sticky top-0 z-50;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1500;
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Container that splits left/right sections */
-.navContainer {
-  @apply flex items-center justify-between px-6 py-2 relative;
+/* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
 }
 
-/* Left section: logo + navigation menu */
-.leftSection {
-  @apply flex items-center;
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
 }
 
-/* Logo styling */
 .logo {
-  @apply object-contain;
-  margin-right: 0px;
-  height: 70px;
-  width: 120px
+  object-fit: contain;
 }
 
-/* Navigation menu container */
+/* Desktop nav menu */
 .navMenu {
-  @apply ml-8 flex space-x-6;
-  margin-top: 5px;
+  display: flex;
+  gap: 1.5rem;
+  margin-left: 2rem;
 }
 
-/* Each menu item is relatively positioned so the dropdown can be absolutely positioned relative to it */
 .menuItem {
-  @apply relative;
+  position: relative;
 }
 
-/* Navigation link styling with fixed height and reserved border space */
 .navLink {
-  @apply text-base font-medium text-gray-800 transition-colors cursor-pointer flex items-center h-10 relative border-b-2 border-transparent;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1F2937;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-/* Hover state */
 .navLink:hover {
   color: #A95EF4;
 }
 
-/* Active state: pseudo-element underline (no layout shift) */
 .navLink.active::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
-  height: 2px;
   width: 100%;
+  height: 2px;
   background-color: #B500FF;
 }
 
-/* Arrow styling */
 .arrow {
-  @apply ml-1;
+  margin-left: 0.25rem;
 }
 
-/* Dropdown content styling:
-   - Absolutely positioned within the .menuItem
-   - Centered horizontally under the trigger
-   - Fixed vertical offset so that it does not affect layout
-   - Thinner width and reduced padding
-   - Animated on appearance
-*/
+/* Dropdown for desktop */
 .dropdownContent {
-  @apply absolute bg-white p-3 rounded-md shadow-lg border border-gray-200 w-36;
+  position: absolute;
   top: calc(100% + 0.5rem);
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  background: white;
+  border: 1px solid #E5E7EB;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   z-index: 10;
-  animation: dropdownFadeIn 0.3s ease-out forwards;
 }
 
-/* Spacing between dropdown options */
-.dropdownContent ul {
-  @apply grid gap-2 text-left pl-4;
-}
-
-/* Right section: Login & Sign Up */
-.rightSection {
-  @apply flex items-center;
+/* Right section buttons */
+.nav-right .navLink {
+  margin-right: 1rem;
 }
 
 .signupBtn {
-  @apply ml-4 px-4 py-2 rounded-md text-base font-medium text-white bg-[#B500FF] transition-colors;
-  margin-left: 25px;
-  width: 120px;
-  height: 45px;
-  border-radius: 15px;
-  display: flex;            /* Enable flexbox */
-  align-items: center;      /* Center items vertically */
-  justify-content: center;  /* Center items horizontally */
-  margin-right: 2px;
+  padding: 0.5rem 1rem;
+  background-color: #B500FF;
+  color: white;
+  border: none;
+  border-radius: 0.9375rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-/* Hover state for Sign Up button (darker variant) */
 .signupBtn:hover {
   background-color: #A300E0;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+/* Hamburger button */
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger-btn svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Mobile dropdown container positioned absolutely so it doesn't shift the navbar */
+.mobile-dropdown-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 1600;
+  /* Smooth slide-down animation */
+  animation: slideDown 0.15s ease-out forwards;
+}
+
+/* Mobile dropdown items styling */
+.mobile-dropdown-item {
+  text-align: center;
+  padding: 15px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.mobile-nav-link {
+  font-size: 1rem;
+  color: #1F2937;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hide desktop navigation on mobile */
+@media (max-width: 1024px) {
+  .desktop-nav {
+    display: none;
+  }
+}
+
+/* Slide down animation keyframes */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
