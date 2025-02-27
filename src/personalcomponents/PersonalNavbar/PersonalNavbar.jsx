@@ -11,6 +11,7 @@ import styles from "./PersonalNavbar.module.css";
 const PersonalNavbar = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [showSettingsSubmenu, setShowSettingsSubmenu] = useState(false);
   const [isPersonal, setIsPersonal] = useState(true);
   const [userProfileImage, setUserProfileImage] = useState(null);
   const [isMobileView, setIsMobileView] = useState(false);
@@ -20,21 +21,21 @@ const PersonalNavbar = () => {
   const router = useRouter();
   const { currentUser, logout } = useAuth();
 
-  // Determine mobile view using 1024px breakpoint (same as MainNavbar)
+  // Determine mobile view using 1024px breakpoint
   useEffect(() => {
     const checkMobileView = () => {
       setIsMobileView(window.innerWidth < 1024);
     };
-
     checkMobileView();
     window.addEventListener("resize", checkMobileView);
     return () => window.removeEventListener("resize", checkMobileView);
   }, []);
 
-  // Auto-close mobile dropdown when switching to desktop view.
+  // Auto-close menu dropdown when switching to desktop view.
   useEffect(() => {
     if (!isMobileView) {
       setShowMenu(false);
+      setShowSettingsSubmenu(false);
     }
   }, [isMobileView]);
 
@@ -63,11 +64,12 @@ const PersonalNavbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutsideProfile);
   }, []);
 
-  // Close Menu dropdown when clicking outside
+  // Close menu dropdown when clicking outside
   useEffect(() => {
     const handleClickOutsideMenu = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setShowMenu(false);
+        setShowSettingsSubmenu(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutsideMenu);
@@ -83,17 +85,60 @@ const PersonalNavbar = () => {
     }
   };
 
+  // Render the menu dropdown options (same for both desktop and mobile)
+  const renderMenuOptions = () => (
+    <>
+      <Link href="/dashboard" className={styles["dropdown-item"]}>
+        Dashboard
+      </Link>
+      <Link href="/portfolio" className={styles["dropdown-item"]}>
+        Portfolio
+      </Link>
+      <Link href="/offers" className={styles["dropdown-item"]}>
+        Offers
+      </Link>
+      <Link href="/notifications" className={styles["dropdown-item"]}>
+        Notifications
+      </Link>
+      <Link href="/documents" className={styles["dropdown-item"]}>
+        Documents
+      </Link>
+      {isMobileView && (
+        <>
+          <div
+            className={styles["settings-item"]}
+            onClick={() => setShowSettingsSubmenu(!showSettingsSubmenu)}
+          >
+            <span className={styles["settings-text"]}>Settings</span>
+            <ChevronDown size={16} className={styles["submenu-arrow"]} />
+          </div>
+          {showSettingsSubmenu && (
+            <>
+              <Link href="/profile" className={styles["submenu-item"]}>
+                Profile
+              </Link>
+              <Link href="/company" className={styles["submenu-item"]}>
+                Switch to Company
+              </Link>
+              <button onClick={handleLogout} className={styles["submenu-item"]}>
+                Logout
+              </button>
+            </>
+          )}
+        </>
+      )}
+    </>
+  );
+
   return (
     <>
       <header className={styles["personal-navbar"]}>
         <div className={styles["navbar-left"]}>
-          {/* Logo */}
           <img src="/assets/capkitlogo.png" alt="Logo" className={styles.logo} />
         </div>
-
         <div className={styles["navbar-right"]}>
           {isMobileView ? (
-            // In mobile view, show only the hamburger button
+            // Collapsed mode (mobile): show only the hamburger button
             <button
               className={styles["hamburger-btn"]}
               onClick={() => setShowMenu(!showMenu)}
@@ -104,19 +149,21 @@ const PersonalNavbar = () => {
               </svg>
             </button>
           ) : (
-            // In desktop view, show full navbar options
+            // Desktop mode: show Menu container
+            <div
+              className={styles["menu-container"]}
+              onClick={() => setShowMenu(!showMenu)}
+              ref={menuRef}
+              aria-haspopup="true"
+              aria-expanded={showMenu}
+            >
+              <span className={styles["menu-label"]}>Menu</span>
+              <ChevronDown size={16} strokeWidth={1.5} className={styles["menu-arrow"]} />
+            </div>
+          )}
+          {/* Only render additional elements in desktop mode */}
+          {!isMobileView && (
             <>
-              <div
-                className={styles["menu-container"]}
-                onClick={() => setShowMenu(!showMenu)}
-                ref={menuRef}
-                aria-haspopup="true"
-                aria-expanded={showMenu}
-              >
-                <span className={styles["menu-label"]}>Menu</span>
-                <ChevronDown size={16} strokeWidth={1.5} className={styles["menu-arrow"]} />
-              </div>
-
               <div className={styles["toggle-container"]}>
                 <div
                   className={`${styles["toggle-option"]} ${!isPersonal ? styles.active : ""}`}
@@ -137,11 +184,9 @@ const PersonalNavbar = () => {
                   Personal
                 </div>
               </div>
-
               <div className={styles["notification-container"]}>
                 <img src="/assets/notification.png" alt="Notifications" className={styles["notification-icon"]} />
               </div>
-
               <div
                 className={styles["profile-container"]}
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
@@ -162,7 +207,7 @@ const PersonalNavbar = () => {
                     <Link href="/settings" className={styles["dropdown-item"]} role="menuitem">
                       Settings
                     </Link>
-                    <button onClick={handleLogout} className={`${styles["dropdown-item"]} ${styles["logout-btn"]}`} role="menuitem">
+                    <button onClick={handleLogout} className={styles["dropdown-item"]} role="menuitem">
                       Logout
                     </button>
                   </div>
@@ -172,21 +217,11 @@ const PersonalNavbar = () => {
           )}
         </div>
       </header>
+
+      {/* Menu Dropdown (appears under the navbar across full width) */}
       {showMenu && (
-        <div className={styles["mobile-dropdown"]}>
-          {/* New option to navigate back to company pages */}
-          <Link href="/company" className={styles["mobile-dropdown-item"]}>
-            Back to Company
-          </Link>
-          <Link href="/option1" className={styles["mobile-dropdown-item"]}>
-            Option 1
-          </Link>
-          <Link href="/option2" className={styles["mobile-dropdown-item"]}>
-            Option 2
-          </Link>
-          <Link href="/option3" className={styles["mobile-dropdown-item"]}>
-            Option 3
-          </Link>
+        <div className={styles["menu-dropdown"]}>
+          {renderMenuOptions()}
         </div>
       )}
     </>
