@@ -25,7 +25,7 @@
   margin-right: 25px;
 }
 
-/* Navbar right: contains Menu, toggle, notification and profile */
+/* Navbar right: contains Menu/hamburger, toggle, notification and profile */
 .navbar-right {
   display: flex;
   align-items: center;
@@ -33,7 +33,7 @@
   position: relative;
 }
 
-/* Menu container with adjusted margin to bring it closer to the toggle */
+/* Menu container (desktop view) */
 .menu-container {
   cursor: pointer;
   display: flex;
@@ -43,7 +43,7 @@
   padding: 4px 8px;
   border-radius: 4px;
   transition: background-color 0.2s ease;
-  margin-right: -10px; /* Adjusted to bring Menu closer to the toggle */
+  margin-right: -10px;
 }
 
 .menu-container:hover {
@@ -64,7 +64,22 @@
   transform: rotate(180deg);
 }
 
-/* Full-width mobile dropdown styling with animation */
+/* Hamburger button (mobile view) */
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-btn svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Mobile dropdown styling with animation and scrolling */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -89,6 +104,8 @@
   opacity: 0;
   transform: translateY(-10px);
   animation: slideDown 0.15s ease-out forwards;
+  max-height: calc(100vh - var(--navbar-height));
+  overflow-y: auto;
 }
 
 .mobile-dropdown-item {
@@ -98,7 +115,7 @@
   text-decoration: none;
   border-bottom: 1px solid #eee;
   background: none;
-  text-align: center; /* Center the text */
+  text-align: center;
   cursor: pointer;
 }
 
