@@ -26,7 +26,7 @@
 /* Force the collapse image to maintain its size */
 .dashboard-pointer {
   width: 25px;
-  height: 28px;
+  height: 25px;
   margin-left: 7px;
   cursor: pointer;
   transition: transform 0.3s ease; /* Animate rotation */
@@ -36,6 +36,8 @@
 /* When the sidebar is expanded, image is unrotated */
 .main-sidebar:not(.collapsed) .dashboard-pointer {
   transform: rotate(0deg);
+  width: 25px;
+  height: 25px;
 }
 
 /* When collapsed, flip the image by 180 degrees */
@@ -205,4 +207,23 @@
   display: flex;
   align-items: center;
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .main-sidebar {
+    display: none;
+  }
+}
+
+.mobile-dropdown {
+  position: fixed;             /* Make it overlay the page */
+  top: 60px;                   /* Set this to your navbar's height */
+  left: 0;
+  right: 0;
+  bottom: 0;                   /* Fill remaining viewport height */
+  background-color: #fff;      /* Optional background color */
+  overflow-y: auto;            /* Enable vertical scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  z-index: 1600;               /* Ensure it stays above other elements */
+  padding: 1rem;               /* Optional inner spacing */
 }

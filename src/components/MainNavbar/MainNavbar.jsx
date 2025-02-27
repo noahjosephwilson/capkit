@@ -62,10 +62,12 @@ const MainNavbar = () => {
     };
   }, []);
 
-  // Hide mobile dropdown when the window is resized
+  // Add a resize listener that closes the mobile dropdown when in desktop view
   useEffect(() => {
     const handleResize = () => {
-      setShowMobileMenu(false);
+      if (window.innerWidth >= 1024) {
+        setShowMobileMenu(false);
+      }
     };
 
     window.addEventListener("resize", handleResize);
