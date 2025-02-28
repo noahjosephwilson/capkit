@@ -30,6 +30,8 @@
 
 .logo {
   object-fit: contain;
+  height: 60px; /* Adjust this value to set the desired size */
+  width: auto;  /* Maintains aspect ratio */
 }
 
 /* Desktop nav menu */

@@ -90,28 +90,28 @@ export default function HomeNavbar() {
               <div className="dropdownContent">
                 <ul>
                   <li>
-                    <Link href="/products/product1" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/products/captable" onClick={closeDropdown}>
                       Cap Table
                     </Link>
                   </li>
                   <li>
-                    <Link href="/products/product2" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/products/vestedequity" onClick={closeDropdown}>
                       Vested Equity
                     </Link>
                   </li>
                   <li>
-                    <Link href="/products/product3" onClick={closeDropdown}>
-                      Equity Incentives
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/products/product4" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/products/fundraising" onClick={closeDropdown}>
                       Fundraising
                     </Link>
                   </li>
                   <li>
-                    <Link href="/products/product5" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/products/employeeportfolio" onClick={closeDropdown}>
                       Employee Portfolio
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/home/explorehome/products/documentsigning" onClick={closeDropdown}>
+                      Document Signing
                     </Link>
                   </li>
                 </ul>
@@ -130,17 +130,17 @@ export default function HomeNavbar() {
               <div className="dropdownContent">
                 <ul>
                   <li>
-                    <Link href="/about/team" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/about/aboutus" onClick={closeDropdown}>
                       About Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about/company" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/about/ourteam" onClick={closeDropdown}>
                       Our Team
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about/company" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/about/joinus" onClick={closeDropdown}>
                       Join Us
                     </Link>
                   </li>
@@ -162,22 +162,22 @@ export default function HomeNavbar() {
               <div className="dropdownContent">
                 <ul>
                   <li>
-                    <Link href="/resources/blog" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/resources/guides" onClick={closeDropdown}>
                       Guides
                     </Link>
                   </li>
                   <li>
-                    <Link href="/resources/faq" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/resources/FAQ" onClick={closeDropdown}>
                       FAQ
                     </Link>
                   </li>
                   <li>
-                    <Link href="/resources/support" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/resources/contactus" onClick={closeDropdown}>
                       Contact Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="/resources/support" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/resources/donate" onClick={closeDropdown}>
                       Donate
                     </Link>
                   </li>
@@ -187,7 +187,7 @@ export default function HomeNavbar() {
           </div>
           {/* Pricing Link */}
           <div className="menuItem">
-            <Link href="/pricing" className="navLink">
+            <Link href="/home/explorehome/pricing" className="navLink">
               Pricing
             </Link>
           </div>
