@@ -44,7 +44,7 @@ const TopSection = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              Build Your Empire with the Cheapest Startup Management Platform
+              Build Your Empire with a Cheapest Startup Management Platform
             </motion.h2>
             <motion.p 
               className={styles.heroSubtitle}
