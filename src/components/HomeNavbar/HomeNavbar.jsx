@@ -9,13 +9,13 @@ export default function HomeNavbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isShrunken, setIsShrunken] = useState(false);
 
   // Detect mobile view and reset mobile state when switching
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 1024;
       setIsMobile(mobile);
-      // Always reset mobile menu & dropdown on view change
       if (mobile) {
         setShowMobileMenu(false);
         setActiveDropdown(null);
@@ -24,6 +24,19 @@ export default function HomeNavbar() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Add scroll event listener to update isShrunken state
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsShrunken(true);
+      } else {
+        setIsShrunken(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleDropdown = (menu) => {
@@ -39,10 +52,16 @@ export default function HomeNavbar() {
       <ChevronDown className="arrow" size={16} />
     );
 
+  // Determine inline style for the logo based on isShrunken state
+  const logoStyle = {
+    marginLeft: isShrunken ? "50px" : "0px",
+    transition: "margin 0.3s ease",
+  };
+
   // Always white navbar (static background)
   const navbarClass = "navbar-white";
 
-  // Desktop navigation remains unchanged
+  // Desktop navigation
   const renderDesktopNav = () => (
     <div className="desktop-nav">
       <div className="nav-left">
@@ -53,6 +72,7 @@ export default function HomeNavbar() {
             width={130}
             height={45}
             className="logo"
+            style={logoStyle}
           />
         </Link>
         <div className="navMenu">
@@ -70,18 +90,28 @@ export default function HomeNavbar() {
               <div className="dropdownContent">
                 <ul>
                   <li>
-                    <Link href="/products/product1" onClick={closeDropdown}>
-                      Product 1
+                    <Link href="/home/explorehome/products/captable" onClick={closeDropdown}>
+                      Cap Table
                     </Link>
                   </li>
                   <li>
-                    <Link href="/products/product2" onClick={closeDropdown}>
-                      Product 2
+                    <Link href="/home/explorehome/products/vestedequity" onClick={closeDropdown}>
+                      Vested Equity
                     </Link>
                   </li>
                   <li>
-                    <Link href="/products/product3" onClick={closeDropdown}>
-                      Product 3
+                    <Link href="/home/explorehome/products/fundraising" onClick={closeDropdown}>
+                      Fundraising
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/home/explorehome/products/employeeportfolio" onClick={closeDropdown}>
+                      Employee Portfolio
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/home/explorehome/products/documentsigning" onClick={closeDropdown}>
+                      Document Signing
                     </Link>
                   </li>
                 </ul>
@@ -100,13 +130,18 @@ export default function HomeNavbar() {
               <div className="dropdownContent">
                 <ul>
                   <li>
-                    <Link href="/about/team" onClick={closeDropdown}>
-                      Team
+                    <Link href="/home/explorehome/about/aboutus" onClick={closeDropdown}>
+                      About Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about/company" onClick={closeDropdown}>
-                      Company
+                    <Link href="/home/explorehome/about/ourteam" onClick={closeDropdown}>
+                      Our Team
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/home/explorehome/about/joinus" onClick={closeDropdown}>
+                      Join Us
                     </Link>
                   </li>
                 </ul>
@@ -127,18 +162,23 @@ export default function HomeNavbar() {
               <div className="dropdownContent">
                 <ul>
                   <li>
-                    <Link href="/resources/blog" onClick={closeDropdown}>
-                      Blog
+                    <Link href="/home/explorehome/resources/guides" onClick={closeDropdown}>
+                      Guides
                     </Link>
                   </li>
                   <li>
-                    <Link href="/resources/faq" onClick={closeDropdown}>
+                    <Link href="/home/explorehome/resources/FAQ" onClick={closeDropdown}>
                       FAQ
                     </Link>
                   </li>
                   <li>
-                    <Link href="/resources/support" onClick={closeDropdown}>
-                      Support
+                    <Link href="/home/explorehome/resources/contactus" onClick={closeDropdown}>
+                      Contact Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/home/explorehome/resources/donate" onClick={closeDropdown}>
+                      Donate
                     </Link>
                   </li>
                 </ul>
@@ -147,7 +187,7 @@ export default function HomeNavbar() {
           </div>
           {/* Pricing Link */}
           <div className="menuItem">
-            <Link href="/pricing" className="navLink">
+            <Link href="/home/explorehome/pricing" className="navLink">
               Pricing
             </Link>
           </div>
@@ -164,7 +204,7 @@ export default function HomeNavbar() {
     </div>
   );
 
-  // Mobile navigation with hamburger button
+  // Mobile navigation
   const renderMobileNav = () => (
     <div className="mobile-nav">
       <Link href="/">
@@ -174,6 +214,7 @@ export default function HomeNavbar() {
           width={130}
           height={45}
           className="logo"
+          style={logoStyle}
         />
       </Link>
       <button
@@ -199,7 +240,7 @@ export default function HomeNavbar() {
           Products {renderArrow("products")}
         </button>
         {activeDropdown === "products" && (
-          <div className="mobile-dropdown-submenu">
+          <div className="dropdownContent mobile-dropdown-content">
             <ul>
               <li>
                 <Link
@@ -247,7 +288,7 @@ export default function HomeNavbar() {
           About {renderArrow("about")}
         </button>
         {activeDropdown === "about" && (
-          <div className="mobile-dropdown-submenu">
+          <div className="dropdownContent mobile-dropdown-content">
             <ul>
               <li>
                 <Link
@@ -284,7 +325,7 @@ export default function HomeNavbar() {
           Resources {renderArrow("resources")}
         </button>
         {activeDropdown === "resources" && (
-          <div className="mobile-dropdown-submenu">
+          <div className="dropdownContent mobile-dropdown-content">
             <ul>
               <li>
                 <Link
