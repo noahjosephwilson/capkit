@@ -1,3 +1,4 @@
+/* Overall Navbar Styles */
 .main-navbar {
   position: fixed;
   top: 0;
@@ -19,38 +20,19 @@
   align-items: center;
 }
 
-/* Left side styles */
+/* Left Side */
 .navbar-left {
   display: flex;
   align-items: center;
 }
 
-.brand {
-  font-size: 2.4rem;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
-  margin-right: 1.2rem;
+.logo {
+  width: 95px;
+  height: 55px;
+  margin-right: 25px;
 }
 
-.navbar-nav {
-  display: flex;
-  align-items: center;
-}
-
-.nav-link {
-  margin-right: 1.5rem;
-  font-size: 1rem;
-  color: #333;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-  color: var(--accent-color);
-}
-
-/* Right side: notifications, profile, etc. */
+/* Right Side */
 .navbar-right {
   display: flex;
   align-items: center;
@@ -58,113 +40,25 @@
   position: relative;
 }
 
-/* Notification container */
-.notification-container {
-  position: relative;
-  cursor: pointer;
-  margin-right: -5px;
-}
-
-.notification-icon {
-  width: 28px;
-  height: 30px;
-}
-
-/* Profile container */
-.profile-container {
-  position: relative;
-  cursor: pointer;
-  margin-right: -5px;
-}
-
-.profile-icon {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-}
-
-/* Profile dropdown */
-.profile-dropdown {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  overflow: hidden;
-  z-index: 1600;
-  /* Added properties for scrolling if needed */
-  max-height: calc(100vh - 60px);
-  overflow-y: auto;
-}
-
-.dropdown-item {
-  display: block;
-  padding: 8px 16px;
-  color: #333;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.dropdown-item.logout-btn {
-  background: none;
-  border: none;
-  padding: 8px 16px;
-  color: #333;
-  font-size: inherit;
-  font-family: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.dropdown-item.logout-btn:hover,
-.dropdown-item:hover {
-  background-color: #f5f5f5;
-}
-
-/* Company dropdown section */
+/* Company Dropdown */
 .company-dropdown-container {
   position: relative;
   cursor: pointer;
   margin-left: 8px;
 }
 
-/* Updated company-box with negative left margin */
 .company-box {
   display: flex;
   align-items: center;
   padding: 6px 8px;
   height: 40px;
-  border: none;
   border-radius: 8px;
   background-color: #f2f2f2;
-  transition: box-shadow 0.2s ease;
   min-width: 220px;
   font-size: 0.9rem;
   user-select: none;
-  margin-left: -10px; /* Moved further left */
-}
-
-.company-dropdown-container,
-.company-dropdown {
-  user-select: none;
-}
-
-.company-dropdown .dropdown-item {
-  display: flex;
-  align-items: center;
-  height: 44px;
-  padding: 0 16px;
-  font-size: 0.9rem;
-  font-family: inherit;
-  font-weight: bold;
-  color: #333;
-  text-decoration: none;
-  user-select: none;
-}
-
-.company-dropdown .dropdown-item:not(:last-child) {
-  border-bottom: 1px solid #e0e0e0;
+  margin-left: -10px;
+  transition: box-shadow 0.2s ease;
 }
 
 .company-icon {
@@ -174,7 +68,7 @@
   margin-right: 8px;
 }
 
-.company-box .company-name {
+.company-name {
   font-weight: bold;
   color: #333;
 }
@@ -190,51 +84,19 @@
   transform: rotate(180deg);
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.company-dropdown-container.open .company-box {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
 .company-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
   background-color: #fff;
-  border: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border-radius: 0 0 4px 4px;
   z-index: 1600;
-  width: 100%;
-  margin-top: 0;
-  opacity: 0;
-  transform: translateY(-10px);
+  min-width: 250px;
   animation: slideDown 0.15s ease-out forwards;
-  /* Added properties for scrolling */
-  max-height: calc(100vh - 60px);
-  overflow-y: auto;
 }
 
-.big-plus {
-  font-size: 1.5em;
-  position: relative;
-  top: -2px;
-}
-
-/* Invite Officers button */
+/* Invite Officers Button */
 .invite-btn {
   background-color: white;
   color: #333;
@@ -261,11 +123,8 @@
   object-fit: contain;
 }
 
-/* Upgrade button */
+/* Upgrade Button */
 .upgrade-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: #B500FF;
   color: #fff;
   border: none;
@@ -273,8 +132,6 @@
   padding: 10px 18px;
   font-size: 1rem;
   cursor: pointer;
-  margin-left: 20px;
-  margin-right: -10px;
   height: 40px;
   transition: background-color 0.2s ease;
 }
@@ -283,7 +140,7 @@
   background-color: #6A1B9A;
 }
 
-/* Toggle container and options */
+/* Toggle Container */
 .toggle-container {
   display: flex;
   width: 130px;
@@ -292,7 +149,6 @@
   overflow: hidden;
   height: 35px;
   background-color: #fff;
-  margin-right: -5px;
 }
 
 .toggle-option {
@@ -302,7 +158,6 @@
   font-size: 0.8rem;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin: 0;
 }
 
 .toggle-option:not(.active) {
@@ -319,51 +174,130 @@
   border-right: 1px solid #ddd;
 }
 
-.logo {
-  width: 95px;
-  height: 55px;
-  margin-right: 25px;
+/* Notification & Profile */
+.notification-container {
+  position: relative;
+  cursor: pointer;
+  margin-right: -5px;
 }
 
-/* Mobile Navigation */
-.mobile-nav {
-  display: none;
+.notification-icon {
+  width: 28px;
+  height: 30px;
 }
 
-.mobile-dropdown {
+.profile-container {
+  position: relative;
+  cursor: pointer;
+  margin-right: -5px;
+}
+
+.profile-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.profile-dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% + 10px);
   right: 0;
   background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  overflow: hidden;
   z-index: 1600;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  transform: translateY(-10px);
+  min-width: 250px;
   animation: slideDown 0.15s ease-out forwards;
-  /* Added properties for scrolling */
-  max-height: calc(100vh - 60px);
-  overflow-y: auto;
 }
 
-.mobile-dropdown-item {
-  padding: 15px 16px;
-  font-size: 0.9rem;
+/* Mobile Menu Dropdown (PersonalNavbar style) */
+.menu-dropdown {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1600;
+  min-width: 250px;
+  animation: slideDown 0.15s ease-out forwards;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 12px 16px;
+  line-height: 1.5;
   color: #333;
   text-decoration: none;
-  border-bottom: 1px solid #eee;
-  background: none;
-  text-align: center;
   cursor: pointer;
+  border-bottom: 1px solid #eee;
+  text-align: center;
 }
 
-.mobile-dropdown-item:last-child {
+.dropdown-item:last-child {
   border-bottom: none;
 }
 
-/* Hamburger button styles */
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Settings Item for Submenu Trigger */
+.settings-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 16px;
+  line-height: 1.5;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.settings-item::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+}
+
+.settings-text {
+  margin-right: 4px;
+}
+
+.submenu-arrow {
+  display: inline-flex;
+  margin-left: 4px;
+}
+
+.submenu-item {
+  display: block;
+  padding: 12px 16px;
+  line-height: 1.5;
+  color: #555;
+  background-color: #f9f9f9;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.submenu-item:last-child {
+  border-bottom: none;
+}
+
+.submenu-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Hamburger Button (Mobile) */
 .hamburger-btn {
   background: none;
   border: none;
@@ -378,6 +312,11 @@
   height: 32px;
 }
 
+/* Mobile Navigation Visibility */
+.mobile-nav {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .desktop-nav {
     display: none;
@@ -389,8 +328,19 @@
     align-items: center;
     padding: 0 1rem;
   }
-  /* Shift the logo 10px to the left in mobile view */
   .logo {
     margin-left: -16px;
+  }
+}
+
+/* Dropdown Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
