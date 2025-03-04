@@ -19,7 +19,10 @@ const CapTablePage = () => {
 
   // Local state for search and sorting
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortConfig, setSortConfig] = useState({ key: "ownership", direction: "descending" });
+  const [sortConfig, setSortConfig] = useState({
+    key: "ownership",
+    direction: "descending",
+  });
 
   // New state for panel toggling and details shown options
   const [activePanel, setActivePanel] = useState(null);
@@ -72,7 +75,7 @@ const CapTablePage = () => {
     fetchStakeholders();
   }, [currentCompanyId]);
 
-  // Helper functions to compute values per stakeholder
+  // Helper functions
   const computeCommonShares = (stakeholder) => {
     if (!stakeholder.commonStockTransactions) return 0;
     return stakeholder.commonStockTransactions.reduce((sum, transaction) => {
@@ -159,11 +162,13 @@ const CapTablePage = () => {
           case "ownership":
             aValue =
               overallTotalShares > 0
-                ? (computeCommonShares(a) + computePreferredShares(a)) / overallTotalShares
+                ? (computeCommonShares(a) + computePreferredShares(a)) /
+                  overallTotalShares
                 : 0;
             bValue =
               overallTotalShares > 0
-                ? (computeCommonShares(b) + computePreferredShares(b)) / overallTotalShares
+                ? (computeCommonShares(b) + computePreferredShares(b)) /
+                  overallTotalShares
                 : 0;
             break;
           case "invested":
@@ -212,7 +217,9 @@ const CapTablePage = () => {
   const handleDeleteStakeholder = (stakeholder) => {
     if (
       window.confirm(
-        `Are you sure you want to delete stakeholder: ${stakeholder.firstName || ""} ${stakeholder.lastName || ""}?`
+        `Are you sure you want to delete stakeholder: ${
+          stakeholder.firstName || ""
+        } ${stakeholder.lastName || ""}?`
       )
     ) {
       setCapTableData((prev) => prev.filter((s) => s.id !== stakeholder.id));
@@ -228,6 +235,11 @@ const CapTablePage = () => {
     setDropdownOpen((prev) => (prev === id ? null : id));
   };
 
+  // Example toggle function for the sidebar
+  const handleToggleSidebar = () => {
+    console.log("Sidebar toggled!");
+  };
+
   if (loading) {
     return <div className={styles.capTablePage}>Loading cap table...</div>;
   }
@@ -241,7 +253,12 @@ const CapTablePage = () => {
       {/* Header */}
       <header className={styles.capTableHeader}>
         <div className={styles.headerLeft}>
-          <HeaderTitle titleSuffix="Cap Table" showBack={false} />
+          <HeaderTitle
+            /* Example breadcrumb items—replace or remove as desired */
+            breadcrumbItems={["Cap Table"]}
+            showBack={false}
+            onToggleSidebar={handleToggleSidebar}
+          />
         </div>
         <div className={styles.capTableControls}>
           <div className={styles.searchContainer}>
@@ -259,12 +276,17 @@ const CapTablePage = () => {
           <div className={styles.capTableButtons}>
             {/* Details Shown button placed to the left */}
             <button
-              className={`${styles.panelButton} ${activePanel === "detailsShown" ? styles.activeButton : ""}`}
+              className={`${styles.panelButton} ${
+                activePanel === "detailsShown" ? styles.activeButton : ""
+              }`}
               onClick={() => togglePanel("detailsShown")}
             >
               Details Shown
             </button>
-            <button className={styles.capTableButton} onClick={handleAddPersonNavigation}>
+            <button
+              className={styles.capTableButton}
+              onClick={handleAddPersonNavigation}
+            >
               <Plus size={16} style={{ marginRight: "0.5rem" }} /> Add Stakeholder
             </button>
             <button className={styles.capTableButton} onClick={handleDownload}>
@@ -391,6 +413,7 @@ const CapTablePage = () => {
                   ? ((totalShares / overallTotalShares) * 100).toFixed(2)
                   : "0.00";
               const invested = computeInvestedAmount(entry);
+
               return (
                 <tr key={entry.id}>
                   <td className={styles.nameCell}>

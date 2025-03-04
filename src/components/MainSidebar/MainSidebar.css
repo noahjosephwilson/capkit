@@ -29,23 +29,19 @@
   height: 25px;
   margin-left: 7px;
   cursor: pointer;
-  transition: transform 0.3s ease; /* Animate rotation */
+  transition: transform 0.3s ease;
   margin-right: 5px;
 }
 
 /* When the sidebar is expanded, image is unrotated */
 .main-sidebar:not(.collapsed) .dashboard-pointer {
   transform: rotate(0deg);
-  width: 25px;
-  height: 25px;
 }
 
 /* When collapsed, flip the image by 180 degrees */
 .main-sidebar.collapsed .dashboard-pointer {
   transform: rotate(180deg);
 }
-
-/* Rest of your CSS remains unchanged... */
 
 /* Spacer for scrolling */
 .sidebar-nav::after {
@@ -74,8 +70,7 @@
   display: flex;
   align-items: center;
   width: calc(100% + 40px);
-  margin-left: -20px;
-  margin-right: -20px;
+  margin: 0 -20px;
   padding: 10px 20px;
   background: none;
   border: none;
@@ -88,15 +83,16 @@
   position: relative;
 }
 
+/* Hover state for top-level menu buttons: light gray background */
 .sidebar-menu-button:hover {
-  background-color: #f3e8ff;
-  color: #6b21a8;
+  background-color: #f0f0f0;
+  color: black;
 }
 
-/* Active state for top-level menu buttons (with vertical stripe) */
+/* Active state for top-level menu buttons: translucent purple background + solid stripe */
 .sidebar-menu-button.active {
-  background-color: #e9d5ff;
-  color: #6b21a8;
+  background-color: rgba(181, 0, 255, 0.2); /* translucent purple */
+  color: #B500FF; /* text color to match the stripe */
 }
 .sidebar-menu-button.active::before {
   content: "";
@@ -105,7 +101,7 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background-color: #6b21a8;
+  background-color: #B500FF; /* solid purple stripe */
 }
 
 /* Icon styling */
@@ -115,7 +111,7 @@
   height: 1.25rem;
 }
 .sidebar-icon.active {
-  color: #6b21a8;
+  color: #B500FF;
 }
 
 /* Label styling */
@@ -136,7 +132,7 @@
 .sidebar-menu-sub {
   list-style: none;
   margin: 0;
-  padding: 0 0 0 0.6rem;
+  padding-left: 0.6rem;
   position: relative;
 }
 .sidebar-menu-sub::before {
@@ -166,15 +162,17 @@
   transition: background-color 0.2s ease, color 0.2s ease;
   position: relative;
 }
+
+/* Hover state for sub-menu buttons: light gray background */
 .sidebar-menu-sub-button:hover {
-  background-color: #f3e8ff;
-  color: #6b21a8;
+  background-color: #f0f0f0;
+  color: black;
 }
 
-/* Active state for sub-menu buttons (with vertical stripe) */
+/* Active state for sub-menu buttons: translucent purple background + solid stripe */
 .sidebar-menu-sub-button.active {
-  background-color: #e9d5ff;
-  color: #6b21a8;
+  background-color: rgba(181, 0, 255, 0.2);
+  color: #B500FF;
 }
 .sidebar-menu-sub-button.active::before {
   content: "";
@@ -183,7 +181,7 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background-color: #6b21a8;
+  background-color: #B500FF;
 }
 
 /* Logout button styling */
@@ -216,14 +214,14 @@
 }
 
 .mobile-dropdown {
-  position: fixed;             /* Make it overlay the page */
-  top: 60px;                   /* Set this to your navbar's height */
+  position: fixed;
+  top: 60px;
   left: 0;
   right: 0;
-  bottom: 0;                   /* Fill remaining viewport height */
-  background-color: #fff;      /* Optional background color */
-  overflow-y: auto;            /* Enable vertical scrolling */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-  z-index: 1600;               /* Ensure it stays above other elements */
-  padding: 1rem;               /* Optional inner spacing */
+  bottom: 0;
+  background-color: #fff;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 1600;
+  padding: 1rem;
 }

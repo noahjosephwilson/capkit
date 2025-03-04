@@ -1,25 +1,50 @@
-.breadcrumb {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #000;
-    display: flex;
-    align-items: center;
-  }
-  
-  .backLink {
-    cursor: pointer;
-    color: #000;
-  }
-  
-  .backLink:hover {
-    text-decoration: underline;
-  }
-  
-  .separator {
-    margin: 0 0.5rem;
-  }
-  
-  .titleSuffix {
-    /* Additional styling can be added here if needed */
-  }
-  
+.container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0rem;
+  background-color: white;
+  font-family: sans-serif;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  color: #333;
+}
+
+.toggleButton:hover {
+  background-color: #e6e6e6;
+}
+
+.separator {
+  width: 1px;
+  height: 24px;
+  background-color: #ccc;
+  margin: 0 1rem;
+}
+
+.breadcrumbNav {
+  display: flex;
+  align-items: center;
+  padding-left: 0rem; /* Removed left padding */
+}
+
+.breadcrumbItem {
+  margin: 0 0.125rem; /* Reduced horizontal spacing */
+  color: #555;
+}
+
+.breadcrumbSeparator {
+  margin: 0 0.125rem; /* Reduced spacing between items */
+  color: #999;
+}
+
+.collapseIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}

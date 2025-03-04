@@ -7,16 +7,14 @@ import { usePathname } from "next/navigation";
 import {
   ChevronDown,
   Home,
-  DollarSign,
-  Award,
-  Wrench,
+  TrendingUp,
+  RefreshCw,
+  Calendar,
   FileText,
-  Briefcase,
-  Star,
   Settings,
 } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
-import "./MainSidebar.css";
+import "./PersonalSidebar.css";
 
 // Import your collapse image file here:
 import DashboardPointer from "../../../public/assets/collapsesidebar.png";
@@ -105,12 +103,12 @@ const SidebarMenuItem = ({
       </li>
     );
   } else {
-    // For the Dashboard item, we attach the collapse toggle on the pointer image.
+    // For the Home item, we attach the collapse toggle on the pointer image.
     return (
       <li className="sidebar-menu-item">
         <NavLink
           to={item.link}
-          end={item.label === "Dashboard"}
+          end={item.label === "Home"}
           onClick={() => setActiveCategory(item.label)}
           className={({ isActive }) =>
             `sidebar-menu-button ${isActive ? "active" : ""}`
@@ -123,7 +121,7 @@ const SidebarMenuItem = ({
               }`}
             />
             <span className="menu-label">{item.label}</span>
-            {item.label === "Dashboard" && (
+            {item.label === "Home" && (
               <Image
                 src={DashboardPointer}
                 alt="Collapse Sidebar"
@@ -146,107 +144,33 @@ const SidebarMenuItem = ({
 
 const menuItems = [
   {
-    label: "Dashboard",
+    label: "Home",
     icon: Home,
     link: "/company/companyhome",
   },
   {
-    label: "Equity",
-    icon: DollarSign,
-    items: [
-      { label: "Cap Table", link: "/company/companyhome/captable" },
-      { label: "Shareholders", link: "/company/companyhome/shareholders" },
-      { label: "Issue Shares", link: "/company/companyhome/shareholders" },
-      { label: "Transfer Shares", link: "/company/companyhome/shareholders" },
-      { label: "Share Classes", link: "/company/companyhome/shareclasses" },
-    ],
+    label: "Portfolio",
+    icon: TrendingUp,
+    link: "/company/companyhome/dashboard",
   },
   {
-    label: "Vesting Plans",
-    icon: Award,
-    items: [
-      {
-        label: "Stock Options",
-        link: "/company/companyhome/exerciserequests",
-      },
-      {
-        label: "Restricted Stock",
-        link: "/company/companyhome/employeereleases",
-      },
-      {
-        label: "Incentive Stock",
-        link: "/company/companyhome/employeereleases",
-      },
-      {
-        label: "SAFEs",
-        link: "/company/companyhome/incentiveprograms",
-      },
-      {
-        label: "Convertible Notes",
-        link: "/company/companyhome/incentiveprograms",
-      },
-      {
-        label: "Warrants",
-        link: "/company/companyhome/incentiveprograms",
-      },
-      {
-        label: "Exercise Requests",
-        link: "/company/companyhome/employeereleases",
-      },
-      {
-        label: "Investor Releases",
-        link: "/company/companyhome/employeereleases",
-      },
-    ],
+    label: "Exchange",
+    icon: RefreshCw,
+    link: "/company/companyhome/dashboard2",
   },
   {
-    label: "Company",
-    icon: Briefcase,
-    items: [
-      { label: "Voting", link: "/company/companyhome/voting" },
-      { label: "Bylaws", link: "/company/companyhome/bylaws" },
-      { label: "Executive Board", link: "/company/companyhome/executiveboard" },
-      {
-        label: "Manage Officers",
-        link: "/company/companyhome/manageofficers",
-      },
-      {
-        label: "Company Profile",
-        link: "/company/companyhome/companyprofile",
-      },
-      { label: "Bank Account", link: "/company/companyhome/billinginfo" },
-      { label: "Transaction Log", link: "/company/companyhome/transactionlog" },
-    ],
+    label: "Vesting Equity",
+    icon: Calendar,
+    link: "/company/companyhome/dashboard2",
   },
   {
     label: "Documents",
     icon: FileText,
-    items: [
-      { label: "View Documents", link: "/company/companyhome/viewdocuments" },
-      { label: "Create Documents", link: "/company/companyhome/createdocument" },
-      {
-        label: "Pending Agreements",
-        link: "/company/companyhome/pendingagreements",
-      },
-      { label: "Verify Transactions", link: "/company/companyhome/createdocument" },
-    ],
-  },
-  {
-    label: "Control Suite",
-    icon: Settings,
-    items: [
-      { label: "Profile Settings", link: "/company/companyhome/profilesettings" },
-      {
-        label: "Personal Notifications",
-        link: "/company/companyhome/personalnotifications",
-      },
-      { label: "Help", link: "/company/companyhome/help" },
-      { label: "Log Out", link: "#" },
-    ],
+    link: "/company/companyhome/dashboard3",
   },
 ];
 
-const MainSidebar = () => {
+const PersonalSidebar = () => {
   const [openMenus, setOpenMenus] = useState({});
   const [activeCategory, setActiveCategory] = useState("");
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -292,7 +216,7 @@ const MainSidebar = () => {
         <ul className="sidebar-menu">
           {menuItems.map((item) => (
             <SidebarMenuItem
-              key={item.label}
+              key={item.label + item.link}
               item={item}
               isOpen={item.items ? openMenus[item.label] : false}
               onToggle={toggleMenu}
@@ -308,4 +232,4 @@ const MainSidebar = () => {
   );
 };
 
-export default MainSidebar;
+export default PersonalSidebar;
