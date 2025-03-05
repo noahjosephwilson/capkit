@@ -11,8 +11,8 @@
   border: none;
   font-size: 1.25rem;
   cursor: pointer;
-  margin-right: 0.5rem;
-  padding: 0.25rem 0.5rem;
+  margin-right: 0rem;
+  padding: 0.25rem 0.25rem;
   color: #333;
 }
 
@@ -30,16 +30,16 @@
 .breadcrumbNav {
   display: flex;
   align-items: center;
-  padding-left: 0rem; /* Removed left padding */
+  padding-left: 0rem;
 }
 
 .breadcrumbItem {
-  margin: 0 0.125rem; /* Reduced horizontal spacing */
+  margin: 0 0.125rem;
   color: #555;
 }
 
 .breadcrumbSeparator {
-  margin: 0 0.125rem; /* Reduced spacing between items */
+  margin: 0 0.125rem;
   color: #999;
 }
 
@@ -47,4 +47,14 @@
   width: 24px;
   height: 24px;
   object-fit: contain;
+}
+
+/* On small screens, hide the toggle button and separator */
+@media (max-width: 1024px) {
+  .toggleButton {
+    display: none;
+  }
+  .separator {
+    display: none;
+  }
 }

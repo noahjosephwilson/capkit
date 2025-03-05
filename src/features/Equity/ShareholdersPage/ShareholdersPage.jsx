@@ -1,7 +1,9 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "./ShareholdersPage.module.css";
 import ShareholderDetailsPage from "./StakeholderDetailsPage/StakeholderDetailsPage";
 import SearchStakeholder from "./SearchStakeholderPage/SearchStakeholderPage";
@@ -11,6 +13,7 @@ import IssueSharesPage from "./IssueSharesPage/IssueSharesPage";
 const ShareholdersPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { toggleSidebar } = useSidebar();
   const defaultTab = searchParams.get("tab") || "details";
   const [activeTab, setActiveTab] = useState(defaultTab);
 
@@ -53,7 +56,11 @@ const ShareholdersPage = () => {
   return (
     <div className={styles.shareholdersContainer}>
       <div className={styles.headerContainer}>
-        <HeaderTitle titleSuffix="Shareholders" showBack={false} />
+        <HeaderTitle
+          breadcrumbItems={[{ label: "Shareholders" }]}
+          showBack={false}
+          onToggleSidebar={toggleSidebar}
+        />
         <button 
           className={styles.addStakeholderButton} 
           onClick={handleAddStakeholder}

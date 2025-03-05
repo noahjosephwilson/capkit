@@ -1,8 +1,12 @@
+"use client";
+
 import React, { useState, useEffect, useRef, Suspense } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../../firebase/firebaseConfig";
 import { useCompany } from "../../../../contexts/CompanyContext";
 import { useAuth } from "../../../../contexts/AuthContext";
+import { useSidebar } from "@/contexts/SidebarContext";
+import HeaderTitle from "../../../../components/HeaderTitle/HeaderTitle";
 import "./SearchStakeholderPage.css";
 
 // Lazy-load EditStakeholder to break potential circular dependencies.
@@ -27,6 +31,7 @@ const SearchStakeholderPage = ({ mode }) => {
   // Get current company ID and authenticated user from context.
   const { currentCompanyId, setCurrentCompanyId } = useCompany();
   const { currentUser } = useAuth();
+  const { toggleSidebar } = useSidebar();
 
   // Fetch company ID if not set.
   useEffect(() => {
@@ -167,8 +172,14 @@ const SearchStakeholderPage = ({ mode }) => {
 
   return (
     <div className="search-page">
-      <h1 className="search-title">Select Stakeholder</h1>
-      {error && <div className="error-message">{error}</div>}
+      {/* Header using the new HeaderTitle API */}
+      <header className="search-header">
+        <HeaderTitle
+          breadcrumbItems={[{ label: "Select Stakeholder" }]}
+          onToggleSidebar={toggleSidebar}
+          showBack={true}
+        />
+      </header>
       <div className="dropdown-container" ref={dropdownRef}>
         <input
           type="text"

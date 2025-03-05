@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,18 +10,11 @@ import {
   RefreshCw,
   Calendar,
   FileText,
-  Settings,
 } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 import "./PersonalSidebar.css";
 
-// Import your collapse image file here:
-import DashboardPointer from "../../../public/assets/collapsesidebar.png";
-
-// Helper: convert a string to a URL-friendly slug.
-const slugify = (str) => str.toLowerCase().replace(/\s+/g, "-");
-
-// Custom NavLink component that mimics active behavior.
+// Custom NavLink component
 const NavLink = ({ to, end, onClick, children, className }) => {
   const pathname = usePathname();
   const isActive = end ? pathname === to : pathname.startsWith(to);
@@ -45,7 +37,6 @@ const SidebarMenuItem = ({
   activeCategory,
   setActiveCategory,
   handleLogout,
-  toggleCollapse,
 }) => {
   if (item.items) {
     return (
@@ -55,9 +46,7 @@ const SidebarMenuItem = ({
           onClick={() => onToggle(item.label)}
         >
           <item.icon
-            className={`sidebar-icon ${
-              activeCategory === item.label ? "active" : ""
-            }`}
+            className={`sidebar-icon ${activeCategory === item.label ? "active" : ""}`}
           />
           <span className="menu-label">{item.label}</span>
           <ChevronDown className={`dropdown-arrow ${isOpen ? "open" : ""}`} />
@@ -81,7 +70,6 @@ const SidebarMenuItem = ({
                   </li>
                 );
               }
-              // For "Share Classes", we want the active state to cover child routes.
               const useExact = subItem.label !== "Share Classes";
               return (
                 <li key={subItem.label} className="sidebar-menu-sub-item">
@@ -103,7 +91,6 @@ const SidebarMenuItem = ({
       </li>
     );
   } else {
-    // For the Home item, we attach the collapse toggle on the pointer image.
     return (
       <li className="sidebar-menu-item">
         <NavLink
@@ -116,25 +103,9 @@ const SidebarMenuItem = ({
         >
           <span className="dashboard-content">
             <item.icon
-              className={`sidebar-icon ${
-                activeCategory === item.label ? "active" : ""
-              }`}
+              className={`sidebar-icon ${activeCategory === item.label ? "active" : ""}`}
             />
             <span className="menu-label">{item.label}</span>
-            {item.label === "Home" && (
-              <Image
-                src={DashboardPointer}
-                alt="Collapse Sidebar"
-                width={20}
-                height={20}
-                className="dashboard-pointer"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  toggleCollapse();
-                }}
-              />
-            )}
           </span>
         </NavLink>
       </li>
@@ -170,18 +141,13 @@ const menuItems = [
   },
 ];
 
-const PersonalSidebar = () => {
+const PersonalSidebar = ({ isCollapsed }) => {
   const [openMenus, setOpenMenus] = useState({});
   const [activeCategory, setActiveCategory] = useState("");
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const { logout } = useAuth();
 
   const toggleMenu = (label) => {
     setOpenMenus((prev) => ({ ...prev, [label]: !prev[label] }));
-  };
-
-  const toggleCollapse = () => {
-    setIsCollapsed((prev) => !prev);
   };
 
   const handleLogout = async () => {
@@ -193,25 +159,8 @@ const PersonalSidebar = () => {
     }
   };
 
-  // If collapsed, only render the collapse image.
-  if (isCollapsed) {
-    return (
-      <aside className="main-sidebar collapsed">
-        <div className="collapsed-sidebar" onClick={toggleCollapse}>
-          <Image
-            src={DashboardPointer}
-            alt="Expand Sidebar"
-            width={25}
-            height={28}
-            className="dashboard-pointer"
-          />
-        </div>
-      </aside>
-    );
-  }
-
   return (
-    <aside className="main-sidebar">
+    <aside className={`main-sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <nav className="sidebar-nav">
         <ul className="sidebar-menu">
           {menuItems.map((item) => (
@@ -223,7 +172,6 @@ const PersonalSidebar = () => {
               activeCategory={activeCategory}
               setActiveCategory={setActiveCategory}
               handleLogout={handleLogout}
-              toggleCollapse={toggleCollapse}
             />
           ))}
         </ul>

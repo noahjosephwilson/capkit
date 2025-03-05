@@ -6,12 +6,14 @@ import { Download, Plus, MoreVertical, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { db } from "../../../firebase/firebaseConfig";
 import { useCompany } from "../../../contexts/CompanyContext";
+import { useSidebar } from "@/contexts/SidebarContext";
 import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
 import styles from "./CapTablePage.module.css";
 
 const CapTablePage = () => {
   const { currentCompanyId } = useCompany();
   const router = useRouter();
+  const { toggleSidebar } = useSidebar();
   const [capTableData, setCapTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -217,9 +219,7 @@ const CapTablePage = () => {
   const handleDeleteStakeholder = (stakeholder) => {
     if (
       window.confirm(
-        `Are you sure you want to delete stakeholder: ${
-          stakeholder.firstName || ""
-        } ${stakeholder.lastName || ""}?`
+        `Are you sure you want to delete stakeholder: ${stakeholder.firstName || ""} ${stakeholder.lastName || ""}?`
       )
     ) {
       setCapTableData((prev) => prev.filter((s) => s.id !== stakeholder.id));
@@ -233,11 +233,6 @@ const CapTablePage = () => {
 
   const toggleDropdown = (id) => {
     setDropdownOpen((prev) => (prev === id ? null : id));
-  };
-
-  // Example toggle function for the sidebar
-  const handleToggleSidebar = () => {
-    console.log("Sidebar toggled!");
   };
 
   if (loading) {
@@ -254,10 +249,9 @@ const CapTablePage = () => {
       <header className={styles.capTableHeader}>
         <div className={styles.headerLeft}>
           <HeaderTitle
-            /* Example breadcrumb items—replace or remove as desired */
-            breadcrumbItems={["Cap Table"]}
+            breadcrumbItems={[{ label: "Cap Table" }]}
             showBack={false}
-            onToggleSidebar={handleToggleSidebar}
+            onToggleSidebar={toggleSidebar}
           />
         </div>
         <div className={styles.capTableControls}>

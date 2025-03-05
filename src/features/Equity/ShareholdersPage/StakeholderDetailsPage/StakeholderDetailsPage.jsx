@@ -1,10 +1,13 @@
-// /pages/ShareholdersPage/Details/Details.jsx
+"use client";
+
 import React from "react";
-import "./StakeholderDetailsPage.module.css";
+import styles from "./StakeholderDetailsPage.module.css";
 
 const StakeholderDetailsPage = () => {
   return (
-    <div className="stareholderdetails">
+    <div className={styles.stakeholderDetails}>
+      {/* Stakeholder details content goes here */}
+      <h2>Stakeholder Details</h2>
     </div>
   );
 };

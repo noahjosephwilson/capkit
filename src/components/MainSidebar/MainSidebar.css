@@ -1,4 +1,4 @@
-/* Animate the sidebar width for a smooth transition */
+/* Main Sidebar container */
 .main-sidebar {
   width: 16rem; /* Expanded width */
   background-color: #ffffff;
@@ -8,46 +8,13 @@
   padding: 1rem;
   font-size: 16px;
   margin-top: 5px;
-  transition: width 0.3s ease;
-}
-
-/* Collapsed state: adjust width and remove extra layout centering */
-.main-sidebar.collapsed {
-  width: 4rem; /* Collapsed width */
-  padding: 1rem;
-}
-
-/* Container for the collapse/expand image when sidebar is collapsed */
-.collapsed-sidebar {
-  cursor: pointer;
-  margin-top: 5px;
-}
-
-/* Force the collapse image to maintain its size */
-.dashboard-pointer {
-  width: 25px;
-  height: 25px;
-  margin-left: 7px;
-  cursor: pointer;
   transition: transform 0.3s ease;
-  margin-right: 5px;
+  transform: translateX(0);
 }
 
-/* When the sidebar is expanded, image is unrotated */
-.main-sidebar:not(.collapsed) .dashboard-pointer {
-  transform: rotate(0deg);
-}
-
-/* When collapsed, flip the image by 180 degrees */
-.main-sidebar.collapsed .dashboard-pointer {
-  transform: rotate(180deg);
-}
-
-/* Spacer for scrolling */
-.sidebar-nav::after {
-  content: "";
-  display: block;
-  height: 5rem;
+/* Collapsed state: slide completely off the screen */
+.main-sidebar.collapsed {
+  transform: translateX(-100%);
 }
 
 /* Navigation container */
@@ -91,8 +58,8 @@
 
 /* Active state for top-level menu buttons: translucent purple background + solid stripe */
 .sidebar-menu-button.active {
-  background-color: rgba(181, 0, 255, 0.2); /* translucent purple */
-  color: #B500FF; /* text color to match the stripe */
+  background-color: rgba(181, 0, 255, 0.2);
+  color: #B500FF;
 }
 .sidebar-menu-button.active::before {
   content: "";
@@ -101,7 +68,7 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background-color: #B500FF; /* solid purple stripe */
+  background-color: #B500FF;
 }
 
 /* Icon styling */

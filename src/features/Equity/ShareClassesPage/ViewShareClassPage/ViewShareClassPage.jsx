@@ -2,13 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import HeaderTitle from "../../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "./ViewShareClassPage.module.css";
 import { useSearchParams } from "next/navigation";
 
 const ViewShareClassPage = () => {
-  const backPath = "/company/companyhome/shareclasses";
   const searchParams = useSearchParams();
   const label = searchParams.get("label");
+
+  // Retrieve the sidebar toggle function from SidebarContext.
+  const { toggleSidebar } = useSidebar();
 
   // Local state to hold share class data
   const [shareClassData, setShareClassData] = useState(null);
@@ -32,15 +35,17 @@ const ViewShareClassPage = () => {
     }
   }, [label]);
 
-  // Show a loading indicator if data hasn't been loaded yet
+  // While loading, show a header with breadcrumbs.
   if (!shareClassData) {
     return (
       <div className={styles.viewShareClassPage}>
         <header className={styles.header}>
           <HeaderTitle
-            backLinkText="Share Classes"
-            titleSuffix="View Class"
-            backPath={backPath}
+            breadcrumbItems={[
+              { label: "Share Classes", link: "/company/companyhome/shareclasses" },
+              { label: "View Class" },
+            ]}
+            onToggleSidebar={toggleSidebar}
             showBack={true}
           />
         </header>
@@ -53,9 +58,11 @@ const ViewShareClassPage = () => {
     <div className={styles.viewShareClassPage}>
       <header className={styles.header}>
         <HeaderTitle
-          backLinkText="Share Classes"
-          titleSuffix="View Class"
-          backPath={backPath}
+          breadcrumbItems={[
+            { label: "Share Classes", link: "/company/companyhome/shareclasses" },
+            { label: "View Class" },
+          ]}
+          onToggleSidebar={toggleSidebar}
           showBack={true}
         />
       </header>

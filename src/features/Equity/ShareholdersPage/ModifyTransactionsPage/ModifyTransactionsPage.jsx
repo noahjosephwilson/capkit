@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import HeaderTitle from "../../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "./ModifyTransactionsPage.module.css";
 
 const ModifyTransactionsPage = () => {
   const router = useRouter();
+  const { toggleSidebar } = useSidebar();
   const backPath = "/company/companyhome/shareholders";
 
   const [formData, setFormData] = useState({
@@ -41,9 +43,11 @@ const ModifyTransactionsPage = () => {
     <div className={styles.modifyTransactionPage}>
       <header className={styles.header}>
         <HeaderTitle
-          backLinkText="Shareholders"
-          titleSuffix="Modify Transactions"
-          backPath={backPath}
+          breadcrumbItems={[
+            { label: "Shareholders" },
+            { label: "Modify Transactions" },
+          ]}
+          onToggleSidebar={toggleSidebar}
           showBack={true}
         />
       </header>

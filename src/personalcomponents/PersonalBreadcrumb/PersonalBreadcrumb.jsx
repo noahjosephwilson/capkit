@@ -1,20 +1,18 @@
 "use client";
-
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "./HeaderTitle.module.css";
+import styles from "./PersonalBreadcrumb.module.css";
 import SidebarCollapse from "../../../public/assets/collapsesidebar.png";
 
-function HeaderTitle({
+const PersonalBreadcrumb = ({
   breadcrumbItems = [],
   onToggleSidebar,
   titleSuffix = "",
-  showBack = false,
-}) {
+}) => {
   return (
     <header className={styles.container}>
-      {/* Toggle Button */}
+      {/* Toggle Button for Sidebar Collapse */}
       <button className={styles.toggleButton} onClick={onToggleSidebar}>
         <Image 
           src={SidebarCollapse} 
@@ -50,6 +48,6 @@ function HeaderTitle({
       </nav>
     </header>
   );
-}
+};
 
-export default HeaderTitle;
+export default PersonalBreadcrumb;

@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import HeaderTitle from "../../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "./EditStakeholderPage.module.css";
 
 const EditStakeholderPage = () => {
   const router = useRouter();
+  const { toggleSidebar } = useSidebar();
   const backPath = "/company/companyhome/shareholders";
 
   // Form state for editing stakeholder details.
@@ -45,9 +47,11 @@ const EditStakeholderPage = () => {
     <div className={styles.editStakeholderPage}>
       <header className={styles.header}>
         <HeaderTitle
-          backLinkText="Shareholders"
-          titleSuffix="Edit Stakeholder"
-          backPath={backPath}
+          breadcrumbItems={[
+            { label: "Shareholders" },
+            { label: "Edit Stakeholder" },
+          ]}
+          onToggleSidebar={toggleSidebar}
           showBack={true}
         />
       </header>

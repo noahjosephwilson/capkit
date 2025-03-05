@@ -1,7 +1,6 @@
-/* Overall Dashboard Container */
 .dashboard {
   background-color: #fff;
-  padding: 2rem;
+  padding: 1.25rem 2rem 2rem 2rem; /* top, right, bottom, left */
   min-height: 100vh;
   font-family: "Inter", sans-serif;
   color: #333;

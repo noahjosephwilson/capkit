@@ -8,7 +8,7 @@ import { db } from "../../firebase/firebaseConfig";
 import { doc, onSnapshot } from "firebase/firestore";
 import styles from "./PersonalNavbar.module.css";
 
-const PersonalNavbar = () => {
+const PersonalNavbar = ({ onToggleSidebar }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showSettingsSubmenu, setShowSettingsSubmenu] = useState(false);
@@ -61,7 +61,8 @@ const PersonalNavbar = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutsideProfile);
-    return () => document.removeEventListener("mousedown", handleClickOutsideProfile);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutsideProfile);
   }, []);
 
   // Close menu dropdown when clicking outside
@@ -73,7 +74,8 @@ const PersonalNavbar = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutsideMenu);
-    return () => document.removeEventListener("mousedown", handleClickOutsideMenu);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutsideMenu);
   }, []);
 
   const handleLogout = async () => {
@@ -85,7 +87,7 @@ const PersonalNavbar = () => {
     }
   };
 
-  // Render the menu dropdown options (same for both desktop and mobile)
+  // Render the menu dropdown options (for both desktop and mobile)
   const renderMenuOptions = () => (
     <>
       <Link href="/dashboard" className={styles["dropdown-item"]}>
@@ -138,7 +140,6 @@ const PersonalNavbar = () => {
         </div>
         <div className={styles["navbar-right"]}>
           {isMobileView ? (
-            // Collapsed mode (mobile): show only the hamburger button
             <button
               className={styles["hamburger-btn"]}
               onClick={() => setShowMenu(!showMenu)}
@@ -149,7 +150,6 @@ const PersonalNavbar = () => {
               </svg>
             </button>
           ) : (
-            // Desktop mode: show Menu container
             <div
               className={styles["menu-container"]}
               onClick={() => setShowMenu(!showMenu)}
@@ -158,15 +158,20 @@ const PersonalNavbar = () => {
               aria-expanded={showMenu}
             >
               <span className={styles["menu-label"]}>Menu</span>
-              <ChevronDown size={16} strokeWidth={1.5} className={styles["menu-arrow"]} />
+              <ChevronDown
+                size={16}
+                strokeWidth={1.5}
+                className={styles["menu-arrow"]}
+              />
             </div>
           )}
-          {/* Only render additional elements in desktop mode */}
           {!isMobileView && (
             <>
               <div className={styles["toggle-container"]}>
                 <div
-                  className={`${styles["toggle-option"]} ${!isPersonal ? styles.active : ""}`}
+                  className={`${styles["toggle-option"]} ${
+                    !isPersonal ? styles.active : ""
+                  }`}
                   onClick={() => {
                     setIsPersonal(false);
                     router.push("/company");
@@ -175,7 +180,9 @@ const PersonalNavbar = () => {
                   Company
                 </div>
                 <div
-                  className={`${styles["toggle-option"]} ${isPersonal ? styles.active : ""}`}
+                  className={`${styles["toggle-option"]} ${
+                    isPersonal ? styles.active : ""
+                  }`}
                   onClick={() => {
                     setIsPersonal(true);
                     router.push("/personal");
@@ -185,7 +192,11 @@ const PersonalNavbar = () => {
                 </div>
               </div>
               <div className={styles["notification-container"]}>
-                <img src="/assets/notification.png" alt="Notifications" className={styles["notification-icon"]} />
+                <img
+                  src="/assets/notification.png"
+                  alt="Notifications"
+                  className={styles["notification-icon"]}
+                />
               </div>
               <div
                 className={styles["profile-container"]}
@@ -201,13 +212,25 @@ const PersonalNavbar = () => {
                 />
                 {showProfileMenu && (
                   <div className={styles["profile-dropdown"]} role="menu">
-                    <Link href="/profile" className={styles["dropdown-item"]} role="menuitem">
+                    <Link
+                      href="/profile"
+                      className={styles["dropdown-item"]}
+                      role="menuitem"
+                    >
                       Profile
                     </Link>
-                    <Link href="/settings" className={styles["dropdown-item"]} role="menuitem">
+                    <Link
+                      href="/settings"
+                      className={styles["dropdown-item"]}
+                      role="menuitem"
+                    >
                       Settings
                     </Link>
-                    <button onClick={handleLogout} className={styles["dropdown-item"]} role="menuitem">
+                    <button
+                      onClick={handleLogout}
+                      className={styles["dropdown-item"]}
+                      role="menuitem"
+                    >
                       Logout
                     </button>
                   </div>
@@ -217,12 +240,8 @@ const PersonalNavbar = () => {
           )}
         </div>
       </header>
-
-      {/* Menu Dropdown (appears under the navbar across full width) */}
       {showMenu && (
-        <div className={styles["menu-dropdown"]}>
-          {renderMenuOptions()}
-        </div>
+        <div className={styles["menu-dropdown"]}>{renderMenuOptions()}</div>
       )}
     </>
   );

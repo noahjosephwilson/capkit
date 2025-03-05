@@ -1,0 +1,11 @@
+.sidebar-container {
+    transition: width 0.3s ease;
+  }
+  
+  /* When the viewport is below 1024px, remove the transition so the sidebar disappears instantly */
+  @media (max-width: 1024px) {
+    .sidebar-container {
+      transition: none;
+    }
+  }
+  
