@@ -6,12 +6,14 @@ import { Download, Plus, MoreVertical, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { db } from "../../../firebase/firebaseConfig";
 import { useCompany } from "../../../contexts/CompanyContext";
+import { useSidebar } from "@/contexts/SidebarContext";
 import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
 import styles from "./CapTablePage.module.css";
 
 const CapTablePage = () => {
   const { currentCompanyId } = useCompany();
   const router = useRouter();
+  const { toggleSidebar } = useSidebar();
   const [capTableData, setCapTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,7 +21,10 @@ const CapTablePage = () => {
 
   // Local state for search and sorting
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortConfig, setSortConfig] = useState({ key: "ownership", direction: "descending" });
+  const [sortConfig, setSortConfig] = useState({
+    key: "ownership",
+    direction: "descending",
+  });
 
   // New state for panel toggling and details shown options
   const [activePanel, setActivePanel] = useState(null);
@@ -72,7 +77,7 @@ const CapTablePage = () => {
     fetchStakeholders();
   }, [currentCompanyId]);
 
-  // Helper functions to compute values per stakeholder
+  // Helper functions
   const computeCommonShares = (stakeholder) => {
     if (!stakeholder.commonStockTransactions) return 0;
     return stakeholder.commonStockTransactions.reduce((sum, transaction) => {
@@ -159,11 +164,13 @@ const CapTablePage = () => {
           case "ownership":
             aValue =
               overallTotalShares > 0
-                ? (computeCommonShares(a) + computePreferredShares(a)) / overallTotalShares
+                ? (computeCommonShares(a) + computePreferredShares(a)) /
+                  overallTotalShares
                 : 0;
             bValue =
               overallTotalShares > 0
-                ? (computeCommonShares(b) + computePreferredShares(b)) / overallTotalShares
+                ? (computeCommonShares(b) + computePreferredShares(b)) /
+                  overallTotalShares
                 : 0;
             break;
           case "invested":
@@ -241,7 +248,11 @@ const CapTablePage = () => {
       {/* Header */}
       <header className={styles.capTableHeader}>
         <div className={styles.headerLeft}>
-          <HeaderTitle titleSuffix="Cap Table" showBack={false} />
+          <HeaderTitle
+            breadcrumbItems={[{ label: "Cap Table" }]}
+            showBack={false}
+            onToggleSidebar={toggleSidebar}
+          />
         </div>
         <div className={styles.capTableControls}>
           <div className={styles.searchContainer}>
@@ -259,12 +270,17 @@ const CapTablePage = () => {
           <div className={styles.capTableButtons}>
             {/* Details Shown button placed to the left */}
             <button
-              className={`${styles.panelButton} ${activePanel === "detailsShown" ? styles.activeButton : ""}`}
+              className={`${styles.panelButton} ${
+                activePanel === "detailsShown" ? styles.activeButton : ""
+              }`}
               onClick={() => togglePanel("detailsShown")}
             >
               Details Shown
             </button>
-            <button className={styles.capTableButton} onClick={handleAddPersonNavigation}>
+            <button
+              className={styles.capTableButton}
+              onClick={handleAddPersonNavigation}
+            >
               <Plus size={16} style={{ marginRight: "0.5rem" }} /> Add Stakeholder
             </button>
             <button className={styles.capTableButton} onClick={handleDownload}>
@@ -391,6 +407,7 @@ const CapTablePage = () => {
                   ? ((totalShares / overallTotalShares) * 100).toFixed(2)
                   : "0.00";
               const invested = computeInvestedAmount(entry);
+
               return (
                 <tr key={entry.id}>
                   <td className={styles.nameCell}>

@@ -1,4 +1,3 @@
-/* Main Sidebar container */
 .main-sidebar {
   width: 16rem; /* Expanded width */
   background-color: #ffffff;
@@ -7,14 +6,49 @@
   overflow-y: auto;
   padding: 1rem;
   font-size: 16px;
-  margin-top: 5px;
-  transition: transform 0.3s ease;
-  transform: translateX(0);
+  margin-top: 10px;
+  transition: width 0.3s ease;
 }
 
-/* Collapsed state: slide completely off the screen */
+/* Collapsed state: adjust width and remove extra layout centering */
 .main-sidebar.collapsed {
-  transform: translateX(-100%);
+  width: 4rem; /* Collapsed width */
+  padding: 1rem;
+}
+
+/* Container for the collapse/expand image when sidebar is collapsed */
+.collapsed-sidebar {
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+/* Force the collapse image to maintain its size */
+.dashboard-pointer {
+  width: 25px;
+  height: 25px;
+  margin-left: 7px;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Animate rotation */
+  margin-right: 5px;
+}
+
+/* When the sidebar is expanded, image is unrotated */
+.main-sidebar:not(.collapsed) .dashboard-pointer {
+  transform: rotate(0deg);
+  width: 25px;
+  height: 25px;
+}
+
+/* When collapsed, flip the image by 180 degrees */
+.main-sidebar.collapsed .dashboard-pointer {
+  transform: rotate(180deg);
+}
+
+/* Spacer for scrolling */
+.sidebar-nav::after {
+  content: "";
+  display: block;
+  height: 5rem;
 }
 
 /* Navigation container */
@@ -37,7 +71,8 @@
   display: flex;
   align-items: center;
   width: calc(100% + 40px);
-  margin: 0 -20px;
+  margin-left: -20px;
+  margin-right: -20px;
   padding: 10px 20px;
   background: none;
   border: none;
@@ -50,16 +85,15 @@
   position: relative;
 }
 
-/* Hover state for top-level menu buttons: light gray background */
 .sidebar-menu-button:hover {
-  background-color: #f0f0f0;
-  color: black;
+  background-color: #f3e8ff;
+  color: #6b21a8;
 }
 
-/* Active state for top-level menu buttons: translucent purple background + solid stripe */
+/* Active state for top-level menu buttons (with vertical stripe) */
 .sidebar-menu-button.active {
-  background-color: rgba(181, 0, 255, 0.2);
-  color: #B500FF;
+  background-color: #e9d5ff;
+  color: #6b21a8;
 }
 .sidebar-menu-button.active::before {
   content: "";
@@ -68,7 +102,7 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background-color: #B500FF;
+  background-color: #6b21a8;
 }
 
 /* Icon styling */
@@ -78,7 +112,7 @@
   height: 1.25rem;
 }
 .sidebar-icon.active {
-  color: #B500FF;
+  color: #6b21a8;
 }
 
 /* Label styling */
@@ -99,7 +133,7 @@
 .sidebar-menu-sub {
   list-style: none;
   margin: 0;
-  padding-left: 0.6rem;
+  padding: 0 0 0 0.6rem;
   position: relative;
 }
 .sidebar-menu-sub::before {
@@ -129,17 +163,15 @@
   transition: background-color 0.2s ease, color 0.2s ease;
   position: relative;
 }
-
-/* Hover state for sub-menu buttons: light gray background */
 .sidebar-menu-sub-button:hover {
-  background-color: #f0f0f0;
-  color: black;
+  background-color: #f3e8ff;
+  color: #6b21a8;
 }
 
-/* Active state for sub-menu buttons: translucent purple background + solid stripe */
+/* Active state for sub-menu buttons (with vertical stripe) */
 .sidebar-menu-sub-button.active {
-  background-color: rgba(181, 0, 255, 0.2);
-  color: #B500FF;
+  background-color: #e9d5ff;
+  color: #6b21a8;
 }
 .sidebar-menu-sub-button.active::before {
   content: "";
@@ -148,7 +180,7 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background-color: #B500FF;
+  background-color: #6b21a8;
 }
 
 /* Logout button styling */

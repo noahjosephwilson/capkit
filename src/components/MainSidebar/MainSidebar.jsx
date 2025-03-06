@@ -1,28 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   ChevronDown,
   Home,
   DollarSign,
   Award,
-  Wrench,
   FileText,
   Briefcase,
-  Star,
   Settings,
 } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 import "./MainSidebar.css";
-
-// Import your collapse image file here:
-import DashboardPointer from "../../../public/assets/collapsesidebar.png";
-
-// Helper: convert a string to a URL-friendly slug.
-const slugify = (str) => str.toLowerCase().replace(/\s+/g, "-");
 
 // Custom NavLink component that mimics active behavior.
 const NavLink = ({ to, end, onClick, children, className }) => {
@@ -47,7 +38,6 @@ const SidebarMenuItem = ({
   activeCategory,
   setActiveCategory,
   handleLogout,
-  toggleCollapse,
 }) => {
   if (item.items) {
     return (
@@ -83,7 +73,6 @@ const SidebarMenuItem = ({
                   </li>
                 );
               }
-              // For "Share Classes", we want the active state to cover child routes.
               const useExact = subItem.label !== "Share Classes";
               return (
                 <li key={subItem.label} className="sidebar-menu-sub-item">
@@ -105,7 +94,7 @@ const SidebarMenuItem = ({
       </li>
     );
   } else {
-    // For the Dashboard item, we attach the collapse toggle on the pointer image.
+    // Dashboard item without collapse pointer.
     return (
       <li className="sidebar-menu-item">
         <NavLink
@@ -123,20 +112,6 @@ const SidebarMenuItem = ({
               }`}
             />
             <span className="menu-label">{item.label}</span>
-            {item.label === "Dashboard" && (
-              <Image
-                src={DashboardPointer}
-                alt="Collapse Sidebar"
-                width={20}
-                height={20}
-                className="dashboard-pointer"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  toggleCollapse();
-                }}
-              />
-            )}
           </span>
         </NavLink>
       </li>
@@ -156,26 +131,23 @@ const menuItems = [
     items: [
       { label: "Cap Table", link: "/company/companyhome/captable" },
       { label: "Shareholders", link: "/company/companyhome/shareholders" },
+      { label: "Issue Shares", link: "/company/companyhome/shareholders" },
+      { label: "Transfer Shares", link: "/company/companyhome/shareholders" },
       { label: "Share Classes", link: "/company/companyhome/shareclasses" },
-      { label: "Transaction Log", link: "/company/companyhome/transactionlog" },
     ],
   },
   {
-    label: "Incentive Plans",
+    label: "Vesting Plans",
     icon: Award,
     items: [
-      {
-        label: "Incentive Programs",
-        link: "/company/companyhome/incentiveprograms",
-      },
-      {
-        label: "Exercise Requests",
-        link: "/company/companyhome/exerciserequests",
-      },
-      {
-        label: "Employee Releases",
-        link: "/company/companyhome/employeereleases",
-      },
+      { label: "Stock Options", link: "/company/companyhome/exerciserequests" },
+      { label: "Restricted Stock", link: "/company/companyhome/employeereleases" },
+      { label: "Incentive Stock", link: "/company/companyhome/employeereleases" },
+      { label: "SAFEs", link: "/company/companyhome/incentiveprograms" },
+      { label: "Convertible Notes", link: "/company/companyhome/incentiveprograms" },
+      { label: "Warrants", link: "/company/companyhome/incentiveprograms" },
+      { label: "Exercise Requests", link: "/company/companyhome/employeereleases" },
+      { label: "Investor Releases", link: "/company/companyhome/employeereleases" },
     ],
   },
   {
@@ -185,15 +157,10 @@ const menuItems = [
       { label: "Voting", link: "/company/companyhome/voting" },
       { label: "Bylaws", link: "/company/companyhome/bylaws" },
       { label: "Executive Board", link: "/company/companyhome/executiveboard" },
-      {
-        label: "Manage Officers",
-        link: "/company/companyhome/manageofficers",
-      },
-      {
-        label: "Company Profile",
-        link: "/company/companyhome/companyprofile",
-      },
-      { label: "Billing Info", link: "/company/companyhome/billinginfo" },
+      { label: "Manage Officers", link: "/company/companyhome/manageofficers" },
+      { label: "Company Profile", link: "/company/companyhome/companyprofile" },
+      { label: "Bank Account", link: "/company/companyhome/billinginfo" },
+      { label: "Transaction Log", link: "/company/companyhome/transactionlog" },
     ],
   },
   {
@@ -202,20 +169,8 @@ const menuItems = [
     items: [
       { label: "View Documents", link: "/company/companyhome/viewdocuments" },
       { label: "Create Documents", link: "/company/companyhome/createdocument" },
-      {
-        label: "Pending Agreements",
-        link: "/company/companyhome/pendingagreements",
-      },
-    ],
-  },
-  {
-    label: "Premium",
-    icon: Star,
-    items: [
-      { label: "409A Valuation", link: "/company/companyhome/valuation" },
-      { label: "Incorporation", link: "/company/companyhome/incorporation" },
-      { label: "Convert Entity", link: "/company/companyhome/convertentity" },
-      { label: "File Taxes", link: "/company/companyhome/filetaxes" },
+      { label: "Pending Agreements", link: "/company/companyhome/pendingagreements" },
+      { label: "Verify Transactions", link: "/company/companyhome/createdocument" },
     ],
   },
   {
@@ -223,28 +178,20 @@ const menuItems = [
     icon: Settings,
     items: [
       { label: "Profile Settings", link: "/company/companyhome/profilesettings" },
-      {
-        label: "Personal Notifications",
-        link: "/company/companyhome/personalnotifications",
-      },
+      { label: "Personal Notifications", link: "/company/companyhome/personalnotifications" },
       { label: "Help", link: "/company/companyhome/help" },
       { label: "Log Out", link: "#" },
     ],
   },
 ];
 
-const MainSidebar = () => {
-  const [openMenus, setOpenMenus] = useState({});
-  const [activeCategory, setActiveCategory] = useState("");
-  const [isCollapsed, setIsCollapsed] = useState(false);
+const MainSidebar = ({ isCollapsed, toggleCollapse }) => {
+  const [openMenus, setOpenMenus] = React.useState({});
+  const [activeCategory, setActiveCategory] = React.useState("");
   const { logout } = useAuth();
 
   const toggleMenu = (label) => {
     setOpenMenus((prev) => ({ ...prev, [label]: !prev[label] }));
-  };
-
-  const toggleCollapse = () => {
-    setIsCollapsed((prev) => !prev);
   };
 
   const handleLogout = async () => {
@@ -256,25 +203,8 @@ const MainSidebar = () => {
     }
   };
 
-  // If collapsed, only render the collapse image.
-  if (isCollapsed) {
-    return (
-      <aside className="main-sidebar collapsed">
-        <div className="collapsed-sidebar" onClick={toggleCollapse}>
-          <Image
-            src={DashboardPointer}
-            alt="Expand Sidebar"
-            width={25}
-            height={28}
-            className="dashboard-pointer"
-          />
-        </div>
-      </aside>
-    );
-  }
-
   return (
-    <aside className="main-sidebar">
+    <aside className={`main-sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <nav className="sidebar-nav">
         <ul className="sidebar-menu">
           {menuItems.map((item) => (
@@ -286,7 +216,6 @@ const MainSidebar = () => {
               activeCategory={activeCategory}
               setActiveCategory={setActiveCategory}
               handleLogout={handleLogout}
-              toggleCollapse={toggleCollapse}
             />
           ))}
         </ul>

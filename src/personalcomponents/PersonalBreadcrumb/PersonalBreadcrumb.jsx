@@ -1,21 +1,19 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
-import styles from "./HeaderTitle.module.css";
+import Link from "next/link";
+import styles from "./PersonalBreadcrumb.module.css";
 import SidebarCollapse from "../../../public/assets/collapsesidebar.png";
+import { usePersonal } from "@/contexts/PersonalContext";
 
-function HeaderTitle({
-  breadcrumbItems = [],
-  onToggleSidebar,
-  titleSuffix = "",
-  showBack = false,
-}) {
+function PersonalBreadcrumb({ breadcrumbItems = [], titleSuffix = "", showBack = false }) {
+  const { toggleCollapse } = usePersonal();
+
   return (
     <header className={styles.container}>
       {/* Toggle Button */}
-      <button className={styles.toggleButton} onClick={onToggleSidebar}>
+      <button className={styles.toggleButton} onClick={toggleCollapse}>
         <Image 
           src={SidebarCollapse} 
           alt="Toggle sidebar" 
@@ -24,20 +22,18 @@ function HeaderTitle({
           className={styles.collapseIcon}
         />
       </button>
-
       {/* Vertical Separator */}
       <div className={styles.separator} />
-
       {/* Breadcrumb Navigation */}
       <nav aria-label="breadcrumb" className={styles.breadcrumbNav}>
         {breadcrumbItems.map((item, index) => (
           <React.Fragment key={index}>
             {item.link ? (
               <Link href={item.link} className={styles.breadcrumbItem}>
-                {item.label}
+                {item.name}
               </Link>
             ) : (
-              <span className={styles.breadcrumbItem}>{item.label}</span>
+              <span className={styles.breadcrumbItem}>{item.name}</span>
             )}
             {index < breadcrumbItems.length - 1 && (
               <span className={styles.breadcrumbSeparator}>&gt;</span>
@@ -52,4 +48,4 @@ function HeaderTitle({
   );
 }
 
-export default HeaderTitle;
+export default PersonalBreadcrumb;

@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import HeaderTitle from "../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "./DashboardPage.module.css";
 
 // Register Chart.js components
@@ -26,6 +28,8 @@ ChartJS.register(
 );
 
 const DashboardPage = () => {
+  const { toggleSidebar } = useSidebar();
+
   // Dummy data – replace with your real API calls.
   const [loading, setLoading] = useState(true);
   const [summaryData, setSummaryData] = useState({
@@ -51,7 +55,14 @@ const DashboardPage = () => {
       const avgSharePrice = (totalInvestment / totalShares).toFixed(2);
       const marketValuation = totalInvestment * 5;
       const fundingRounds = 4;
-      setSummaryData({ totalShares, totalInvestment, stakeholderCount, avgSharePrice, marketValuation, fundingRounds });
+      setSummaryData({
+        totalShares,
+        totalInvestment,
+        stakeholderCount,
+        avgSharePrice,
+        marketValuation,
+        fundingRounds,
+      });
 
       // Cap Table Breakdown (Doughnut chart)
       const capLabels = ["Founders", "Investors", "Employees", "Advisors"];
@@ -98,11 +109,41 @@ const DashboardPage = () => {
 
       // Recent Transactions (dummy data)
       setTransactions([
-        { date: "2023-06-01", type: "Buy", shares: 1000, price: 25, investor: "VC Fund A" },
-        { date: "2023-06-15", type: "Sell", shares: 500, price: 27, investor: "Investor X" },
-        { date: "2023-07-01", type: "Buy", shares: 1500, price: 26, investor: "Angel Y" },
-        { date: "2023-07-10", type: "Buy", shares: 800, price: 24, investor: "VC Fund B" },
-        { date: "2023-07-20", type: "Transfer", shares: 300, price: 0, investor: "Employee Z" },
+        {
+          date: "2023-06-01",
+          type: "Buy",
+          shares: 1000,
+          price: 25,
+          investor: "VC Fund A",
+        },
+        {
+          date: "2023-06-15",
+          type: "Sell",
+          shares: 500,
+          price: 27,
+          investor: "Investor X",
+        },
+        {
+          date: "2023-07-01",
+          type: "Buy",
+          shares: 1500,
+          price: 26,
+          investor: "Angel Y",
+        },
+        {
+          date: "2023-07-10",
+          type: "Buy",
+          shares: 800,
+          price: 24,
+          investor: "VC Fund B",
+        },
+        {
+          date: "2023-07-20",
+          type: "Transfer",
+          shares: 300,
+          price: 0,
+          investor: "Employee Z",
+        },
       ]);
 
       // Set current development stage.
@@ -122,15 +163,28 @@ const DashboardPage = () => {
 
   return (
     <div className={styles.dashboard}>
+      {/* Header Section */}
+      <header className={styles.header}>
+        <HeaderTitle
+          breadcrumbItems={[{ label: "Dashboard" }]}
+          onToggleSidebar={toggleSidebar}
+          showBack={false}
+        />
+      </header>
+
       {/* Top Summary Row */}
       <section className={styles.summaryGrid}>
         <div className={styles.summaryCard}>
           <div className={styles.cardLabel}>Total Shares</div>
-          <div className={styles.cardValue}>{summaryData.totalShares.toLocaleString()}</div>
+          <div className={styles.cardValue}>
+            {summaryData.totalShares.toLocaleString()}
+          </div>
         </div>
         <div className={styles.summaryCard}>
           <div className={styles.cardLabel}>Total Investment</div>
-          <div className={styles.cardValue}>${summaryData.totalInvestment.toLocaleString()}</div>
+          <div className={styles.cardValue}>
+            ${summaryData.totalInvestment.toLocaleString()}
+          </div>
         </div>
         <div className={styles.summaryCard}>
           <div className={styles.cardLabel}>Stakeholders</div>
@@ -138,15 +192,21 @@ const DashboardPage = () => {
         </div>
         <div className={styles.summaryCard}>
           <div className={styles.cardLabel}>Avg. Share Price</div>
-          <div className={styles.cardValue}>${summaryData.avgSharePrice}</div>
+          <div className={styles.cardValue}>
+            ${summaryData.avgSharePrice}
+          </div>
         </div>
         <div className={styles.summaryCard}>
           <div className={styles.cardLabel}>Market Valuation</div>
-          <div className={styles.cardValue}>${summaryData.marketValuation.toLocaleString()}</div>
+          <div className={styles.cardValue}>
+            ${summaryData.marketValuation.toLocaleString()}
+          </div>
         </div>
         <div className={styles.summaryCard}>
           <div className={styles.cardLabel}>Funding Rounds</div>
-          <div className={styles.cardValue}>{summaryData.fundingRounds}</div>
+          <div className={styles.cardValue}>
+            {summaryData.fundingRounds}
+          </div>
         </div>
       </section>
 
@@ -187,8 +247,14 @@ const DashboardPage = () => {
           {developmentSteps.map((step, index) => (
             <div key={index} className={styles.timelineItem}>
               <div className={styles.stepLabel}>{step}</div>
-              <div className={`${styles.circle} ${index <= currentStageIndex ? styles.active : ""}`}></div>
-              {index < developmentSteps.length - 1 && <div className={styles.connector}></div>}
+              <div
+                className={`${styles.circle} ${
+                  index <= currentStageIndex ? styles.active : ""
+                }`}
+              ></div>
+              {index < developmentSteps.length - 1 && (
+                <div className={styles.connector}></div>
+              )}
             </div>
           ))}
         </div>

@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import HeaderTitle from "../../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "../AddShareClassPage/AddShareClassPage.module.css";
 
 const EditShareClassPage = () => {
   const router = useRouter();
+  const { toggleSidebar } = useSidebar();
   const backPath = "/company/companyhome/shareclasses";
 
   const [advancedOpen, setAdvancedOpen] = useState(false);
@@ -42,9 +44,11 @@ const EditShareClassPage = () => {
     <div className={styles.addShareClassPage}>
       <header className={styles.header}>
         <HeaderTitle
-          backLinkText="Share Classes"
-          titleSuffix="Edit Class"
-          backPath={backPath}
+          breadcrumbItems={[
+            { label: "Shareholders", link: backPath },
+            { label: "Edit Share Class" },
+          ]}
+          onToggleSidebar={toggleSidebar}
           showBack={true}
         />
       </header>

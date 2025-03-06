@@ -1,9 +1,10 @@
 .container {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0rem;
+  padding: 1.2rem 0rem; /* Fixed vertical (1rem) and horizontal (2rem) padding */
   background-color: white;
   font-family: sans-serif;
+  margin-top: -11px;
 }
 
 .toggleButton {
@@ -11,7 +12,7 @@
   border: none;
   font-size: 1.25rem;
   cursor: pointer;
-  margin-right: 0rem;
+  margin-right: 0.5rem;
   padding: 0.25rem 0.25rem;
   color: #333;
 }
@@ -30,7 +31,7 @@
 .breadcrumbNav {
   display: flex;
   align-items: center;
-  padding-left: 0rem;
+  padding-left: 0;
 }
 
 .breadcrumbItem {
@@ -49,12 +50,16 @@
   object-fit: contain;
 }
 
-/* On small screens, hide the toggle button and separator */
+/* Responsive styles for screens 1024px or smaller */
 @media (max-width: 1024px) {
-  .toggleButton {
-    display: none;
-  }
+  .toggleButton,
   .separator {
     display: none;
+  }
+  
+  /* Maintain vertical padding; shift horizontally left to fill the removed button space */
+  .container {
+    padding: 1.4rem 0rem;
+    margin-top: -11px;
   }
 }

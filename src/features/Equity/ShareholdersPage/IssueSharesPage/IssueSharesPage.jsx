@@ -1,9 +1,14 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import HeaderTitle from "../../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "./IssueSharesPage.module.css";
 
 const IssueSharesPage = () => {
   const router = useRouter();
+  const { toggleSidebar } = useSidebar();
 
   // Sample options – adjust or load from your data source as needed.
   const shareClassOptions = ["Common", "Preferred", "Class A", "Class B"];
@@ -67,7 +72,9 @@ const IssueSharesPage = () => {
       dateIssued,
     };
     console.log("Issuing shares with data:", data);
-    // Reset form if needed.
+    // TODO: Add your submission logic (e.g., API call)
+
+    // Optionally reset the form after submission:
     setSelectedShareClass("");
     setSelectedRecipient({});
     setNumberOfShares("");
@@ -79,7 +86,15 @@ const IssueSharesPage = () => {
 
   return (
     <div className={styles.issueSharesContainer}>
-      <h2>Issue Shares</h2>
+      {/* Header using the new HeaderTitle API */}
+      <header className={styles.issueSharesHeader}>
+        <HeaderTitle
+          breadcrumbItems={[{ label: "Issue Shares" }]}
+          onToggleSidebar={toggleSidebar}
+          showBack={false}
+        />
+      </header>
+
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.dropdownSection}>
           {/* Share Class Dropdown */}

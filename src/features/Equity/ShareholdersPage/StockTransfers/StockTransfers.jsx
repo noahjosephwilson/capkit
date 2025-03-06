@@ -1,4 +1,9 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
+import { Download, ChevronDown, ChevronUp } from "lucide-react";
+import HeaderTitle from "../../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import "./StockTransfers.css";
 
 // A reusable searchable dropdown component specific to StockTransfers
@@ -126,10 +131,21 @@ const StockTransfers = () => {
     });
   };
 
+  // Retrieve sidebar toggle function
+  const { toggleSidebar } = useSidebar();
+
   return (
     <div className="stock-transfers-container">
-      <h2>Stock Transfers</h2>
+      {/* Header using the new HeaderTitle API */}
+      <header className="stock-transfers-header">
+        <HeaderTitle
+          breadcrumbItems={[{ label: "Stock Transfers" }]}
+          onToggleSidebar={toggleSidebar}
+          showBack={false}
+        />
+      </header>
 
+      {/* Existing content */}
       <div className="dropdown-section">
         <SearchableDropdown
           label="From Stakeholder"

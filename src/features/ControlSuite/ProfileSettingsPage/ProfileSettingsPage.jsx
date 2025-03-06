@@ -1,10 +1,13 @@
+"use client";
+
 import React, { useState } from "react";
+import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import "./ProfileSettingsPage.css";
-// Import the GeneralAccountPage component from its folder
 import GeneralAccountPage from "./GeneralAccountPage/GeneralAccountPage";
 
 const ProfileSettingsPage = () => {
-  // Set the default active tab to "generalAccount"
+  const { toggleSidebar } = useSidebar();
   const [activeTab, setActiveTab] = useState("generalAccount");
 
   // Render content based on the active tab
@@ -27,7 +30,11 @@ const ProfileSettingsPage = () => {
     <div className="profile-settings-page">
       {/* Header Section */}
       <div className="header-section">
-        <h1 className="page-title">Profile Settings</h1>
+        <HeaderTitle
+          breadcrumbItems={[{ label: "Profile Settings" }]}
+          onToggleSidebar={toggleSidebar}
+          showBack={false}
+        />
       </div>
 
       {/* Mini Navbar */}

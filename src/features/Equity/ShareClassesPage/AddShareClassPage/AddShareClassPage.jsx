@@ -3,11 +3,14 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import HeaderTitle from "../../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "./AddShareClassPage.module.css";
 
 const AddShareClassPage = () => {
   const router = useRouter();
-  const backPath = "/company/companyhome/shareclasses";
+  const { toggleSidebar } = useSidebar();
+  // backPath is no longer used since HeaderTitle now relies on the breadcrumb link property.
+  // const backPath = "/company/companyhome/shareclasses";
 
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const toggleAdvanced = () => setAdvancedOpen(!advancedOpen);
@@ -41,9 +44,12 @@ const AddShareClassPage = () => {
     <div className={styles.addShareClassPage}>
       <header className={styles.header}>
         <HeaderTitle
-          backLinkText="Share Classes"
-          titleSuffix="Add Class"
-          backPath={backPath}
+          // The "Share Classes" breadcrumb now includes a link property.
+          breadcrumbItems={[
+            { label: "Share Classes", link: "/company/companyhome/shareclasses" },
+            { label: "Add Class" },
+          ]}
+          onToggleSidebar={toggleSidebar}
           showBack={true}
         />
       </header>
@@ -146,7 +152,7 @@ const AddShareClassPage = () => {
             </div>
           </div>
 
-          {/* Advanced settings toggle moved to right */}
+          {/* Advanced settings toggle */}
           <div className={styles.advancedToggle} onClick={toggleAdvanced}>
             <span className={styles.advancedText}>
               {advancedOpen ? "Basic Settings" : "Advanced Settings"}

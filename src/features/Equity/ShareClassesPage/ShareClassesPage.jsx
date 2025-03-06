@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import ShareClassCard from "../../../components/ShareClassCard/ShareClassCard";
 import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
-import styles from "./ShareClassesPage.module.css"; // Import as a module
+import { useSidebar } from "@/contexts/SidebarContext";
+import styles from "./ShareClassesPage.module.css";
 
 const ShareClassesPage = () => {
   const router = useRouter();
+  const { toggleSidebar } = useSidebar();
 
   const initialShareClasses = [
     {
@@ -50,14 +52,17 @@ const ShareClassesPage = () => {
   };
 
   const handleAddCard = () => {
-    // Navigate to the AddShareClassPage using Next.js router
     router.push("/company/companyhome/shareclasses/addshareclass");
   };
 
   return (
     <div className={styles.shareClassesPage}>
       <header className={styles.shareClassesHeader}>
-        <HeaderTitle titleSuffix="Share Classes" showBack={false} />
+        <HeaderTitle
+          breadcrumbItems={[{ label: "Share Classes" }]}
+          onToggleSidebar={toggleSidebar}
+          showBack={false}
+        />
         <button className={styles.shareClassesButton} onClick={handleAddCard}>
           + Add Class
         </button>

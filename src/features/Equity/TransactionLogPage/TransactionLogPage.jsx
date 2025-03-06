@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Download, ChevronDown, ChevronUp } from "lucide-react";
 import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "./TransactionLogPage.module.css";
 
 // Custom dropdown component for Days Back
@@ -46,6 +47,8 @@ const CustomDropdown = ({ options, selected, onSelect }) => {
 };
 
 const TransactionLogPage = () => {
+  const { toggleSidebar } = useSidebar();
+
   // Sample transactions array
   const sampleTransactions = [
     { id: 1, date: "2025-01-15", type: "Credit", amount: "$1,200.00", status: "Completed" },
@@ -119,7 +122,11 @@ const TransactionLogPage = () => {
     <div className={styles.transactionLogPage}>
       <header className={styles.transactionLogHeader}>
         <div className={styles.titleContainer}>
-          <HeaderTitle titleSuffix="Transaction Log" showBack={false} />
+          <HeaderTitle
+            breadcrumbItems={[{ label: "Transaction Log" }]}
+            showBack={false}
+            onToggleSidebar={toggleSidebar}
+          />
         </div>
         <div className={styles.topRightControls}>
           <label htmlFor="daysSelect" className={styles.controlLabel}>

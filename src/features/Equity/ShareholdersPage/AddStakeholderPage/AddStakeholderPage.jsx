@@ -3,14 +3,14 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import HeaderTitle from "../../../../components/HeaderTitle/HeaderTitle";
+import { useSidebar } from "@/contexts/SidebarContext";
 import styles from "./AddStakeholderPage.module.css";
 
 const AddStakeholderPage = () => {
   const router = useRouter();
+  const { toggleSidebar } = useSidebar();
   const backPath = "/company/companyhome/shareholders";
 
-  // New form state for the required stakeholder info,
-  // including a field for a custom role when "Other" is selected.
   const [formData, setFormData] = useState({
     name: "",
     nickname: "",
@@ -45,9 +45,11 @@ const AddStakeholderPage = () => {
     <div className={styles.addStakeholderPage}>
       <header className={styles.header}>
         <HeaderTitle
-          backLinkText="Shareholders"
-          titleSuffix="Add Stakeholder"
-          backPath={backPath}
+          breadcrumbItems={[
+            { label: "Shareholders" },
+            { label: "Add Stakeholder" },
+          ]}
+          onToggleSidebar={toggleSidebar}
           showBack={true}
         />
       </header>
