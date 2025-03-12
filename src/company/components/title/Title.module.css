@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0rem;
+    background-color: white;
+    font-family: sans-serif;
+  }
+  
+  .toggleButton {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    margin-right: 0rem;
+    padding: 0.25rem 0.25rem;
+    color: #333;
+  }
+  
+  .toggleButton:hover {
+    background-color: #e6e6e6;
+  }
+  
+  .separator {
+    width: 1px;
+    height: 24px;
+    background-color: #ccc;
+    margin: 0 1rem;
+  }
+  
+  .breadcrumbNav {
+    display: flex;
+    align-items: center;
+    padding-left: 0rem;
+  }
+  
+  .breadcrumbItem {
+    margin: 0 0.125rem;
+    color: #555;
+  }
+  
+  .breadcrumbSeparator {
+    margin: 0 0.125rem;
+    color: #999;
+  }
+  
+  .collapseIcon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  
+  /* On small screens, hide the toggle button and separator */
+  @media (max-width: 1024px) {
+    .toggleButton {
+      display: none;
+    }
+    .separator {
+      display: none;
+    }
+  }
+  

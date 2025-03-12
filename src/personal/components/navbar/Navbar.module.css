@@ -1,0 +1,269 @@
+.personal-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--navbar-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0 1.5rem;
+    box-shadow: none;
+    border-bottom: 1px solid #eee;
+    z-index: 1500;
+  }
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 95px;
+    height: 55px;
+    margin-right: 25px;
+  }
+  
+  /* Navbar right container */
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    position: relative;
+  }
+  
+  /* Menu container (for desktop view) */
+  .menu-container {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    user-select: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    margin-right: -10px;
+  }
+  
+  .menu-container:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .menu-label {
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .menu-arrow {
+    transition: transform 0.2s ease;
+  }
+  
+  /* Rotate arrow when open */
+  .menu-container[aria-expanded="true"] .menu-arrow {
+    transform: rotate(180deg);
+  }
+  
+  /* Hamburger button (mobile view) */
+  .hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hamburger-btn svg {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Shared dropdown styling for profile and menu */
+  .profile-dropdown,
+  .menu-dropdown {
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1600;
+    min-width: 250px;
+    animation: slideDown 0.15s ease-out forwards;
+  }
+  
+  /* Dropdown item styling (centered text, increased height) */
+  .dropdown-item {
+    display: block;
+    padding: 12px 16px;
+    line-height: 1.5;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+  
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Submenu options styling: visually distinct */
+  .submenu-item {
+    display: block;
+    padding: 12px 16px;
+    line-height: 1.5;
+    color: #555;
+    background-color: #f9f9f9;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+  
+  .submenu-item:last-child {
+    border-bottom: none;
+  }
+  
+  .submenu-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Settings item: full-width button with centered "Settings" text and arrow immediately after it.
+     A pseudo-element on the left adds invisible space so that the text stays centered. */
+  .settings-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 16px;
+    line-height: 1.5;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+  
+  .settings-item::before {
+    content: "";
+    display: inline-block;
+    width: 20px; /* Adjust if needed to match arrow size plus margin */
+  }
+  
+  .settings-item .submenu-arrow {
+    margin-left: 4px;
+  }
+  
+  /* Explicit logout button styling: ensure text is centered */
+  button.submenu-item {
+    all: unset;
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    line-height: 1.5;
+    color: #555;
+    background-color: #f9f9f9;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+  
+  button.submenu-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Menu dropdown container spanning full width under the navbar */
+  .menu-dropdown {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  
+  /* Notification container */
+  .notification-container {
+    position: relative;
+    cursor: pointer;
+    margin-right: -5px;
+  }
+  
+  .notification-icon {
+    width: 28px;
+    height: 30px;
+  }
+  
+  /* Profile container */
+  .profile-container {
+    position: relative;
+    cursor: pointer;
+    margin-right: -5px;
+  }
+  
+  .profile-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+  
+  /* Profile dropdown positioning */
+  .profile-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+  }
+  
+  /* Toggle container and options */
+  .toggle-container {
+    display: flex;
+    width: 130px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 35px;
+    background-color: #fff;
+  }
+  
+  .toggle-option {
+    flex: 1;
+    padding: 6px 0;
+    text-align: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+  }
+  
+  .toggle-option:not(.active) {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .toggle-option.active {
+    background-color: #d3d3d3;
+    color: #333;
+  }
+  
+  .toggle-option:first-child {
+    border-right: 1px solid #ddd;
+  }
+  
+  /* Dropdown animation keyframes */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

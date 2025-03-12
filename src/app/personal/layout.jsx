@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import PersonalNavbar from "@/personalcomponents/PersonalNavbar/PersonalNavbar";
-import PersonalSidebar from "@/personalcomponents/PersonalSidebar/PersonalSidebar";
-import PersonalBreadcrumb from "@/personalcomponents/PersonalBreadcrumb/PersonalBreadcrumb";
-import { CompanyProvider } from "@/contexts/CompanyContext";
-import { PersonalProvider } from "@/contexts/PersonalContext";
+import Navbar from "@/personal/components/navbar/Navbar";
+import Sidebar from "@/personal/components/sidebar/Sidebar";
+import Breadcrumb from "@/personal/components/breadcrumb/Breadcrumb";
+import { PersonalProvider } from "@/personal/contexts/context";
+import { AuthProvider } from "@/personal/contexts/AuthContext";
 
 export default function DashboardLayout({ children }) {
   const breadcrumbItems = [
@@ -14,10 +14,10 @@ export default function DashboardLayout({ children }) {
   ];
 
   return (
-    <CompanyProvider>
+    <AuthProvider>
       <PersonalProvider>
-        <PersonalNavbar />
-        <PersonalBreadcrumb breadcrumbItems={breadcrumbItems} />
+        <Navbar />
+        <Breadcrumb breadcrumbItems={breadcrumbItems} />
         <div
           className="dashboard-layout"
           style={{
@@ -28,7 +28,7 @@ export default function DashboardLayout({ children }) {
           }}
         >
           <div style={{ borderRight: "1px solid #eee" }}>
-            <PersonalSidebar />
+            <Sidebar />
           </div>
           <div
             className="content-container"
@@ -42,6 +42,6 @@ export default function DashboardLayout({ children }) {
           </div>
         </div>
       </PersonalProvider>
-    </CompanyProvider>
+    </AuthProvider>
   );
 }

@@ -1,0 +1,8 @@
+.ccd-right-side {
+  width: 50%;
+  min-height: 100vh;
+  background-color: #B500FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

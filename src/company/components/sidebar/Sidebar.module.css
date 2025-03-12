@@ -1,0 +1,195 @@
+/* Main Sidebar container */
+.main-sidebar {
+    width: 16rem; /* Expanded width */
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 1rem;
+    font-size: 16px;
+    margin-top: 5px;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+  }
+  
+  /* Collapsed state: slide completely off the screen */
+  .main-sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+  
+  /* Navigation container */
+  .sidebar-nav {}
+  
+  /* Sidebar menu list */
+  .sidebar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Top-level menu item */
+  .sidebar-menu-item {
+    margin: 0;
+  }
+  
+  /* Top-level menu button styling */
+  .sidebar-menu-button {
+    display: flex;
+    align-items: center;
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    text-align: left;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 16px;
+    text-decoration: none;
+    position: relative;
+  }
+  
+  /* Hover state for top-level menu buttons: light gray background */
+  .sidebar-menu-button:hover {
+    background-color: #f0f0f0;
+    color: black;
+  }
+  
+  /* Active state for top-level menu buttons: translucent purple background + solid stripe */
+  .sidebar-menu-button.active {
+    background-color: rgba(181, 0, 255, 0.2);
+    color: #B500FF;
+  }
+  .sidebar-menu-button.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #B500FF;
+  }
+  
+  /* Icon styling */
+  .sidebar-icon {
+    margin-right: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .sidebar-icon.active {
+    color: #B500FF;
+  }
+  
+  /* Label styling */
+  .menu-label {
+    flex: 1;
+  }
+  
+  /* Dropdown arrow styling */
+  .dropdown-arrow {
+    transition: transform 0.2s ease;
+    transform: rotate(-90deg);
+  }
+  .dropdown-arrow.open {
+    transform: rotate(0deg);
+  }
+  
+  /* Sub-menu container */
+  .sidebar-menu-sub {
+    list-style: none;
+    margin: 0;
+    padding-left: 0.6rem;
+    position: relative;
+  }
+  .sidebar-menu-sub::before {
+    content: "";
+    position: absolute;
+    left: 0.6rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e5e7eb;
+  }
+  
+  /* Sub-menu item */
+  .sidebar-menu-sub-item {
+    margin: 0;
+  }
+  
+  /* Sub-menu button styling */
+  .sidebar-menu-sub-button {
+    display: block;
+    width: 120%;
+    margin: 0;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    position: relative;
+  }
+  
+  /* Hover state for sub-menu buttons: light gray background */
+  .sidebar-menu-sub-button:hover {
+    background-color: #f0f0f0;
+    color: black;
+  }
+  
+  /* Active state for sub-menu buttons: translucent purple background + solid stripe */
+  .sidebar-menu-sub-button.active {
+    background-color: rgba(181, 0, 255, 0.2);
+    color: #B500FF;
+  }
+  .sidebar-menu-sub-button.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #B500FF;
+  }
+  
+  /* Logout button styling */
+  .logout-button {
+    color: black;
+    position: relative;
+  }
+  .logout-button:hover {
+    background-color: #fdd;
+    color: red;
+  }
+  .sidebar-menu-sub-button.logout-button.active,
+  .sidebar-menu-sub-button.logout-button.active::before {
+    background: none;
+    content: none;
+    color: inherit;
+  }
+  
+  /* Ensure that the content inside the Dashboard menu item stays aligned */
+  .dashboard-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  @media (max-width: 1024px) {
+    .main-sidebar {
+      display: none;
+    }
+  }
+  
+  .mobile-dropdown {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1600;
+    padding: 1rem;
+  }
+  

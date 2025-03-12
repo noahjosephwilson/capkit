@@ -1,0 +1,9 @@
+.ccd-right-side {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vw; /* Right half of the viewport */
+  height: 100vh;
+  background-color: #B500FF;
+  z-index: 0; /* Changed from -1 to 0 */
+}

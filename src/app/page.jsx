@@ -1,6 +1,9 @@
-// src/app/page.jsx
+// src/app/home/page.jsx
 import { redirect } from 'next/navigation';
 
-export default function Page() {
-  redirect('/home'); // Redirects to /home which loads the HomePage from app/home/page.jsx
+export default function HomeRedirect() {
+  // This server component immediately redirects to /home/explorehome.
+  redirect('/landing/landingpages/main');
+  // Return null because the component won't render anything.
+  return null;
 }
