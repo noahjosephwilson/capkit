@@ -1,0 +1,405 @@
+.navbarRoot {
+  /* Define the navbar height variable locally */
+  --navbar-height: 80px; /* increased height */
+}
+
+.main-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0 2rem;
+  border-bottom: 1px solid #ccc;
+  z-index: 1500;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+/* Left Side */
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+  margin-right: 35px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Right Side */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* Company Dropdown */
+.company-dropdown-container {
+  position: relative;
+  cursor: pointer;
+  margin-left: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+/* When dropdown is active, remove the bottom curve to connect with dropdown options */
+.company-dropdown-container.open {
+  border-radius: 10px 10px 0 0;
+}
+
+/* Company Box */
+.company-box {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  height: 50px;
+  border-radius: 9px;
+  background-color: #eee; /* default light gray */
+  min-width: 260px;
+  font-size: 1.1rem;
+  user-select: none;
+  margin-left: 0;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect applied only when the company button itself is hovered */
+.company-box:hover {
+  background-color: #e0e0e0; /* slightly darker gray on hover */
+}
+
+/* New style for when dropdown is open */
+.company-box-open {
+  border-radius: 9px 9px 0 0;
+}
+
+.company-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.company-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.dropdown-arrow {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.company-dropdown {
+  position: absolute;
+  top: 100%;
+  left: -.5%; /* aligns with the left edge of the container (the button) */
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0 0 10px 10px;
+  z-index: 1600;
+  width: 101%;
+  animation: slideDown 0.15s ease-out forwards;
+}
+
+/* Invite Officers Button */
+.invite-btn {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  height: 45px;
+  cursor: pointer;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.invite-btn:hover {
+  background-color: #f2f2f2;
+}
+
+.invite-icon {
+  width: 20px;
+  height: 25px;
+  object-fit: contain;
+}
+
+/* Upgrade Button */
+.upgrade-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #B500FF;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 0 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  height: 45px;
+  transition: background-color 0.2s ease;
+}
+
+.upgrade-btn:hover {
+  background-color: #6A1B9A;
+}
+
+/* Toggle Container */
+.toggle-container {
+  display: flex;
+  width: 160px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 45px;
+  background-color: #fff;
+}
+
+.toggle-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-option:not(.active) {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Hover state for non-active toggle options */
+.toggle-option:not(.active):hover {
+  background-color: #f2f2f2;
+}
+
+.toggle-option.active {
+  background-color: #d3d3d3;
+  color: #333;
+}
+
+.toggle-option:first-child {
+  border-right: 1px solid #ddd;
+}
+
+/* Notification & Profile */
+.notification-container,
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: -5px;
+  position: relative; /* for dropdown positioning */
+}
+
+.mobile-profile-container {
+  position: relative;
+}
+
+.profile-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 15px);
+  right: 0; /* aligns the dropdown's right edge with the profile container */
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 1600;
+  min-width: 270px;
+  animation: slideDown 0.15s ease-out forwards;
+}
+
+/* Mobile Menu Dropdown */
+.menu-dropdown {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 1600;
+  min-width: 270px;
+  animation: slideDown 0.15s ease-out forwards;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Settings Item */
+.settings-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.settings-item::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+}
+
+.settings-text {
+  margin-right: 8px;
+}
+
+.submenu-arrow {
+  display: inline-flex;
+  margin-left: 8px;
+}
+
+/* Submenu Items */
+.submenu-item {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  color: #555;
+  background-color: #f9f9f9;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.submenu-item:last-child {
+  border-bottom: none;
+}
+
+.submenu-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Hamburger Button (Mobile) */
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-btn svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .desktop-nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  .logo {
+    margin-left: -16px;
+  }
+}
+
+/* Dropdown Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Increase gap between profile image and hamburger button */
+.mobile-right {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+.mobile-right .hamburger-btn {
+  transform: translateX(20px) !important;
+}
+
+/* Remove internal borders for company dropdown items */
+.company-dropdown .dropdown-item,
+.company-dropdown .settings-item,
+.company-dropdown .submenu-item {
+  border: none;
+}

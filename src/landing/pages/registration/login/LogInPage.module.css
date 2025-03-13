@@ -1,0 +1,243 @@
+/* Component-specific styles for LogInPage */
+
+/* Container for the full-page login; same as signup container styling */
+.login-page-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff;
+  padding: 50px 20px;
+  overflow-y: auto;
+}
+
+/* Back arrow positioned in the top left */
+.back-arrow {
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Login card styling – now matching the signup card */
+.login-card {
+  background: #fff;
+  padding: 50px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+/* Replace text title with capkit logo image styling */
+.signup-logo {
+  width: 260px;
+  height: 150px;
+  display: block;
+  margin: 0 auto 20px;
+  position: relative;
+  top: -20px; /* Moves the image 20px upward */
+  margin-bottom: -5px;
+}
+
+/* Subheader for welcome text */
+.welcome-text {
+  font-size: 1.25rem;
+  margin-top: 10px;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Error message styling */
+.error {
+  background: #fdecea;
+  color: #b71c1c;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Form styling with consistent spacing */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: left;
+  margin-top: 30px;
+}
+
+/* Common input group styling */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Input field styling */
+.input-field {
+  padding: 16px;
+  font-size: 1.125rem;
+  border: 2px solid #B500FF;
+  border-radius: 12px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #B500FF;
+  box-shadow: 0 0 8px rgba(181, 0, 255, 0.5);
+  outline: none;
+}
+
+/* Login button styling */
+.login-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: #B500FF;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #9C00E6;
+}
+
+/* Divider styling */
+.divider {
+  margin: 30px 0;
+  position: relative;
+  text-align: center;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: #ddd;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+/* Google sign-in button styling */
+.google-btn {
+  width: 100%;
+  padding: 16px;
+  background: #eee;
+  color: #333;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+}
+
+.google-btn:hover {
+  background: #f7f7f7;
+}
+
+.google-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+/* Inline Forgot Password styles */
+.forgot-password-inline {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  padding-right: 5px;
+}
+
+.forgot-password-link {
+  background: none;
+  border: none;
+  color: #B500FF;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* Reset form styling */
+.reset-form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.reset-message {
+  font-size: 0.9rem;
+  color: #b71c1c;
+  margin-top: 10px;
+}
+
+/* Create Account styles */
+.create-account-container {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.create-account-link {
+  color: #B500FF;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Container for the password input and toggle icon */
+.password-field-container {
+  position: relative;
+}
+
+/* Position the toggle button (eye icon) inside the password container */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.input-field[type="password"] {
+  padding-right: 40px !important;
+}

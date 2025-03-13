@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 0;
+  background-color: white;
+  font-family: sans-serif;
+  transform: translateY(0px); /* Visually shifts breadcrumb down without affecting document flow */
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  padding: 0rem;
+  color: #333;
+}
+
+.toggleButton:hover {
+  background-color: #e6e6e6;
+}
+
+.separator {
+  width: 1px;
+  height: 24px;
+  background-color: #ccc;
+  margin: 0 1rem;
+}
+
+.breadcrumbNav {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+}
+
+.breadcrumbItem {
+  margin: 0 0.125rem;
+  color: #555;
+}
+
+.breadcrumbSeparator {
+  margin: 0 0.125rem;
+  color: #999;
+}
+
+.collapseIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Responsive styles for screens 1024px or smaller */
+@media (max-width: 1024px) {
+  .toggleButton,
+  .separator {
+    display: none;
+  }
+  
+  .container {
+    padding: 1.4rem 0;
+    transform: translateY(20px); /* Apply the same offset for mobile */
+  }
+}

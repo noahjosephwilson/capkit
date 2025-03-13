@@ -1,0 +1,148 @@
+.addShareClassPage {
+    background-color: #fff;
+    padding: 2rem;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: #111;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .formContainer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+  
+  .fieldGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fieldGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  /* Reusable class for labels on radio groups */
+  .fieldLabel {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Input fields and text areas */
+  .inputField,
+  .textArea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  .inputField:focus,
+  .textArea:focus {
+    border-color: #B500FF;
+    outline: none;
+  }
+  
+  .textArea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  /* Container for Voting Rights and Dividend Rights radio groups */
+  .radioGroupContainer {
+    display: flex;
+    justify-content: center;
+    gap: 4rem; /* Increased gap for more separation */
+  }
+  
+  .radioItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Radio Group styling */
+  .radioGroup {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    align-items: center;
+  }
+  
+  /* Custom styled radio buttons without inner white dot */
+  .radioButton {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+  
+  /* When selected, fill with primary color without inner dot */
+  .radioButton:checked {
+    border-color: #B500FF;
+    background-color: #B500FF;
+  }
+  
+  /* Advanced toggle link moved to the right */
+  .advancedToggle {
+    cursor: pointer;
+    font-weight: 600;
+    color: #B500FF;
+    text-align: right;
+    font-size: 1.1rem;
+  }
+  
+  /* Advanced section grid layout */
+  .advancedSection {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+  }
+  
+  .advancedSection .fieldGroup {
+    margin-bottom: 0;
+  }
+  
+  /* Full-width submit button */
+  .submitButton {
+    background-color: #B500FF;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .submitButton:hover {
+    background-color: #a300d6;
+  }
+  
