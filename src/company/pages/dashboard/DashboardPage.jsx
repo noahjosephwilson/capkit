@@ -21,7 +21,6 @@ const DashboardPage = () => {
 
       {/* Page content */}
       <header className={styles.header}>
-        <h1>Dashboard</h1>
         <p>
           Welcome to the dashboard. This page is fully self-contained and uses a custom layout.
         </p>

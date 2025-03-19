@@ -4,16 +4,17 @@
   padding: 1.2rem 0;
   background-color: white;
   font-family: sans-serif;
-  transform: translateY(0px); /* Visually shifts breadcrumb down without affecting document flow */
+  transform: translateY(0);
 }
 
+/* Desktop styles */
 .toggleButton {
   background: none;
   border: none;
   font-size: 1.25rem;
   cursor: pointer;
   margin-right: 0.5rem;
-  padding: 0rem;
+  padding: 0;
   color: #333;
 }
 
@@ -31,7 +32,7 @@
 .breadcrumbNav {
   display: flex;
   align-items: center;
-  padding-left: 0;
+  margin-left: 0;
 }
 
 .breadcrumbItem {
@@ -50,15 +51,23 @@
   object-fit: contain;
 }
 
-/* Responsive styles for screens 1024px or smaller */
+/* Mobile styles for screens 1024px or smaller */
 @media (max-width: 1024px) {
+  /* Hide the collapse button and separator */
   .toggleButton,
   .separator {
     display: none;
   }
   
+  /* Ensure the container layout remains the same vertically */
   .container {
-    padding: 1.4rem 0;
-    transform: translateY(20px); /* Apply the same offset for mobile */
+    justify-content: flex-start;
+    padding: 1.2rem 0; /* Same as desktop */
+    transform: translateY(0);
+  }
+
+  /* Optionally, if you need to shift the breadcrumb horizontally, you can adjust margin */
+  .breadcrumbNav {
+    margin-left: 0;
   }
 }

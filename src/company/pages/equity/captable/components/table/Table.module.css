@@ -1,0 +1,175 @@
+.container {
+    width: 100%;
+    padding: 20px 0;
+    box-sizing: border-box;
+  }
+  
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    gap: 20px; /* maintains gap between search and buttons */
+  }
+  
+  .searchContainer {
+    display: flex;
+    align-items: center;
+    background-color: #fff;           /* white background */
+    padding: 10px 16px;
+    border: 1px solid #e0e0e0;        /* subtle gray border matching the table */
+    border-radius: 20px;              /* rounded corners matching the table */
+  }
+  
+  .searchIcon {
+    color: #666;
+    margin-right: 6px;              /* spacing between the icon and the input */
+  }
+  
+  .searchInput {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    width: 220px;
+  }  
+  
+  .searchInput::placeholder {
+    color: #999;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .button {
+    padding: 12px 18px;
+    background-color: #B500FF;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .button:hover {
+    background-color: #a200e0;
+    transform: scale(1.02);
+  }
+  
+  .tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0; /* border around the table */
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 800px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .table th,
+  .table td {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 16px;
+    /* Removed vertical borders */
+  }
+  
+  .table th {
+    background-color: #f7f7f7;
+  }
+  
+  .table td {
+    background-color: #fff;
+  }
+  
+  /* Remove bottom border from last row for a cleaner rounded look */
+  .table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .clickableRow {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .clickableRow:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Styles for profile image and name cell */
+  .nameCell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .profileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Existing CSS remains unchanged above this section */
+
+/* Info Icon styling for header tooltips */
+.infoIcon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 10px;
+    color: #555;
+    cursor: default;
+    transition: background 0.3s;
+    margin-left: 4px;
+    flex-shrink: 0;
+  }
+  
+  .infoIcon:hover {
+    background: #f0f0f0;
+  }
+  
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  
+  .infoIcon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Other existing CSS for table, toolbar, etc. */
+  

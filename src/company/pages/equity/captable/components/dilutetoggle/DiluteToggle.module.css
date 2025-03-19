@@ -1,0 +1,49 @@
+.toggleWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .leftChoice,
+  .rightChoice {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .toggleContainer {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  
+  /* When active (Fully Diluted), change the container background to purple */
+  .active {
+    background-color: #B500FF;
+  }
+  
+  .slider {
+    position: absolute;
+    top: 2px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transition: left 0.3s;
+  }
+  
+  /* For undiluted state: slider on left */
+  .undiluted {
+    left: 2px;
+  }
+  
+  /* For diluted state: slider on right */
+  .fullyDiluted {
+    left: 32px; /* 60px container width - 2px margin - 26px slider width = 32px */
+  }
+  

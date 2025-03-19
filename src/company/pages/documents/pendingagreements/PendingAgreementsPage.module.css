@@ -1,0 +1,37 @@
+.pendingAgreements {
+    background-color: #fff;
+    padding: 1.25rem 2rem 2rem 2rem; /* top, right, bottom, left */
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: #333;
+    box-sizing: border-box;
+  }
+  
+  /* Header styling */
+  .header {
+    margin-bottom: 2rem;
+  }
+  
+  /* Main content area */
+  .main {
+    margin-bottom: 2rem;
+  }
+  
+  /* Footer styling */
+  .footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #777;
+  }
+  
+  /* Pending list section styling */
+  .pendingList {
+    margin-bottom: 1.5rem;
+  }
+  
+  .pendingList h2 {
+    font-size: 1.2rem;
+    color: #B500FF;
+    margin-bottom: 0.75rem;
+  }
+  

@@ -1,0 +1,121 @@
+.statsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* force all cards into one row */
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  
+  /* Each card takes equal space */
+  .statCard {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1;  /* force equal widths */
+    min-width: 0; /* allow shrinking */
+    transition: transform 0.2s ease;
+  }
+  
+  /* Layout of content inside each card */
+  .statContent {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Prevent icons from shrinking and force a fixed size */
+  .icon {
+    font-size: 32px;
+    color: #B500FF; /* purple color for icons */
+    margin-right: 16px;
+    flex-shrink: 0; /* ensure fixed size */
+    min-width: 32px; /* fixed width */
+    min-height: 32px; /* fixed height */
+  }
+  
+  .details {
+    text-align: left;
+    flex: 1;
+  }
+  
+  .value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 4px;
+  }
+  
+  /* Updated label to allow wrapping if needed */
+  .label {
+    font-size: 14px;
+    color: #555;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap; /* allow wrapping on narrow screens */
+    word-break: break-word; /* break long words if necessary */
+  }
+  
+  /* Info Icon with fixed dimensions and no flex shrinking */
+  .infoIcon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 10px;
+    color: #555;
+    cursor: default;
+    transition: background 0.3s;
+    flex-shrink: 0; /* keep fixed */
+  }
+  
+  .infoIcon:hover {
+    background: #f0f0f0;
+  }
+  
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  
+  .infoIcon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Responsive: on narrow screens, stack all cards vertically */
+  @media (max-width: 768px) {
+    .statsContainer {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+  
+  /* Optional: Info Symbol styling example, in case you need another fixed element */
+  .infoSymbol {
+    width: 32px;      /* fixed width */
+    height: 32px;     /* fixed height */
+    border-radius: 50%;  /* forces a circle */
+    object-fit: contain; /* prevents stretching */
+    flex-shrink: 0;   /* do not allow shrinking */
+  }

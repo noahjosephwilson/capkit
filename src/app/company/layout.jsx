@@ -1,11 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Navbar from "@/company/components/navbar/Navbar";
 import Sidebar from "@/company/components/sidebar/Sidebar";
 import Breadcrumb from "@/company/components/breadcrumb/Breadcrumb";
 import { ContextProvider, useContextValue } from "@/company/contexts/context";
 import { AuthProvider } from "@/company/contexts/authcontext";
+import Footer from "@/company/components/footer/Footer"; // adjust path if needed
 
 export default function Layout({ children }) {
   const breadcrumbItems = [
@@ -13,9 +15,15 @@ export default function Layout({ children }) {
     { name: "Page", link: "/dashboard/page" },
   ];
 
-  // Access collapse state from context.
-  // Since Layout is inside ContextProvider, we need to extract it using a child component.
-  // One pattern is to wrap the main content in a child component that calls useContextValue.
+  // Disable global scrolling so that only the content container scrolls.
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
   return (
     <AuthProvider>
       <ContextProvider>
@@ -29,13 +37,25 @@ export default function Layout({ children }) {
 
 function MainLayout({ children }) {
   const { isCollapsed } = useContextValue();
+  const contentRef = useRef(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // Ensure both the content container and window scroll to the top on navigation.
+    requestAnimationFrame(() => {
+      if (contentRef.current) {
+        contentRef.current.scrollTo(0, 0);
+      }
+      window.scrollTo(0, 0);
+    });
+  }, [pathname]);
 
   return (
     <div
       className="dashboard-layout"
       style={{
         display: "flex",
-        height: "calc(100vh - 60px)",
+        height: "calc(100vh - 60px)", // maintain sidebar height consistency
         backgroundColor: "#fff",
         boxShadow: "0px 2px 6px rgba(0,0,0,0.1)",
       }}
@@ -46,15 +66,19 @@ function MainLayout({ children }) {
         </div>
       )}
       <div
+        ref={contentRef}
         className="content-container"
         style={{
           flex: 1,
           overflowY: "auto",
+          overscrollBehavior: "none",
           backgroundColor: "#fff",
           width: isCollapsed ? "100%" : "auto",
+          padding: "20px",
         }}
       >
         {children}
+        <Footer />
       </div>
     </div>
   );

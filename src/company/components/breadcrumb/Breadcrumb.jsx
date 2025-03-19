@@ -11,11 +11,11 @@ function Breadcrumb({ breadcrumbItems = [], titleSuffix = "", showBack = false }
 
   return (
     <header className={styles.container}>
-      {/* Toggle Button */}
+      {/* Toggle Button (hidden in mobile via CSS) */}
       <button className={styles.toggleButton} onClick={toggleCollapse}>
         <Sidebar size={24} className={styles.collapseIcon} />
       </button>
-      {/* Vertical Separator */}
+      {/* Vertical Separator (hidden in mobile via CSS) */}
       <div className={styles.separator} />
       {/* Breadcrumb Navigation */}
       <nav aria-label="breadcrumb" className={styles.breadcrumbNav}>

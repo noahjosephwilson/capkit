@@ -1,67 +1,77 @@
-.shareClassesPage {
-    background-color: #fff;
-    padding: 2rem;
-    min-height: 100vh;
-    font-family: "Inter", sans-serif;
-    color: #111;
+.shareClasses {
+  background-color: #fff;
+  padding: 1.25rem 2rem 2rem 2rem; /* top, right, bottom, left */
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #333;
+  box-sizing: border-box;
+}
+
+/* Breadcrumb is rendered above, no specific styling here unless needed */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.addClassButton {
+  padding: 12px 18px;
+  background-color: #B500FF;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.addClassButton:hover {
+  background-color: #a200e0;
+  transform: scale(1.02);
+}
+
+/* Main content area */
+.main {
+  margin-bottom: 2rem;
+}
+
+/* Footer styling */
+.footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* Section styling for different parts of the page */
+.currentClasses,
+.historicalData {
+  margin-bottom: 1.5rem;
+}
+
+.currentClasses h2,
+.historicalData h2 {
+  font-size: 1.2rem;
+  color: #B500FF;
+  margin-bottom: 0.75rem;
+}
+
+/* Share class grid styling */
+.shareClassList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 960px) {
+  .shareClassList {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
-  
-  .shareClassesHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0rem;
+}
+
+@media (max-width: 600px) {
+  .shareClassList {
+    grid-template-columns: 1fr;
   }
-  
-  .breadcrumb {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0;
-  }
-  
-  .shareClassesButton {
-    background-color: #B500FF;
-    border: 2px solid #B500FF;
-    color: #fff;
-    padding: 0.5rem 0.75rem;
-    border-radius: 3rem;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    box-sizing: border-box;
-  }
-  
-  .shareClassesButton:hover {
-    background-color: #6A1B9A;
-    border-color: #6A1B9A;
-  }
-  
-  .shareclassList {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 0.25rem;
-  }
-  
-  .tabContent {
-    margin-top: 2rem;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 960px) {
-    .shareclassList {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-  }
-  
-  @media (max-width: 600px) {
-    .shareclassList {
-      grid-template-columns: 1fr;
-    }
-    .breadcrumb {
-      font-size: 2rem;
-    }
-  }
-  
+}

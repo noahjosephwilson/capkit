@@ -1,0 +1,78 @@
+.statsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* force all cards into one row */
+    justify-content: space-between;
+    gap: 24px;
+    margin: 30px 0;
+  }
+  
+  /* Each card takes equal space and spreads across the page */
+  .statCard {
+    background: white;
+    border: 1px solid #dfe3e8;
+    border-radius: 16px;
+    padding: 24px 20px;
+    flex: 1;  /* force equal widths */
+    min-width: 0; /* allow shrinking */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  
+  .statTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .statValue {
+    font-size: 2.75rem; /* Increased font size for larger numbers */
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: 0.5px;
+  }
+  
+  .changeIndicator {
+    font-size: 1.2rem; /* Increased the size for better visibility */
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 20px;
+    text-align: center;
+    min-width: 70px;
+  }
+  
+  /* Positive change styles */
+  .positive {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+  }
+  
+  /* Negative change styles */
+  .negative {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+  }
+  
+  /* Neutral (unchanged) styles */
+  .neutral {
+    background-color: #eceff1;
+    color: #607d8b;
+    border: 1px solid #cfd8dc;
+  }
+  
+  /* Responsive: when the page width is narrow, stack cards vertically */
+  @media (max-width: 768px) {
+    .statsContainer {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+  

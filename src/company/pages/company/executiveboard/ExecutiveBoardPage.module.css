@@ -1,0 +1,39 @@
+.executiveBoard {
+    background-color: #fff;
+    padding: 1.25rem 2rem 2rem 2rem; /* top, right, bottom, left */
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: #333;
+    box-sizing: border-box;
+  }
+  
+  /* Header styling */
+  .header {
+    margin-bottom: 2rem;
+  }
+  
+  /* Main content area */
+  .main {
+    margin-bottom: 2rem;
+  }
+  
+  /* Footer styling */
+  .footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #777;
+  }
+  
+  /* Section styling for different parts of the page */
+  .boardMembers,
+  .historySection {
+    margin-bottom: 1.5rem;
+  }
+  
+  .boardMembers h2,
+  .historySection h2 {
+    font-size: 1.2rem;
+    color: #B500FF;
+    margin-bottom: 0.75rem;
+  }
+  

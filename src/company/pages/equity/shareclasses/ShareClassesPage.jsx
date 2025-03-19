@@ -1,15 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import ShareClassCard from "../../../components/ShareClassCard/ShareClassCard";
-import HeaderTitle from "../../../components/HeaderTitle/HeaderTitle";
-import { useSidebar } from "@/contexts/SidebarContext";
+import Breadcrumb from "@/company/components/breadcrumb/Breadcrumb";
+import ShareClassCard from "@/company/pages/equity/shareclasses/components/shareclasscard/ShareClassCard";
 import styles from "./ShareClassesPage.module.css";
 
 const ShareClassesPage = () => {
-  const router = useRouter();
-  const { toggleSidebar } = useSidebar();
+  // Define the breadcrumb items for this page.
+  const breadcrumbItems = [{ name: "Share Classes" }];
 
   const initialShareClasses = [
     {
@@ -46,40 +44,30 @@ const ShareClassesPage = () => {
 
   const [shareClasses, setShareClasses] = useState(initialShareClasses);
 
-  const handleDeleteCard = (id) => {
-    const updatedClasses = shareClasses.filter((share) => share.id !== id);
-    setShareClasses(updatedClasses);
-  };
-
-  const handleAddCard = () => {
-    router.push("/company/companyhome/shareclasses/addshareclass");
-  };
-
   return (
-    <div className={styles.shareClassesPage}>
-      <header className={styles.shareClassesHeader}>
-        <HeaderTitle
-          breadcrumbItems={[{ label: "Share Classes" }]}
-          onToggleSidebar={toggleSidebar}
-          showBack={false}
+    <div className={styles.shareClasses}>
+      <div className={styles.header}>
+        <Breadcrumb
+          breadcrumbItems={breadcrumbItems}
+          titleSuffix=""
+          showBack={true}
         />
-        <button className={styles.shareClassesButton} onClick={handleAddCard}>
-          + Add Class
-        </button>
-      </header>
-      <div className={styles.tabContent}>
-        <div className={styles.shareclassList}>
-          {shareClasses.map((share) => (
-            <ShareClassCard
-              key={share.id}
-              label={share.label}
-              description={share.description}
-              cardDescription={share.cardDescription}
-              onDelete={() => handleDeleteCard(share.id)}
-            />
-          ))}
-        </div>
+        <button className={styles.addClassButton}>+ Add Class</button>
       </div>
+      <main className={styles.main}>
+        <section className={styles.currentClasses}>
+          <div className={styles.shareClassList}>
+            {shareClasses.map((share) => (
+              <ShareClassCard
+                key={share.id}
+                label={share.label}
+                description={share.description}
+                cardDescription={share.cardDescription}
+              />
+            ))}
+          </div>
+        </section>
+      </main>
     </div>
   );
 };

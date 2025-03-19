@@ -1,12 +1,14 @@
 .main-sidebar {
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
   width: 19rem; /* increased from 16rem */
   background-color: #ffffff;
   border-right: 1px solid #e5e7eb;
   height: 100vh;
   overflow-y: auto;
-  padding: 1.3rem 1.5rem 1.5rem 1.5rem; /* removed top padding */
-  font-size: 18px; /* increased font size */
-  margin-top: 5px; /* ensure no margin at the top */
+  padding: 1.3rem 1.5rem 5rem 1.5rem;
+  font-size: 18px;
+  /* Removed margin-top so the height remains a full 100vh */
   transition: transform 0.3s ease;
   transform: translateX(0);
 }
@@ -29,9 +31,6 @@
   margin: 0;
 }
 
-/* Main menu button styles:
-   - Reduced vertical padding to 12px
-   - Full-width highlight that spans from the sidebar edge */
 .sidebar-menu-button {
   display: flex;
   align-items: center;
@@ -92,7 +91,6 @@
   transform: rotate(0deg);
 }
 
-/* Sidebar submenu container with vertical divider */
 .sidebar-menu-sub {
   list-style: none;
   margin: 0;
@@ -114,15 +112,10 @@
   margin: 0;
 }
 
-/* Submenu button styles:
-   - Adjusted left padding to shift subtext a bit left (reduced from 3rem to 2.5rem)
-   - Reduced vertical padding to 12px.
-   - Hover and active states use a pseudo-element (::after) that extends from the vertical divider to the right edge.
-*/
 .sidebar-menu-sub-button {
   display: block;
   width: 100%;
-  padding: 12px 2rem 12px 1.8rem; /* left padding reduced from 3rem to 2.5rem */
+  padding: 12px 2rem 12px 1.8rem;
   text-decoration: none;
   color: black;
   font-size: 18px;
@@ -130,19 +123,17 @@
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Hover state for submenu button uses ::after for full-width effect */
 .sidebar-menu-sub-button:hover::after {
   content: "";
   position: absolute;
-  left: calc(0.75rem - 0.6rem); /* start exactly at the vertical divider's position */
+  left: calc(0.75rem - 0.6rem);
   top: 0;
   bottom: 0;
-  right: -1.5rem; /* extend to the right edge of the sidebar */
+  right: -1.5rem;
   background-color: #f0f0f0;
   z-index: -1;
 }
 
-/* Active state for submenu button uses ::after to highlight full width */
 .sidebar-menu-sub-button.activeSub {
   color: #B500FF;
 }
@@ -150,10 +141,10 @@
 .sidebar-menu-sub-button.activeSub::after {
   content: "";
   position: absolute;
-  left: calc(0.75rem - 0.6rem); /* start exactly at the vertical divider's position */
+  left: calc(0.75rem - 0.6rem);
   top: 0;
   bottom: 0;
-  right: -1.5rem; /* extends to the right edge of the sidebar */
+  right: -1.5rem;
   background-color: rgba(181, 0, 255, 0.2);
   z-index: -1;
 }
@@ -168,9 +159,9 @@
   color: red;
 }
 
-.sidebar-menu-sub-button.logout-button.active,
-.sidebar-menu-sub-button.logout-button.active::before {
-  background: none;
-  content: none;
-  color: inherit;
+/* Optional: Hide sidebar on mobile view */
+@media (max-width: 1024px) {
+  .main-sidebar {
+    display: none;
+  }
 }

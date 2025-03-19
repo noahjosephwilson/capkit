@@ -1,0 +1,54 @@
+.container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Updated actionsButton styling with a black border */
+  .actionsButton {
+    padding: 12px 18px;
+    background-color: #fff;
+    color: black;
+    border: 1px solid #ccc; /* Black border added */
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .actionsButton:hover {
+    background-color: #eee;
+    transform: scale(1.02);
+  }
+  
+  .arrow {
+    margin-left: 8px;
+    font-size: 12px;
+  }
+  
+  /* The dropdown menu container positioned relative to the button */
+  .menu {
+    position: absolute;
+    top: calc(100% + 4px); /* 4px below the button */
+    left: -25px;
+    min-width: 180px;
+    background-color: #fff;
+    border: 1px solid #ccc; /* Black border on the submenu */
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0px 0;
+    z-index: 999;
+  }
+  
+  /* Individual menu items */
+  .menuItem {
+    padding: 12px 16px;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .menuItem:hover {
+    background-color: #f2f2f2;
+  }
+  

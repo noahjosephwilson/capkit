@@ -2,7 +2,7 @@
 "use client";
 
 import React from 'react';
-import HomeNavbar from '../../../company/landing/components/navbar/Navbar'; // Adjust path if necessary
+import HomeNavbar from '@/landing/components/navbar/Navbar'; // Adjust path if necessary
 
 export default function ExploreHomeLayout({ children }) {
   return (

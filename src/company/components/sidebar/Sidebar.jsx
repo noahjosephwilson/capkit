@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -10,13 +8,11 @@ import {
   Award,
   FileText,
   Briefcase,
-  Settings,
 } from "lucide-react";
 import { useAuth } from "@/company/contexts/authcontext";
 import { useContextValue } from "@/company/contexts/context";
 import styles from "./Sidebar.module.css";
 
-// Custom NavLink component that mimics active behavior.
 const NavLink = ({ to, end, onClick, children, className }) => {
   const pathname = usePathname();
   const isActive = end ? pathname === to : pathname.startsWith(to);
@@ -24,7 +20,7 @@ const NavLink = ({ to, end, onClick, children, className }) => {
     typeof className === "function" ? className({ isActive }) : className;
 
   return (
-    <Link href={to} onClick={onClick}>
+    <Link href={to} scroll={true} onClick={onClick}>
       {React.cloneElement(React.Children.only(children), {
         className: computedClassName,
       })}
@@ -64,10 +60,7 @@ const SidebarMenuItem = ({
             {item.items.map((subItem) => {
               if (subItem.label === "Log Out") {
                 return (
-                  <li
-                    key={subItem.label}
-                    className={styles["sidebar-menu-sub-item"]}
-                  >
+                  <li key={subItem.label} className={styles["sidebar-menu-sub-item"]}>
                     <NavLink
                       to="#"
                       onClick={(e) => {
@@ -87,10 +80,7 @@ const SidebarMenuItem = ({
               }
               const useExact = subItem.label !== "Share Classes";
               return (
-                <li
-                  key={subItem.label}
-                  className={styles["sidebar-menu-sub-item"]}
-                >
+                <li key={subItem.label} className={styles["sidebar-menu-sub-item"]}>
                   <NavLink
                     to={subItem.link}
                     end={useExact}
@@ -118,9 +108,7 @@ const SidebarMenuItem = ({
           end={item.label === "Dashboard"}
           onClick={() => setActiveCategory(item.label)}
           className={({ isActive }) =>
-            `${styles["sidebar-menu-button"]} ${
-              isActive ? styles.active : ""
-            }`
+            `${styles["sidebar-menu-button"]} ${isActive ? styles.active : ""}`
           }
         >
           <span className={styles["dashboard-content"]}>
@@ -141,61 +129,73 @@ const menuItems = [
   {
     label: "Dashboard",
     icon: Home,
-    link: "/company/companyhome",
+    link: "/company/dashboard",
   },
   {
     label: "Equity",
     icon: DollarSign,
     items: [
-      { label: "Cap Table", link: "/company/companyhome/captable" },
-      { label: "Shareholders", link: "/company/companyhome/shareholders" },
-      { label: "Share Transactions", link: "/company/companyhome/shareholders" },
-      { label: "Exercise Requests", link: "/company/companyhome/shareholders" },
-      { label: "Investor Releases", link: "/company/companyhome/shareholders" },
-      { label: "Share Classes", link: "/company/companyhome/shareclasses" },
+      { label: "Cap Table", link: "/company/equity/captable" },
+      { label: "Shareholders", link: "/company/equity/shareholders" },
+      { label: "Share Transactions", link:  "/company/equity/sharetransactions" },
+      { label: "Exercise Requests", link: "/company/equity/exerciserequests" },
+      { label: "Share Classes", link: "/company/equity/shareclasses" },
+      { label: "Transaction Log", link: "/company/equity/shareclasses" },
     ],
   },
   {
     label: "Instruments",
     icon: Award,
     items: [
-      { label: "Stock Options", link: "/company/companyhome/exerciserequests" },
-      { label: "Restricted Stock", link: "/company/companyhome/employeereleases" },
-      { label: "Performance Stock", link: "/company/companyhome/employeereleases" },
-      { label: "SAFEs", link: "/company/companyhome/incentiveprograms" },
-      { label: "Convertible Notes", link: "/company/companyhome/incentiveprograms" },
-      { label: "Warrants", link: "/company/companyhome/incentiveprograms" },
+      { label: "Stock Options", link: "/company/instruments/stockoptions" },
+      { label: "Restricted Stock", link: "/company/instruments/restrictedstock" },
+      { label: "Performance Stock", link: "/company/instruments/performancestock" },
+      { label: "SAFE", link: "/company/instruments/SAFE" },
+      { label: "Convertible Notes", link: "/company/instruments/convertiblenotes" },
+      { label: "Warrants", link: "/company/instruments/warrants" },
     ],
   },
   {
     label: "Company",
     icon: Briefcase,
     items: [
-      { label: "Manage Officers", link: "/company/companyhome/voting" },
-      { label: "Company Profile", link: "/company/companyhome/voting" },
-      { label: "Executive Board", link: "/company/companyhome/voting" },
-      { label: "Transaction Log", link: "/company/companyhome/voting" },
-      { label: "Communication", link: "/company/companyhome/voting" },
-      { label: "Voting", link: "/company/companyhome/voting" },
-      
+      { label: "Manage Officers", link: "/company/company/manageofficers" },
+      { label: "Company Profile", link: "/company/company/companyprofile" },
+      { label: "Executive Board", link: "/company/company/executiveboard" },
+      { label: "Communication", link: "/company/company/communication" },
+      { label: "Voting", link: "/company/company/voting" },
     ],
   },
   {
     label: "Documents",
     icon: FileText,
     items: [
-      { label: "View Documents", link: "/company/companyhome/viewdocuments" },
-      { label: "Create Documents", link: "/company/companyhome/createdocument" },
-      { label: "Pending Agreements", link: "/company/companyhome/pendingagreements" },
+      { label: "View Documents", link: "/company/documents/viewdocuments" },
+      { label: "Create Documents", link: "/company/documents/createdocuments" },
+      { label: "Pending Agreements", link: "/company/documents/pendingagreements" },
     ],
   },
 ];
 
 const Sidebar = () => {
-  const { isCollapsed } = useContextValue(); // Access collapse state from context
-  const [openMenus, setOpenMenus] = React.useState({});
-  const [activeCategory, setActiveCategory] = React.useState("");
+  const { isCollapsed } = useContextValue();
+  const [openMenus, setOpenMenus] = useState({});
+  const [activeCategory, setActiveCategory] = useState("");
   const { logout } = useAuth();
+
+  // Check for mobile view (<1024px)
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobileView = () => setIsMobile(window.innerWidth < 1024);
+    checkMobileView();
+    window.addEventListener("resize", checkMobileView);
+    return () => window.removeEventListener("resize", checkMobileView);
+  }, []);
+
+  // Do not render the sidebar on mobile view
+  if (isMobile) {
+    return null;
+  }
 
   const toggleMenu = (label) => {
     setOpenMenus((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -211,27 +211,26 @@ const Sidebar = () => {
   };
 
   return (
-    <aside
-      className={`${styles["main-sidebar"]} ${
-        isCollapsed ? styles.collapsed : ""
-      }`}
-    >
-      <nav className={styles["sidebar-nav"]}>
-        <ul className={styles["sidebar-menu"]}>
-          {menuItems.map((item) => (
-            <SidebarMenuItem
-              key={item.label}
-              item={item}
-              isOpen={item.items ? openMenus[item.label] : false}
-              onToggle={toggleMenu}
-              activeCategory={activeCategory}
-              setActiveCategory={setActiveCategory}
-              handleLogout={handleLogout}
-            />
-          ))}
-        </ul>
-      </nav>
-    </aside>
+    // The wrapper div applies a gap so the aside itself can use a full 100vh for scrolling.
+    <div style={{ marginTop: "5px" }}>
+      <aside className={`${styles["main-sidebar"]} ${isCollapsed ? styles.collapsed : ""}`}>
+        <nav className={styles["sidebar-nav"]}>
+          <ul className={styles["sidebar-menu"]}>
+            {menuItems.map((item) => (
+              <SidebarMenuItem
+                key={item.label}
+                item={item}
+                isOpen={item.items ? openMenus[item.label] : false}
+                onToggle={toggleMenu}
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+                handleLogout={handleLogout}
+              />
+            ))}
+          </ul>
+        </nav>
+      </aside>
+    </div>
   );
 };
 

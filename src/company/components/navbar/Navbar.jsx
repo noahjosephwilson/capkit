@@ -23,7 +23,7 @@ const Navbar = () => {
   const [isMobileView, setIsMobileView] = useState(false);
   const [userProfileImage, setUserProfileImage] = useState(null);
 
-  // Separate refs for desktop and mobile profile button and dropdown
+  // Refs for profile buttons/dropdowns
   const profileButtonDesktopRef = useRef(null);
   const profileDropdownDesktopRef = useRef(null);
   const profileButtonMobileRef = useRef(null);
@@ -64,7 +64,7 @@ const Navbar = () => {
     }
   }, [currentUser]);
 
-  // Close profile dropdown if clicking outside (handles both desktop and mobile)
+  // Close profile dropdown if clicking outside
   useEffect(() => {
     const handleClickOutsideProfile = (event) => {
       if (
