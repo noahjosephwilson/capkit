@@ -1,0 +1,183 @@
+/* Container for table and toolbar */
+.container {
+    width: 100%;
+    padding: 20px 0;
+    box-sizing: border-box;
+  }
+  
+  /* Toolbar */
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    gap: 20px;
+  }
+  
+  /* Search Box */
+  .searchContainer {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+  }
+  
+  .searchIcon {
+    color: #666;
+    margin-right: 6px;
+  }
+  
+  .searchInput {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    width: 220px;
+  }
+  
+  .searchInput::placeholder {
+    color: #999;
+  }
+  
+  /* Table Wrapper */
+  .tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  /* Table styling */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+  }
+  
+  .table thead th {
+    background-color: #f7f7f7;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #444;
+    text-align: left;
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    white-space: nowrap;
+    user-select: none;
+  }
+  
+  /* Header content: fixed small gap between title and icon */
+  .headerContent {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px; /* fixed gap */
+  }
+  
+  .headerTitle {
+    /* no flex-grow so they remain close */
+  }
+  
+  .headerIcons {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Only sortable headers get pointer cursor */
+  .pointer {
+    cursor: pointer;
+  }
+  
+  .sortableHeader {
+    /* Additional styling if needed */
+  }
+  
+  .table tbody td {
+    font-size: 0.9rem;
+    color: #333;
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fff;
+  }
+  
+  .table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .clickableRow {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .clickableRow:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Profile cell styling */
+  .nameCell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .profileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .name {
+    font-weight: 500;
+    color: #222;
+  }
+  
+  .email {
+    font-size: 0.8rem;
+    color: #999;
+  }
+  
+  /* Status badge - smaller font */
+  .statusBadge {
+    display: inline-block;
+    padding: 0.35rem 0.65rem;
+    border-radius: 12px;
+    font-size: 0.85rem;  /* <--- Smaller font size */
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  
+  .pending {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  
+  .approved {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .denied {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Sort icons */
+  .sortIcon {
+    font-size: 14px;
+    margin-left: 4px;
+    color: #000;
+    vertical-align: middle;
+  }
+  
+  .sortIconInactive {
+    font-size: 14px;
+    margin-left: 4px;
+    color: #ccc;
+    vertical-align: middle;
+  }
+  
