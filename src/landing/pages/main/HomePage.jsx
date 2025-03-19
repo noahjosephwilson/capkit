@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import TopPage from './top/TopPage';
+import TopPage from './IntroPage';
 
 const HomePage = () => {
   return (

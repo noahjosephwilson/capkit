@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import styles from './TopPage.module.css';
+import styles from './IntroPage.module.css';
 
 const TopPage = () => {
   return (

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './LogInPage.module.css';
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../../../../../firebaseConfig';
+import { auth } from '@/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
