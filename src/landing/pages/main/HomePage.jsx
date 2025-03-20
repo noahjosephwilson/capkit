@@ -1,11 +1,11 @@
 "use client";
 import React from 'react';
-import TopPage from './IntroPage';
+import Hero from './HeroPage';
 
 const HomePage = () => {
   return (
     <div>
-      <TopPage />
+      <Hero/>
       {/* Additional sections can follow here */}
     </div>
   );
